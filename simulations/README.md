@@ -1,14 +1,38 @@
 
-# DDoS-AID: Reproducing the results
+# ACC-Turbo: Reproducing the results
 
-The DDoS-AID software (simulation-based) evaluation is divided in two pieces. First, the analysis of the clustering algorithms themselves fully performed on a standalone python environment. Second, the impact of the scheduling decisions using a packet-based simulator called Netbench.
+## Quick start
 
-## Reproducing the results
+### Background 
 
-* **Figure 4 and 5: Case study of a morphing attack**: 
+* **Figure 2: Comparison between ACC and ACC-Turbo**: 
 
-    * `./morphing_attack.sh`
+    * Run `./run_fig_2.sh`. 
+    * Result in `./temp/sppifo/sppifo_analysis`.
+    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
 
-* **Rest of figures: Case study of a morphing attack**: 
+* **Figure 3: Performance under morphing attack**: 
 
-    * `./clustering_performance_evaluation.sh`
+    * Run `./run_fig_3.sh`. 
+    * Result in `./temp/sppifo/sppifo_analysis`.
+    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
+
+### Simulation-based Evaluation
+
+* **Figure 9: Performance by attack type and features**: 
+
+    * Run `./run_fig_9.sh`. 
+    * Result in `./temp/sppifo/sppifo_analysis`.
+    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
+
+* **Figure 10: Performance of clustering strategies**: 
+
+    * Run `./run_fig_10.sh`. 
+    * Result in `./temp/sppifo/sppifo_analysis`.
+    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
+
+* **Figure 11: Impact of scheduling for mitigation**: 
+
+    * Run `./run_fig_11.sh`. 
+    * Result in `./temp/sppifo/sppifo_analysis`.
+    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
