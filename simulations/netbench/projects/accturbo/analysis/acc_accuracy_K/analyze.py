@@ -97,7 +97,7 @@ if __name__ == "__main__":
     accr_drops =  get_drops('temp/accr/acc_accuracy_K/accr/aggregate_input_throughput.csv.log',
                              'temp/accr/acc_accuracy_K/accr/aggregate_output_throughput.csv.log')
     # Call analysis functions
-    for scheduler in ["K1", "K25", "K50", "K100", "K250", "K500", "K1000", "K2000", "K3000", "K4000", "K5000"]:
+    for scheduler in ["K1", "K25", "K50", "K100", "K250", "K500", "K1000"]:
 
         print(scheduler)
         analyze_accuracy('temp/accr/acc_accuracy_K/{}/aggregate_input_throughput.csv.log'.format(scheduler),
