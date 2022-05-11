@@ -16,14 +16,14 @@ public class MainFromIntelliJ {
             //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_original/slowgrow_acc/plot.gnuplot");
 
             /* Figure 2c: ACC: Impact of K (ACC constants are specified at compile time, so you have to change K values from the ACC constants file before each simulation)*/
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K10.properties"});
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K15.properties"});
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K20.properties"});
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K25.properties"});
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K30.properties"});
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K35.properties"});
-            MainFromProperties.runCommand("python3 projects/accturbo/analysis/acc_reactiontime/analyze.py");
-            MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_reactiontime/plot.gnuplot");
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K10.properties"});
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K15.properties"});
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K20.properties"});
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K25.properties"});
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K30.properties"});
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K35.properties"});
+            //MainFromProperties.runCommand("python3 projects/accturbo/analysis/acc_reactiontime/analyze.py");
+            //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_reactiontime/plot.gnuplot");
 
             /* Figure 2d: ACC-Turbo */
             //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_original/slowgrow_accturbo.properties"});
