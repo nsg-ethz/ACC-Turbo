@@ -1,4 +1,4 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 import ch.ethz.systems.netbench.core.Simulator;
 import ch.ethz.systems.netbench.core.log.SimulationLogger;
@@ -8,12 +8,12 @@ import ch.ethz.systems.netbench.ext.basic.IpPacket;
 import ch.ethz.systems.netbench.xpt.tcpbase.FullExtTcpPacket;
 
 
-public class PushbackOutputPort extends OutputPort {
+public class ACCOutputPort extends OutputPort {
 
     private final long maxQueueSize;
 
-    public PushbackOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
-        super(ownNetworkDevice, targetNetworkDevice, link, new PushbackQueue(ownNetworkDevice, link, enableRateLimiting, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait));
+    public ACCOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
+        super(ownNetworkDevice, targetNetworkDevice, link, new ACCQueue(ownNetworkDevice, link, enableRateLimiting, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait));
         this.maxQueueSize = maxQueueSize;
     }
 
@@ -66,7 +66,7 @@ public class PushbackOutputPort extends OutputPort {
             if (getQueueSize() <= maxQueueSize-1) {
 
                 // Enqueue to the RED queue
-                PushbackQueue pq = (PushbackQueue) getQueue();
+                ACCQueue pq = (ACCQueue) getQueue();
                 Packet droppedPacket = pq.offerPacket(packet);
 
                 if (droppedPacket == null) {

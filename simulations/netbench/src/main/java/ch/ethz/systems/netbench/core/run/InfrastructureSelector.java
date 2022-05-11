@@ -20,12 +20,12 @@ import ch.ethz.systems.netbench.ext.hybrid.EcmpThenValiantSwitchGenerator;
 import ch.ethz.systems.netbench.ext.valiant.RangeValiantSwitchGenerator;
 import ch.ethz.systems.netbench.xpt.cbr.CBRTransportLayerGenerator;
 import ch.ethz.systems.netbench.xpt.ddos.DDoSTransportLayerGenerator;
-import ch.ethz.systems.netbench.xpt.ports.ACCR.ACCROutputPortGenerator;
+import ch.ethz.systems.netbench.xpt.ports.ACCTurbo.ACCTurboOutputPortGenerator;
 import ch.ethz.systems.netbench.xpt.ports.AFQ.AFQOutputPortGenerator;
 import ch.ethz.systems.netbench.xpt.ports.FIFO.FIFOOutputPortGenerator;
 import ch.ethz.systems.netbench.xpt.ports.PIFO.PIFOOutputPortGenerator;
 import ch.ethz.systems.netbench.xpt.ports.PriorityQueues.PriorityQueuesOutputPortGenerator;
-import ch.ethz.systems.netbench.xpt.ports.Pushback.PushbackOutputPortGenerator;
+import ch.ethz.systems.netbench.xpt.ports.ACC.ACCOutputPortGenerator;
 import ch.ethz.systems.netbench.xpt.ports.RED.REDOutputPortGenerator;
 import ch.ethz.systems.netbench.xpt.ports.SPPIFO.SPPIFOOutputPortGenerator;
 import ch.ethz.systems.netbench.xpt.ports.Greedy.GreedyOutputPortGenerator_Advanced;
@@ -192,12 +192,6 @@ class InfrastructureSelector {
                         Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_per_queue_packets")
                 );
 
-            case "accr":
-                return new ACCROutputPortGenerator(
-                        Simulator.getConfiguration().getLongPropertyOrFail("output_port_number_queues"),
-                        Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_per_queue_packets")
-                );
-
             case "greedy_simple":
                 return new GreedyOutputPortGenerator_Simple(
                         Simulator.getConfiguration().getLongPropertyOrFail("output_port_number_queues"),
@@ -242,18 +236,6 @@ class InfrastructureSelector {
                         Simulator.getConfiguration().getLongPropertyOrFail("output_port_bytes_per_round")
                 );
 
-            case "pushback":
-                return new PushbackOutputPortGenerator(
-                        Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_packets"),
-                        Simulator.getConfiguration().getBooleanPropertyWithDefault("output_port_pushback_enable_rate_limiting", true),
-                        Simulator.getConfiguration().getDoublePropertyOrFail("output_port_red_set_q_weight"),
-                        Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_minthresh"),
-                        Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_maxthresh"),
-                        Simulator.getConfiguration().getBooleanPropertyOrFail("output_port_red_set_gentle"),
-                        Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_average_packet_size"),
-                        Simulator.getConfiguration().getBooleanPropertyOrFail("output_port_red_set_wait")
-                );
-
             case "red":
                 return new REDOutputPortGenerator(
                         Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_packets"),
@@ -263,6 +245,24 @@ class InfrastructureSelector {
                         Simulator.getConfiguration().getBooleanPropertyOrFail("output_port_red_set_gentle"),
                         Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_average_packet_size"),
                         Simulator.getConfiguration().getBooleanPropertyOrFail("output_port_red_set_wait")
+                );
+
+            case "acc":
+                return new ACCOutputPortGenerator(
+                        Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_packets"),
+                        Simulator.getConfiguration().getBooleanPropertyWithDefault("output_port_acc_enable_rate_limiting", true),
+                        Simulator.getConfiguration().getDoublePropertyOrFail("output_port_red_set_q_weight"),
+                        Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_minthresh"),
+                        Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_maxthresh"),
+                        Simulator.getConfiguration().getBooleanPropertyOrFail("output_port_red_set_gentle"),
+                        Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_average_packet_size"),
+                        Simulator.getConfiguration().getBooleanPropertyOrFail("output_port_red_set_wait")
+                );
+
+            case "accturbo":
+                return new ACCTurboOutputPortGenerator(
+                        Simulator.getConfiguration().getLongPropertyOrFail("output_port_number_queues"),
+                        Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_per_queue_packets")
                 );
 
             default:

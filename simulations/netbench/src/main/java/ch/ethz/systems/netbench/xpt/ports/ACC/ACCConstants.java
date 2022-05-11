@@ -1,6 +1,6 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
-public class PushbackConstants {
+public class ACCConstants {
 
     public static final int NO_BITS = 4;
     public static final int MAX_CLUSTER = 20;

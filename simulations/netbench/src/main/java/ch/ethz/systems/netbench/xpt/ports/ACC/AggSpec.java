@@ -1,4 +1,4 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 import ch.ethz.systems.netbench.core.network.Packet;
 import ch.ethz.systems.netbench.ext.basic.IpHeader;
@@ -26,7 +26,7 @@ public class AggSpec {
 
         if (this.dstON == 1) {
             int prefix;
-            if (PushbackConstants.AGGREGATE_CLASSIFICATION_MODE_FLOWID == 1) { // Classify on the basis of the flowid
+            if (ACCConstants.AGGREGATE_CLASSIFICATION_MODE_FLOWID == 1) { // Classify on the basis of the flowid
                 prefix = getPrefix((int) pkt.getFlowId());
             } else {
                 System.out.println("IP Address clustering not supported yet");
@@ -42,7 +42,7 @@ public class AggSpec {
     }
 
     int getPrefix(int addr) {
-        int andAgent = ((1 << dstBits) - 1) << (PushbackConstants.NO_BITS - dstBits);
+        int andAgent = ((1 << dstBits) - 1) << (ACCConstants.NO_BITS - dstBits);
         return (addr &  andAgent);
     }
 

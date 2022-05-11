@@ -1,11 +1,11 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 public class PrefixTree {
 
     public Integer countArray[];
 
     public PrefixTree() {
-        countArray = new Integer[(1<<(PushbackConstants.NO_BITS+1))-1];
+        countArray = new Integer[(1<<(ACCConstants.NO_BITS+1))-1];
 
         for (int i = 0; i <= getLastIndex(); i++) {
             countArray[i] = 0;
@@ -13,7 +13,7 @@ public class PrefixTree {
     }
 
     static int getLastIndex() {
-        return (1 << (PushbackConstants.NO_BITS + 1)) - 2;
+        return (1 << (ACCConstants.NO_BITS + 1)) - 2;
     }
 
     void reset() {
@@ -27,7 +27,7 @@ public class PrefixTree {
             System.out.println("ERROR: Address out of Range\n");
             System.exit(-1);
         }
-        for (int i = 0; i <= PushbackConstants.NO_BITS; i++) {
+        for (int i = 0; i <= ACCConstants.NO_BITS; i++) {
             int index = getIndexFromAddress(address, i);
             countArray[index] += size;
         }
@@ -37,7 +37,7 @@ public class PrefixTree {
         int sum = 0;
         int count = 0;
         int i;
-        for (i = getFirstIndexOfBit(PushbackConstants.NO_BITS); i <= getLastIndexOfBit(PushbackConstants.NO_BITS); i++) {
+        for (i = getFirstIndexOfBit(ACCConstants.NO_BITS); i <= getLastIndexOfBit(ACCConstants.NO_BITS); i++) {
             if (countArray[i] != 0) {
                 sum += countArray[i];
                 count++;
@@ -46,19 +46,19 @@ public class PrefixTree {
 
         if (count == 0) return null;
 
-        Cluster[] clusterList =  new Cluster[PushbackConstants.MAX_CLUSTER];
-        for (i = 0; i < PushbackConstants.MAX_CLUSTER; i++) {
+        Cluster[] clusterList =  new Cluster[ACCConstants.MAX_CLUSTER];
+        for (i = 0; i < ACCConstants.MAX_CLUSTER; i++) {
             clusterList[i] = new Cluster(0, -1);
         }
 
         double mean = sum / count;
-        for (i = getFirstIndexOfBit(PushbackConstants.NO_BITS); i <= getLastIndexOfBit(PushbackConstants.NO_BITS); i++) {
+        for (i = getFirstIndexOfBit(ACCConstants.NO_BITS); i <= getLastIndexOfBit(ACCConstants.NO_BITS); i++) {
             if (countArray[i] >= mean / 2) { //using mean/2 helps in trivial simulations.
-                insertCluster(clusterList, i, countArray[i], PushbackConstants.CLUSTER_LEVEL);
+                insertCluster(clusterList, i, countArray[i], ACCConstants.CLUSTER_LEVEL);
             }
         }
 
-        for (i = 0; i < PushbackConstants.MAX_CLUSTER; i++) {
+        for (i = 0; i < ACCConstants.MAX_CLUSTER; i++) {
             if (clusterList[i].prefix == -1) {
                 break;
             }
@@ -68,7 +68,7 @@ public class PrefixTree {
 
         sortCluster(clusterList, lastIndex);
 
-        double targetRate = linkCapacity / (1 - PushbackConstants.TARGET_DROPRATE);
+        double targetRate = linkCapacity / (1 - ACCConstants.TARGET_DROPRATE);
         double excessRate = estimatedArrivalRate - targetRate;
 
         double rateTillNow = 0;
@@ -93,9 +93,9 @@ public class PrefixTree {
     void insertCluster(Cluster[] clusterList, int index, int count, int noBits) {
 
         int address = getPrefixFromIndex(index);
-        int prefix = (address >> (PushbackConstants.NO_BITS - noBits)) << (PushbackConstants.NO_BITS - noBits);
+        int prefix = (address >> (ACCConstants.NO_BITS - noBits)) << (ACCConstants.NO_BITS - noBits);
         int breakCode = 0;
-        for (int i = 0; i < PushbackConstants.MAX_CLUSTER; i++) {
+        for (int i = 0; i < ACCConstants.MAX_CLUSTER; i++) {
             if (clusterList[i].prefix == prefix && clusterList[i].bits == noBits) {
                 clusterList[i].count += count;
                 breakCode = 1;
@@ -170,12 +170,12 @@ public class PrefixTree {
     }
 
     int getMaxAddress() {
-        return (1 << PushbackConstants.NO_BITS) - 1;
+        return (1 << ACCConstants.NO_BITS) - 1;
     }
 
     int getIndexFromPrefix(int prefix, int noBits) {
         int base = (1 << noBits) - 1;
-        return base + (prefix >> (PushbackConstants.NO_BITS - noBits));
+        return base + (prefix >> (ACCConstants.NO_BITS - noBits));
     }
 
     int getIndexFromAddress(int address, int noBits) {
@@ -183,7 +183,7 @@ public class PrefixTree {
         int base = (1 << noBits) - 1;
 //   int andAgent = address >> (NO_BITS - noBits);
 //   int additive = base & andAgent;
-        int additive = address >> (PushbackConstants.NO_BITS - noBits);
+        int additive = address >> (ACCConstants.NO_BITS - noBits);
 
         return base + additive;
     }
@@ -192,14 +192,14 @@ public class PrefixTree {
 
         int noBits = getNoBitsFromIndex(index);
         int base = (1 << noBits) - 1;
-        int prefix = (index - base) << (PushbackConstants.NO_BITS - noBits);
+        int prefix = (index - base) << (ACCConstants.NO_BITS - noBits);
 
         return prefix;
     }
 
 
     public static int getPrefixBits(int prefix, int noBits) {
-        return (prefix >> (PushbackConstants.NO_BITS - noBits)) << (PushbackConstants.NO_BITS - noBits);
+        return (prefix >> (ACCConstants.NO_BITS - noBits)) << (ACCConstants.NO_BITS - noBits);
     }
 
     int getNoBitsFromIndex(int index) {

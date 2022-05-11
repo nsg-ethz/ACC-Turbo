@@ -1,4 +1,4 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 import ch.ethz.systems.netbench.core.Simulator;
 import ch.ethz.systems.netbench.core.log.SimulationLogger;
@@ -9,10 +9,10 @@ import ch.ethz.systems.netbench.xpt.ports.RED.REDQueue;
 
 import java.util.Queue;
 
-public class PushbackQueue extends REDQueue implements Queue {
+public class ACCQueue extends REDQueue implements Queue {
 
     public NetworkDevice ownNetworkDevice;
-    public PushbackAgent pushbackAgent;
+    public ACCAgent pushbackAgent;
     public RateEstimator rateEstimator;
     public RateLimitSessionList rlsList;
 
@@ -23,12 +23,12 @@ public class PushbackQueue extends REDQueue implements Queue {
     protected int rateLimiterBitDrops; // early bit drops
 
 
-    public PushbackQueue(NetworkDevice ownNetworkDevice, Link link, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait){
+    public ACCQueue(NetworkDevice ownNetworkDevice, Link link, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait){
 
         super(link, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait);
 
         this.ownNetworkDevice = ownNetworkDevice;
-        this.pushbackAgent = new PushbackAgent(this); // We create a new agent for the queue
+        this.pushbackAgent = new ACCAgent(this); // We create a new agent for the queue
         this.rateEstimator = new RateEstimator();
         this.rlsList = new RateLimitSessionList();
 
@@ -39,7 +39,7 @@ public class PushbackQueue extends REDQueue implements Queue {
         this.rateLimiterBitDrops = 0;
 
         // We schedule the first call to the timeout function that executes the pushback function
-        PushbackQueueEvent pushbackQueueEvent = new PushbackQueueEvent((long)(PushbackConstants.SUSTAINED_CONGESTION_PERIOD*1000000000), this);
+        ACCQueueEvent pushbackQueueEvent = new ACCQueueEvent((long)(ACCConstants.SUSTAINED_CONGESTION_PERIOD*1000000000), this);
         Simulator.registerEvent(pushbackQueueEvent);
     }
 
@@ -61,7 +61,7 @@ public class PushbackQueue extends REDQueue implements Queue {
 
         if (enableRateLimiting &&
                 // dropRate1 >= PushbackConstants.SUSTAINED_CONGESTION_DROPRATE &&
-                dropRate2 >= PushbackConstants.SUSTAINED_CONGESTION_DROPRATE
+                dropRate2 >= ACCConstants.SUSTAINED_CONGESTION_DROPRATE
         ) {
 
             // this function call would
@@ -79,7 +79,7 @@ public class PushbackQueue extends REDQueue implements Queue {
         this.rateLimiterBitDrops = 0;
 
         // When the processing is finished, we schedule it again for SUSTAINED CONGESTION PERIOD ns from now
-        PushbackQueueEvent pushbackQueueEvent = new PushbackQueueEvent((long)(PushbackConstants.SUSTAINED_CONGESTION_PERIOD*1000000000), this);
+        ACCQueueEvent pushbackQueueEvent = new ACCQueueEvent((long)(ACCConstants.SUSTAINED_CONGESTION_PERIOD*1000000000), this);
         Simulator.registerEvent(pushbackQueueEvent);
     }
 

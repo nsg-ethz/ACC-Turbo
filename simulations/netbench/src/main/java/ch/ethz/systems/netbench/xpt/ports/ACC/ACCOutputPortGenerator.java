@@ -1,4 +1,4 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 import ch.ethz.systems.netbench.core.log.SimulationLogger;
 import ch.ethz.systems.netbench.core.network.Link;
@@ -6,7 +6,7 @@ import ch.ethz.systems.netbench.core.network.NetworkDevice;
 import ch.ethz.systems.netbench.core.network.OutputPort;
 import ch.ethz.systems.netbench.core.run.infrastructure.OutputPortGenerator;
 
-public class PushbackOutputPortGenerator extends OutputPortGenerator {
+public class ACCOutputPortGenerator extends OutputPortGenerator {
 
     private final long sizePackets;
     private final boolean enableRateLimiting;
@@ -17,7 +17,7 @@ public class PushbackOutputPortGenerator extends OutputPortGenerator {
     private int averagePacketSize;
     private boolean wait;
 
-    public PushbackOutputPortGenerator(long sizePackets, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
+    public ACCOutputPortGenerator(long sizePackets, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
         this.sizePackets = sizePackets;
         this.enableRateLimiting = enableRateLimiting;
         this.q_weight = q_weight;
@@ -31,7 +31,7 @@ public class PushbackOutputPortGenerator extends OutputPortGenerator {
 
     @Override
     public OutputPort generate(NetworkDevice ownNetworkDevice, NetworkDevice towardsNetworkDevice, Link link) {
-        return new PushbackOutputPort(ownNetworkDevice, towardsNetworkDevice, link, sizePackets, enableRateLimiting, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait);
+        return new ACCOutputPort(ownNetworkDevice, towardsNetworkDevice, link, sizePackets, enableRateLimiting, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait);
     }
 
 }

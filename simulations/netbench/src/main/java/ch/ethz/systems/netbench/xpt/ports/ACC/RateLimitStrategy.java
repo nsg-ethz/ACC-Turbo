@@ -1,4 +1,4 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 import ch.ethz.systems.netbench.core.Simulator;
 import ch.ethz.systems.netbench.core.network.Packet;
@@ -19,7 +19,7 @@ public class RateLimitStrategy {
         this.resetTime = Simulator.getCurrentTime()/1000000000;
 
         this.rateEstimator = new RateEstimator(estimateArrivalRateAggregate);
-        this.rateLimiter = new TokenBucketRateLimiter(PushbackConstants.DEFAULT_BUCKET_DEPTH);
+        this.rateLimiter = new TokenBucketRateLimiter(ACCConstants.DEFAULT_BUCKET_DEPTH);
         //System.out.println("Rate-Limit Strategy: Started a token bucket at time: " + this.resetTime + "s");
     }
 

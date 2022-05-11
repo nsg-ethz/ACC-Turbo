@@ -1,12 +1,12 @@
-package ch.ethz.systems.netbench.xpt.ports.ACCR;
+package ch.ethz.systems.netbench.xpt.ports.ACCTurbo;
 
 import ch.ethz.systems.netbench.core.network.Event;
 
 public class UpdatePrioritiesEvent extends Event {
 
-    ACCROutputPort accr;
+    ACCTurboOutputPort accr;
 
-    UpdatePrioritiesEvent(long timeFromNowNs, ACCROutputPort accr) {
+    UpdatePrioritiesEvent(long timeFromNowNs, ACCTurboOutputPort accr) {
         super(timeFromNowNs);
         this.accr = accr;
     }

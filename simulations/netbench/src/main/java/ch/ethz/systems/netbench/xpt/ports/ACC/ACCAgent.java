@@ -1,9 +1,9 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 import ch.ethz.systems.netbench.core.Simulator;
 import ch.ethz.systems.netbench.core.network.Packet;
 
-public class PushbackAgent {
+public class ACCAgent {
 
     public int lastIndex;
     public int intResult;
@@ -11,10 +11,10 @@ public class PushbackAgent {
     protected double requiredLimit;
     protected boolean firstTime;
 
-    PushbackQueue pushbackQueue;             //pointer to the queue object
+    ACCQueue pushbackQueue;             //pointer to the queue object
     IdentStruct idTree;
 
-    public PushbackAgent(PushbackQueue pushbackQueue) {
+    public ACCAgent(ACCQueue pushbackQueue) {
         this.pushbackQueue = pushbackQueue;
         this.idTree = new IdentStruct();
         this.firstTime = true;
@@ -41,7 +41,7 @@ public class PushbackAgent {
 
         // Configure a refresh event (if it is the first time called) to revisit the aggregates periodically
         if (this.firstTime) {
-            PushbackAgentEvent pushbackAgentEvent = new PushbackAgentEvent((long)PushbackConstants.PUSHBACK_CYCLE_TIME*1000000000, PushbackConstants.PUSHBACK_REFRESH_EVENT, this);
+            ACCAgentEvent pushbackAgentEvent = new ACCAgentEvent((long) ACCConstants.PUSHBACK_CYCLE_TIME*1000000000, ACCConstants.PUSHBACK_REFRESH_EVENT, this);
             Simulator.registerEvent(pushbackAgentEvent);
             this.firstTime = false;
         }
@@ -81,10 +81,10 @@ public class PushbackAgent {
             System.out.println("Estimated rate for the new aggregate (" + aggSpec.dstPrefix + "): " + estimate + "; Counter aggregate=" + currCluster.count + "; Counter total=" + aggReturn.totalCount);
 
             // If we have exceeded the max number of sessions that we can rate limit, we check if it is a top aggregate
-            if (numSessions >= PushbackConstants.MAX_SESSIONS) {
+            if (numSessions >= ACCConstants.MAX_SESSIONS) {
                 int rank = this.pushbackQueue.rlsList.rankRate(estimate);
-                if (rank >= PushbackConstants.MAX_SESSIONS) {
-                    System.out.println("Identified aggregate is not in the top " + PushbackConstants.MAX_SESSIONS + " responsibles: " + aggSpec);
+                if (rank >= ACCConstants.MAX_SESSIONS) {
+                    System.out.println("Identified aggregate is not in the top " + ACCConstants.MAX_SESSIONS + " responsibles: " + aggSpec);
                     continue;
                 }
             }
@@ -95,7 +95,7 @@ public class PushbackAgent {
             this.pushbackQueue.rlsList.insert(rls);
             numSessions++;
 
-            PushbackAgentEvent pushbackAgentEvent = new PushbackAgentEvent((long)PushbackConstants.INITIAL_UPDATE_TIME, PushbackConstants.INITIAL_UPDATE_EVENT, rls, this);
+            ACCAgentEvent pushbackAgentEvent = new ACCAgentEvent((long) ACCConstants.INITIAL_UPDATE_TIME, ACCConstants.INITIAL_UPDATE_EVENT, rls, this);
             Simulator.registerEvent(pushbackAgentEvent);
         }
 
@@ -127,7 +127,7 @@ public class PushbackAgent {
             rls.setLimit(newLimit);
             System.out.println("Set new limit for rate-limiting session for aggregate: " + rls.aggSpec.dstPrefix + ". Limit: " + newLimit + "Based on estimated arrival rate aggregate: " + estimatedArrivalRate);
 
-            PushbackAgentEvent pushbackAgentEvent = new PushbackAgentEvent((long)PushbackConstants.INITIAL_UPDATE_TIME, PushbackConstants.INITIAL_UPDATE_EVENT, rls, this);
+            ACCAgentEvent pushbackAgentEvent = new ACCAgentEvent((long) ACCConstants.INITIAL_UPDATE_TIME, ACCConstants.INITIAL_UPDATE_EVENT, rls, this);
             Simulator.registerEvent(pushbackAgentEvent);
         } else {
             rls.setLimit(rls.lowerBound);
@@ -145,7 +145,7 @@ public class PushbackAgent {
 
         if (numSessions == 0) {
             //set up refresh timers for a later time and return.
-            PushbackAgentEvent pushbackAgentEvent = new PushbackAgentEvent((long)PushbackConstants.PUSHBACK_CYCLE_TIME*1000000000, PushbackConstants.PUSHBACK_REFRESH_EVENT, this);
+            ACCAgentEvent pushbackAgentEvent = new ACCAgentEvent((long) ACCConstants.PUSHBACK_CYCLE_TIME*1000000000, ACCConstants.PUSHBACK_REFRESH_EVENT, this);
             Simulator.registerEvent(pushbackAgentEvent);
             return;
         }
@@ -153,11 +153,11 @@ public class PushbackAgent {
         // Check if some sessions need to be discarded because of rate-limiting too many sessions
         double now = Simulator.getCurrentTime()/1000000000;
         for(RateLimitSession listItem1 : this.pushbackQueue.rlsList.list){
-            if (numSessions > PushbackConstants.MAX_SESSIONS && listItem1 != null){
+            if (numSessions > ACCConstants.MAX_SESSIONS && listItem1 != null){
                 int rank = this.pushbackQueue.rlsList.rankRate(listItem1.getArrivalRateForStatus());
-                if (rank >= PushbackConstants.MAX_SESSIONS && (now - listItem1.startTime) >= PushbackConstants.EARLIEST_TIME_TO_FREE) {
+                if (rank >= ACCConstants.MAX_SESSIONS && (now - listItem1.startTime) >= ACCConstants.EARLIEST_TIME_TO_FREE) {
                     System.out.println("Releasing because of too many being rate-limited");
-                    if (PushbackConstants.LOWER_BOUND_MODE == 1 && this.idTree.lowerBound<listItem1.getArrivalRateForStatus()){
+                    if (ACCConstants.LOWER_BOUND_MODE == 1 && this.idTree.lowerBound<listItem1.getArrivalRateForStatus()){
                         this.idTree.lowerBound = listItem1.getArrivalRateForStatus();
                     }
                     pushbackCancel(listItem1);
@@ -168,7 +168,7 @@ public class PushbackAgent {
 
         double linkCapacity = this.pushbackQueue.getBandwidthBitPerNs()*1000000000; // In bits per second
         double estimatedArrivalRate = this.pushbackQueue.getRate(); // In bits per second
-        double targetRate = linkCapacity / (1 - PushbackConstants.TARGET_DROPRATE);
+        double targetRate = linkCapacity / (1 - ACCConstants.TARGET_DROPRATE);
 
         double totalRateLimitedArrivalRate = 0;
         double totalLimit = 0;
@@ -187,7 +187,7 @@ public class PushbackAgent {
             }
         }
 
-        if (PushbackConstants.LOWER_BOUND_MODE == 1) {
+        if (ACCConstants.LOWER_BOUND_MODE == 1) {
             lowerBound = this.idTree.lowerBound;
         }
 
@@ -228,7 +228,7 @@ public class PushbackAgent {
             //Session sending less than the limit.
             if (sendRate < requiredLimit) {
                 //if it has been sending less for "some" time.
-                if (now - listItem.refreshedTime >= PushbackConstants.MIN_TIME_TO_FREE) {
+                if (now - listItem.refreshedTime >= ACCConstants.MIN_TIME_TO_FREE) {
                     pushbackCancel(listItem);       //cancel rate-limiting
                     requiredLimit += (requiredLimit - sendRate) / (numSessions - i - 1);
                     i--;
@@ -239,7 +239,7 @@ public class PushbackAgent {
                     //using just old limit is tricky when different aggregates have different limits.
                     //at the same time, we would prefer not to loosen the hold too much in one step.
                     double maxR = sendRate > oldLimit ? sendRate : oldLimit;
-                    if (now - listItem.refreshedTime <= PushbackConstants.PRIMARY_WAITING_ZONE) {
+                    if (now - listItem.refreshedTime <= ACCConstants.PRIMARY_WAITING_ZONE) {
                         System.out.println("Waiting Zone 1: sendRate="+ sendRate + ", oldLimit=" + oldLimit + "\n");
                     } else {
                         System.out.println("Waiting Zone 2: sendRate="+ sendRate + ", oldLimit=" + oldLimit + "\n");
@@ -273,7 +273,7 @@ public class PushbackAgent {
         //setup refresh timer again
         numSessions = this.pushbackQueue.rlsList.numSessions;
         if (numSessions > 0) {
-            PushbackAgentEvent event = new PushbackAgentEvent((long)PushbackConstants.PUSHBACK_CYCLE_TIME*1000000000, PushbackConstants.PUSHBACK_REFRESH_EVENT, this);
+            ACCAgentEvent event = new ACCAgentEvent((long) ACCConstants.PUSHBACK_CYCLE_TIME*1000000000, ACCConstants.PUSHBACK_REFRESH_EVENT, this);
             Simulator.registerEvent(event);
         }
     }

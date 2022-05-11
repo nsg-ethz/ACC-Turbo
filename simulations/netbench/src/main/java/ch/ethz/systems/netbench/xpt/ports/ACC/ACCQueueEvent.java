@@ -1,15 +1,15 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 import ch.ethz.systems.netbench.core.network.Event;
 
 
 /**
  * Event for the creation of a new packet. Called to replay pcap traces.
  */
-public class PushbackQueueEvent extends Event {
+public class ACCQueueEvent extends Event {
 
-    protected PushbackQueue pushbackQueue;
+    protected ACCQueue pushbackQueue;
 
-    PushbackQueueEvent(long timeFromNowNs, PushbackQueue pushbackQueue) {
+    ACCQueueEvent(long timeFromNowNs, ACCQueue pushbackQueue) {
         super(timeFromNowNs);
         this.pushbackQueue = pushbackQueue;
     }

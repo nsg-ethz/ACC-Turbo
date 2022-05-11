@@ -1,4 +1,4 @@
-package ch.ethz.systems.netbench.xpt.ports.Pushback;
+package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 import ch.ethz.systems.netbench.core.network.Packet;
 
@@ -14,7 +14,7 @@ public class IdentStruct {
 
     // Count a new drop to the aggregate, when repported by the RED module
     void registerDrop(Packet p) {
-        if (PushbackConstants.AGGREGATE_CLASSIFICATION_MODE_FLOWID == 1) {
+        if (ACCConstants.AGGREGATE_CLASSIFICATION_MODE_FLOWID == 1) {
             dstTree.registerDrop((int)p.getFlowId(), (int)p.getSizeBit());
         } else {
             System.out.println("IP Address clustering not supported yet");

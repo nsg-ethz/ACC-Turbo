@@ -1,4 +1,4 @@
-package ch.ethz.systems.netbench.xpt.ports.ACCR;
+package ch.ethz.systems.netbench.xpt.ports.ACCTurbo;
 
 import ch.ethz.systems.netbench.core.Simulator;
 import ch.ethz.systems.netbench.core.log.SimulationLogger;
@@ -8,7 +8,7 @@ import ch.ethz.systems.netbench.xpt.ports.PriorityQueues.PriorityQueues;
 
 import java.util.*;
 
-public class ACCROutputPort  extends OutputPort {
+public class ACCTurboOutputPort extends OutputPort {
 
     private long counterFlow1;
     private long counterFlow2;
@@ -22,7 +22,7 @@ public class ACCROutputPort  extends OutputPort {
     private int priorityFlow4;
     private int priorityFlow5;
 
-    public ACCROutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long numberQueues, long sizePerQueuePackets) {
+    public ACCTurboOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long numberQueues, long sizePerQueuePackets) {
         super(ownNetworkDevice, targetNetworkDevice, link, new PriorityQueues(numberQueues, sizePerQueuePackets, ownNetworkDevice));
         this.counterFlow1 = 0;
         this.counterFlow2 = 0;
