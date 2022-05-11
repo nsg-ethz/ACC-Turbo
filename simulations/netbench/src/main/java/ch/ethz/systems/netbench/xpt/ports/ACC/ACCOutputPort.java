@@ -12,8 +12,8 @@ public class ACCOutputPort extends OutputPort {
 
     private final long maxQueueSize;
 
-    public ACCOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
-        super(ownNetworkDevice, targetNetworkDevice, link, new ACCQueue(ownNetworkDevice, link, enableRateLimiting, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait));
+    public ACCOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long maxQueueSize, boolean enableRateLimiting, double sustainedCongestionPeriod, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
+        super(ownNetworkDevice, targetNetworkDevice, link, new ACCQueue(ownNetworkDevice, link, enableRateLimiting, sustainedCongestionPeriod, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait));
         this.maxQueueSize = maxQueueSize;
     }
 

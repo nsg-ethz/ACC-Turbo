@@ -17,13 +17,13 @@ public class ACCQueue extends REDQueue implements Queue {
     public RateLimitSessionList rlsList;
 
     protected boolean enableRateLimiting; // if rate limiting not enabled, it performs as a normal RED queue I guess
-
+    protected double sustainedCongestionPeriod;
     protected int totalBitArrivals; // bit arrivals to the queue
     protected int totalBitDrops ; // bit drops
     protected int rateLimiterBitDrops; // early bit drops
 
 
-    public ACCQueue(NetworkDevice ownNetworkDevice, Link link, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait){
+    public ACCQueue(NetworkDevice ownNetworkDevice, Link link, boolean enableRateLimiting, double sustainedCongestionPeriod, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait){
 
         super(link, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait);
 
@@ -33,17 +33,18 @@ public class ACCQueue extends REDQueue implements Queue {
         this.rlsList = new RateLimitSessionList();
 
         this.enableRateLimiting = enableRateLimiting;
+        this.sustainedCongestionPeriod = sustainedCongestionPeriod;
 
         this.totalBitArrivals = 0;
         this.totalBitDrops = 0;
         this.rateLimiterBitDrops = 0;
 
         // We schedule the first call to the timeout function that executes the pushback function
-        ACCQueueEvent pushbackQueueEvent = new ACCQueueEvent((long)(ACCConstants.SUSTAINED_CONGESTION_PERIOD*1000000000), this);
+        ACCQueueEvent pushbackQueueEvent = new ACCQueueEvent((long)(sustainedCongestionPeriod*1000000000), this);
         Simulator.registerEvent(pushbackQueueEvent);
     }
 
-    void timeout() { // Called every SUSTAINED_CONGESTION_PERIOD
+    void timeout() { // Called every sustainedCongestionPeriod
 
         // An alternative way of calculating this is using the arrivals and drops
         // but the below is more accurate as RED avg queue takes time to come down and
@@ -78,8 +79,8 @@ public class ACCQueue extends REDQueue implements Queue {
         this.totalBitDrops = 0;
         this.rateLimiterBitDrops = 0;
 
-        // When the processing is finished, we schedule it again for SUSTAINED CONGESTION PERIOD ns from now
-        ACCQueueEvent pushbackQueueEvent = new ACCQueueEvent((long)(ACCConstants.SUSTAINED_CONGESTION_PERIOD*1000000000), this);
+        // When the processing is finished, we schedule it again for sustainedCongestionPeriod ns from now
+        ACCQueueEvent pushbackQueueEvent = new ACCQueueEvent((long)(sustainedCongestionPeriod*1000000000), this);
         Simulator.registerEvent(pushbackQueueEvent);
     }
 

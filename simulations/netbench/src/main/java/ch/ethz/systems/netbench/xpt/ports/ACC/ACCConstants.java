@@ -29,6 +29,5 @@ public class ACCConstants {
 
     // PLAY WITH THESE:
     public static final double PUSHBACK_CYCLE_TIME = 5; // Original value: 5 (in seconds)
-    public static final double SUSTAINED_CONGESTION_PERIOD = 16;  // Original value: 2 (in seconds)
     public static final double SUSTAINED_CONGESTION_DROPRATE = 0.04;  // Original value: 0.10
 }

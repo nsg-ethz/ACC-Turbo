@@ -251,6 +251,7 @@ class InfrastructureSelector {
                 return new ACCOutputPortGenerator(
                         Simulator.getConfiguration().getLongPropertyOrFail("output_port_max_size_packets"),
                         Simulator.getConfiguration().getBooleanPropertyWithDefault("output_port_acc_enable_rate_limiting", true),
+                        Simulator.getConfiguration().getDoublePropertyOrFail("output_port_acc_sustained_congestion_period"),
                         Simulator.getConfiguration().getDoublePropertyOrFail("output_port_red_set_q_weight"),
                         Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_minthresh"),
                         Simulator.getConfiguration().getIntegerPropertyOrFail("output_port_red_set_maxthresh"),

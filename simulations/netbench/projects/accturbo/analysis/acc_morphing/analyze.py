@@ -138,17 +138,17 @@ if __name__ == "__main__":
     # Call analysis functions
     for scheduler in ["acc"]:
 
-        analyze_throughput('temp/accr/acc_morphing/{}/aggregate_input_throughput.csv.log'.format(scheduler),
-                           'projects/accr/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(scheduler),
+        analyze_throughput('temp/accturbo/acc_morphing/{}/aggregate_input_throughput.csv.log'.format(scheduler),
+                           'projects/accturbo/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(scheduler),
                            "input", 0, 50)
 
-        analyze_throughput('temp/accr/acc_morphing/{}/aggregate_output_throughput.csv.log'.format(scheduler),
-                           'projects/accr/analysis/acc_morphing/{}/aggregate_output_throughput.dat'.format(scheduler), "output", 0, 50)
+        analyze_throughput('temp/accturbo/acc_morphing/{}/aggregate_output_throughput.csv.log'.format(scheduler),
+                           'projects/accturbo/analysis/acc_morphing/{}/aggregate_output_throughput.dat'.format(scheduler), "output", 0, 50)
 
-        analyze_total_throughput('temp/accr/acc_morphing/{}/aggregate_drops.csv.log'.format(scheduler),
-                                 'projects/accr/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(scheduler), 0, 50)
+        analyze_total_throughput('temp/accturbo/acc_morphing/{}/aggregate_drops.csv.log'.format(scheduler),
+                                 'projects/accturbo/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(scheduler), 0, 50)
 
-        analyze_drop_rate('projects/accr/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(scheduler),
-                          'projects/accr/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(scheduler),
-                          'projects/accr/analysis/acc_morphing/{}/aggregate_droprate.dat'.format(scheduler),
+        analyze_drop_rate('projects/accturbo/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(scheduler),
+                          'projects/accturbo/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(scheduler),
+                          'projects/accturbo/analysis/acc_morphing/{}/aggregate_droprate.dat'.format(scheduler),
                           0, 50)

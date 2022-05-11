@@ -19,15 +19,13 @@ public class BaseAllowedProperties {
             "enable_inversions_tracking",
             "enable_packets_tracking",
 
-            // DDoS-AID
-            "enable_input_throughput_tracking",
-            "enable_output_throughput_tracking",
-            "enable_packet_drops_tracking",
-
-            // ACC-R
+            // ACC-Turbo
             "enable_aggregate_input_throughput_tracking",
             "enable_aggregate_output_throughput_tracking",
-            "enable_aggregate_drops_tracking"
+            "enable_aggregate_drops_tracking",
+            "enable_input_throughput_tracking",
+            "enable_output_throughput_tracking",
+            "enable_packet_drops_tracking"
     };
 
     public static final String[] PROPERTIES_RUN = new String[] {
@@ -109,17 +107,11 @@ public class BaseAllowedProperties {
             "transport_layer_rank_distribution",
             "transport_layer_rank_bound",
 
-            // DDoS-AID
-            "transport_layer_input",
-            "transport_layer_num_priorities",
-            "transport_layer_ground_truth_pifo",
-            "transport_layer_tp_rate",
-            "transport_layer_tn_rate",
-
-            // ACC-R
+            // ACC-Turbo
             "traffic_file_name",
             "transport_layer_cbr_random_enabled",
-            "output_port_pushback_enable_rate_limiting",
+            "output_port_acc_enable_rate_limiting",
+            "output_port_acc_sustained_congestion_period",
             "output_port_red_set_in_bytes",
             "output_port_red_set_q_weight",
             "output_port_red_set_minthresh",
@@ -127,6 +119,11 @@ public class BaseAllowedProperties {
             "output_port_red_set_gentle",
             "output_port_red_set_average_packet_size",
             "output_port_red_set_wait",
+            "transport_layer_input",
+            "transport_layer_num_priorities",
+            "transport_layer_ground_truth_pifo",
+            "transport_layer_tp_rate",
+            "transport_layer_tn_rate",
 
             // TCP
             "TCP_ROUND_TRIP_TIMEOUT_NS",

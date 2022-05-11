@@ -12,7 +12,7 @@ set yrange [0:100]
 set xlabel "K (seconds)"
 set xtics ("0.001" 0, "0.025" 1, "0.05" 2, "0.1" 3, "0.25" 4, "0.5" 5, "1" 6)
 
-set output "projects/accr/analysis/acc_accuracy_K/benign_drops.pdf"
-plot "projects/accr/analysis/acc_accuracy_K/benign_drops.dat" using 4 title "ACC-Turbo" w lp ls 27 lw 4, \
+set output "projects/accturbo/analysis/acc_accuracy_K/benign_drops.pdf"
+plot "projects/accturbo/analysis/acc_accuracy_K/benign_drops.dat" using 4 title "ACC-Turbo" w lp ls 27 lw 4, \
 '' using 2 title "ACC" w lp ls 28 lw 4, \
 '' using 3 title "FIFO" w lp ls 21 lw 4

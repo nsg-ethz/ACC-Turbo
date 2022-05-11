@@ -138,17 +138,17 @@ if __name__ == "__main__":
     # Call analysis functions
     for K in [10, 15, 20, 25, 30, 35]:
 
-        analyze_throughput('temp/accr/acc_reactiontime/K{}/aggregate_input_throughput.csv.log'.format(K),
-                           'projects/accr/analysis/acc_reactiontime/K{}/aggregate_input_throughput.dat'.format(K),
+        analyze_throughput('temp/accturbo/acc_reactiontime/K{}/aggregate_input_throughput.csv.log'.format(K),
+                           'projects/accturbo/analysis/acc_reactiontime/K{}/aggregate_input_throughput.dat'.format(K),
                            "input", 0, 50)
 
-        analyze_throughput('temp/accr/acc_reactiontime/K{}/aggregate_output_throughput.csv.log'.format(K),
-                           'projects/accr/analysis/acc_reactiontime/K{}/aggregate_output_throughput.dat'.format(K), "output", 0, 50)
+        analyze_throughput('temp/accturbo/acc_reactiontime/K{}/aggregate_output_throughput.csv.log'.format(K),
+                           'projects/accturbo/analysis/acc_reactiontime/K{}/aggregate_output_throughput.dat'.format(K), "output", 0, 50)
 
-        analyze_total_throughput('temp/accr/acc_reactiontime/K{}/aggregate_drops.csv.log'.format(K),
-                                 'projects/accr/analysis/acc_reactiontime/K{}/aggregate_total_drops.dat'.format(K), 0, 50)
+        analyze_total_throughput('temp/accturbo/acc_reactiontime/K{}/aggregate_drops.csv.log'.format(K),
+                                 'projects/accturbo/analysis/acc_reactiontime/K{}/aggregate_total_drops.dat'.format(K), 0, 50)
 
-        analyze_drop_rate('projects/accr/analysis/acc_reactiontime/K{}/aggregate_input_throughput.dat'.format(K),
-                          'projects/accr/analysis/acc_reactiontime/K{}/aggregate_total_drops.dat'.format(K),
-                          'projects/accr/analysis/acc_reactiontime/K{}/aggregate_droprate.dat'.format(K),
+        analyze_drop_rate('projects/accturbo/analysis/acc_reactiontime/K{}/aggregate_input_throughput.dat'.format(K),
+                          'projects/accturbo/analysis/acc_reactiontime/K{}/aggregate_total_drops.dat'.format(K),
+                          'projects/accturbo/analysis/acc_reactiontime/K{}/aggregate_droprate.dat'.format(K),
                           0, 50)

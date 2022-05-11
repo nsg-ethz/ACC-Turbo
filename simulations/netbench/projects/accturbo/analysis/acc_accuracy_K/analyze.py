@@ -91,15 +91,15 @@ def analyze_accuracy(input_throughput_file, output_throughput_file, results_file
 # Call analysis functions
 if __name__ == "__main__":
 
-    fifo_drops = get_drops('temp/accr/acc_accuracy_K/fifo/aggregate_input_throughput.csv.log',
-                     'temp/accr/acc_accuracy_K/fifo/aggregate_output_throughput.csv.log')
+    fifo_drops = get_drops('temp/accturbo/acc_accuracy_K/fifo/aggregate_input_throughput.csv.log',
+                     'temp/accturbo/acc_accuracy_K/fifo/aggregate_output_throughput.csv.log')
 
-    accr_drops =  get_drops('temp/accr/acc_accuracy_K/accr/aggregate_input_throughput.csv.log',
-                             'temp/accr/acc_accuracy_K/accr/aggregate_output_throughput.csv.log')
+    accr_drops =  get_drops('temp/accturbo/acc_accuracy_K/accr/aggregate_input_throughput.csv.log',
+                             'temp/accturbo/acc_accuracy_K/accr/aggregate_output_throughput.csv.log')
     # Call analysis functions
     for scheduler in ["K1", "K25", "K50", "K100", "K250", "K500", "K1000"]:
 
         print(scheduler)
-        analyze_accuracy('temp/accr/acc_accuracy_K/{}/aggregate_input_throughput.csv.log'.format(scheduler),
-                         'temp/accr/acc_accuracy_K/{}/aggregate_output_throughput.csv.log'.format(scheduler),
-                         'projects/accr/analysis/acc_accuracy_K/benign_drops.dat', scheduler, fifo_drops, accr_drops)
+        analyze_accuracy('temp/accturbo/acc_accuracy_K/{}/aggregate_input_throughput.csv.log'.format(scheduler),
+                         'temp/accturbo/acc_accuracy_K/{}/aggregate_output_throughput.csv.log'.format(scheduler),
+                         'projects/accturbo/analysis/acc_accuracy_K/benign_drops.dat', scheduler, fifo_drops, accr_drops)

@@ -10,6 +10,7 @@ public class ACCOutputPortGenerator extends OutputPortGenerator {
 
     private final long sizePackets;
     private final boolean enableRateLimiting;
+    private final double sustainedCongestionPeriod;
     private double q_weight;
     private int th_min;
     private int th_max;
@@ -17,9 +18,10 @@ public class ACCOutputPortGenerator extends OutputPortGenerator {
     private int averagePacketSize;
     private boolean wait;
 
-    public ACCOutputPortGenerator(long sizePackets, boolean enableRateLimiting, double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
+    public ACCOutputPortGenerator(long sizePackets, boolean enableRateLimiting, double sustainedCongestionPeriod,double q_weight, int th_min, int th_max, boolean enable_gentle, int averagePacketSize, boolean wait) {
         this.sizePackets = sizePackets;
         this.enableRateLimiting = enableRateLimiting;
+        this.sustainedCongestionPeriod = sustainedCongestionPeriod;
         this.q_weight = q_weight;
         this.th_min = th_min;
         this.th_max = th_max;
@@ -31,7 +33,7 @@ public class ACCOutputPortGenerator extends OutputPortGenerator {
 
     @Override
     public OutputPort generate(NetworkDevice ownNetworkDevice, NetworkDevice towardsNetworkDevice, Link link) {
-        return new ACCOutputPort(ownNetworkDevice, towardsNetworkDevice, link, sizePackets, enableRateLimiting, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait);
+        return new ACCOutputPort(ownNetworkDevice, towardsNetworkDevice, link, sizePackets, enableRateLimiting, sustainedCongestionPeriod, q_weight, th_min, th_max, enable_gentle, averagePacketSize, wait);
     }
 
 }

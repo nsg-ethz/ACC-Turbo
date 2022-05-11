@@ -4,16 +4,16 @@ import ch.ethz.systems.netbench.core.network.Event;
 
 public class UpdatePrioritiesEvent extends Event {
 
-    ACCTurboOutputPort accr;
+    ACCTurboOutputPort accturbo;
 
-    UpdatePrioritiesEvent(long timeFromNowNs, ACCTurboOutputPort accr) {
+    UpdatePrioritiesEvent(long timeFromNowNs, ACCTurboOutputPort accturbo) {
         super(timeFromNowNs);
-        this.accr = accr;
+        this.accturbo = accturbo;
     }
 
     @Override
     public void trigger() {
         // We call the queue timeout when the Event is triggered
-        this.accr.update_priorities();
+        this.accturbo.update_priorities();
     }
 }

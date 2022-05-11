@@ -57,9 +57,9 @@ public class ACCTurboOutputPort extends OutputPort {
         int newPriority = 0;
         while(iterator2.hasNext()) {
             Map.Entry me = (Map.Entry)iterator2.next();
-            System.out.print(me.getKey() + ": ");
-            System.out.print(me.getValue() + " -> priority: ");
-            System.out.println(newPriority);
+            //System.out.print(me.getKey() + ": ");
+            //System.out.print(me.getValue() + " -> priority: ");
+            //System.out.println(newPriority);
 
             if (me.getKey() == "flow1"){
                 this.priorityFlow1 = newPriority;

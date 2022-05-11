@@ -8,22 +8,22 @@ public class MainFromIntelliJ {
         /* Figure 2: Comparison between ACC and ACC-Turbo with the original paper's experiment */
 
             /* Figure 2a: No ACC */
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_original/slowgrow.properties"});
-            MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_original/slowgrow/plot.gnuplot");
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_original/slowgrow.properties"});
+            //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_original/slowgrow/plot.gnuplot");
 
             /* Figure 2b: ACC */
             //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_original/slowgrow_acc.properties"});
             //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_original/slowgrow_acc/plot.gnuplot");
 
-            /* Figure 2c: ACC: Impact of K (Pushback constants are specified at compile time, so you have to change K values from the pushbackconstants file before each simulation)*/
-            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K10.properties"});
-            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K15.properties"});
-            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K20.properties"});
-            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K25.properties"});
-            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K30.properties"});
-            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K35.properties"});
-            //MainFromProperties.runCommand("python3 projects/accturbo/analysis/acc_reactiontime/analyze.py");
-            //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_reactiontime/plot.gnuplot");
+            /* Figure 2c: ACC: Impact of K (ACC constants are specified at compile time, so you have to change K values from the ACC constants file before each simulation)*/
+            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K10.properties"});
+            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K15.properties"});
+            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K20.properties"});
+            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K25.properties"});
+            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K30.properties"});
+            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_reactiontime/K35.properties"});
+            MainFromProperties.runCommand("python3 projects/accturbo/analysis/acc_reactiontime/analyze.py");
+            MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_reactiontime/plot.gnuplot");
 
             /* Figure 2d: ACC-Turbo */
             //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_original/slowgrow_accturbo.properties"});

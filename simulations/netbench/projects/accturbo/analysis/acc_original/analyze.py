@@ -143,16 +143,16 @@ if __name__ == "__main__":
         print("Running analyze.py {}".format(sys.argv))
 
         analyze_throughput('{}/aggregate_input_throughput.csv.log'.format(sys.argv[2]),
-                           'projects/accr/analysis/acc_original/{}/aggregate_input_throughput.dat'.format(sys.argv[1]),
+                           'projects/accturbo/analysis/acc_original/{}/aggregate_input_throughput.dat'.format(sys.argv[1]),
                            "input", 0, 50)
         analyze_throughput('{}/aggregate_output_throughput.csv.log'.format(sys.argv[2]),
-                           'projects/accr/analysis/acc_original/{}/aggregate_output_throughput.dat'.format(
+                           'projects/accturbo/analysis/acc_original/{}/aggregate_output_throughput.dat'.format(
                                sys.argv[1]), "output", 0, 50)
 
         analyze_total_throughput('{}/aggregate_drops.csv.log'.format(sys.argv[2]),
-                                 'projects/accr/analysis/acc_original/{}/aggregate_total_drops.dat'.format(sys.argv[1]),
+                                 'projects/accturbo/analysis/acc_original/{}/aggregate_total_drops.dat'.format(sys.argv[1]),
                                  0, 50)
-        analyze_drop_rate('projects/accr/analysis/acc_original/{}/aggregate_input_throughput.dat'.format(sys.argv[1]),
-                          'projects/accr/analysis/acc_original/{}/aggregate_total_drops.dat'.format(sys.argv[1]),
-                          'projects/accr/analysis/acc_original/{}/aggregate_droprate.dat'.format(sys.argv[1]),
+        analyze_drop_rate('projects/accturbo/analysis/acc_original/{}/aggregate_input_throughput.dat'.format(sys.argv[1]),
+                          'projects/accturbo/analysis/acc_original/{}/aggregate_total_drops.dat'.format(sys.argv[1]),
+                          'projects/accturbo/analysis/acc_original/{}/aggregate_droprate.dat'.format(sys.argv[1]),
                                  0, 50)
