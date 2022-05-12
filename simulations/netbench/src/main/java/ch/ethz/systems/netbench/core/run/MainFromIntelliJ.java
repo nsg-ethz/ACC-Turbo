@@ -32,12 +32,12 @@ public class MainFromIntelliJ {
         /* Figure 3: Performance under morphing attack */
 
             /* Figure 3a: No ACC */
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_morphing/fifo.properties"});
-            MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_morphing/fifo/plot.gnuplot");
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_morphing/fifo.properties"});
+            //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_morphing/fifo/plot.gnuplot");
 
             /* Figure 3b: ACC */
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_morphing/acc.properties"});
-            MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_morphing/acc/plot.gnuplot");
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_morphing/acc.properties"});
+            //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_morphing/acc/plot.gnuplot");
 
             /* Figure 3c: Speed vs. accuracy */
             //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_accuracy_K/K1.properties"});
@@ -54,8 +54,8 @@ public class MainFromIntelliJ {
             //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_accuracy_K/plot.gnuplot");
 
             /* Figure 3d: ACC-Turbo */
-            MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_morphing/accturbo.properties"});
-            MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_morphing/accturbo/plot.gnuplot");
+            //MainFromProperties.main(new String[]{"projects/accturbo/runs/acc_morphing/accturbo.properties"});
+            //MainFromProperties.runCommand("gnuplot projects/accturbo/analysis/acc_morphing/accturbo/plot.gnuplot");
 
     }
 }
