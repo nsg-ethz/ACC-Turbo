@@ -1,6 +1,8 @@
 
 # ACC-Turbo: Reproducing the results
 
+<br>
+
 ## Background 
 
 **Figure 2: Comparison between ACC and ACC-Turbo**: 
@@ -33,30 +35,60 @@
 
 **Figure 3: Performance under morphing attack**: 
 
-* Run `./run_fig_3.sh`. 
-* Result in `./temp/sppifo/sppifo_analysis`.
-* Plots in `./projects/sppifo/plots/sppifo_analysis/`.
+* Execute: `./run_fig_3.sh`
 
----
+* **Figure 3a: No ACC**:
+    * Result: `./temp/accturbo/acc_morphing/fifo`
+    * Plot: `./projects/accturbo/analysis/acc_morphing/fifo/output_aggregate.pdf`
+
+* **Figure 3b: ACC**:
+    * Result: `./temp/accturbo/acc_morphing/acc`
+    * Plot: `./projects/accturbo/analysis/acc_morphing/acc/output_aggregate.pdf`
+
+* **Figure 3c: Speed vs accuracy**:
+    * Result: `./temp/accturbo/acc_accuracy_K`
+    * Plots: `./projects/accturbo/analysis/acc_accuracy_K/benign_drops.pdf`
+
+* **Figure 3d: ACC-Turbo**:
+    * Result: `./temp/accturbo/acc_morphing/accturbo`
+    * Plot: `./projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf`
+
+<br>
+<br>
 
 ## Simulation-based Evaluation
 
-* **Figure 9: Performance by attack type and features**: 
+**Figure 9: Performance by attack type and features**: 
 
-    * Run `./run_fig_9.sh`. 
-    * Result in `./temp/sppifo/sppifo_analysis`.
-    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
+* Execute: `./run_fig_9.sh`
+* **Figure 9a: Attack split**:
+    * Result: `./temp/accturbo/acc_original/slowgrow`
+    * Plot: `./projects/accturbo/analysis/acc_original/slowgrow/output_aggregate.pdf`
 
-* **Figure 10: Performance of clustering strategies**: 
+* **Figure 9b: Feature split**:
+    * Result: `./temp/accturbo/acc_original/slowgrow_acc`
+    * Plots: `./projects/accturbo/analysis/acc_original/slowgrow_acc/output_aggregate.pdf`
 
-    * Run `./run_fig_10.sh`. 
-    * Result in `./temp/sppifo/sppifo_analysis`.
-    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
+**Figure 10: Performance of clustering strategies**: 
 
-* **Figure 11: Impact of scheduling for mitigation**: 
+* Execute: `./run_fig_10.sh`
+* **Figure 10a: Purity**:
+    * Result: `./temp/accturbo/acc_original/slowgrow`
+    * Plot: `./projects/accturbo/analysis/acc_original/slowgrow/output_aggregate.pdf`
 
-    * Run `./run_fig_11.sh`. 
-    * Result in `./temp/sppifo/sppifo_analysis`.
-    * Plots in `./projects/sppifo/plots/sppifo_analysis/`.
+* **Figure 10b: Recall benign**:
+    * Result: `./temp/accturbo/acc_original/slowgrow_acc`
+    * Plots: `./projects/accturbo/analysis/acc_original/slowgrow_acc/output_aggregate.pdf`
+
+**Figure 11: Impact of scheduling for mitigation**: 
+
+* Execute: `./run_fig_11.sh`
+* **Figure 11a: Performance of different ranking algorithms**:
+    * Result: `./temp/accturbo/acc_original/slowgrow`
+    * Plot: `./projects/accturbo/analysis/acc_original/slowgrow/output_aggregate.pdf`
+
+* **Figure 11b: Overall performance**:
+    * Result: `./temp/accturbo/acc_original/slowgrow_acc`
+    * Plots: `./projects/accturbo/analysis/acc_original/slowgrow_acc/output_aggregate.pdf`
 
 ---
