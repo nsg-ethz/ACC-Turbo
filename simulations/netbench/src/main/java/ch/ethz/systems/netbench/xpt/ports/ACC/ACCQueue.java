@@ -56,9 +56,9 @@ public class ACCQueue extends REDQueue implements Queue {
             dropRate2 = ((double)(this.totalBitDrops - this.rateLimiterBitDrops)/(double)(this.totalBitArrivals - this.rateLimiterBitDrops)); //bits dropped divided by bit arrived
         }
 
-        if(this.ownNetworkDevice.getIdentifier() == 0) {
+        /*if(this.ownNetworkDevice.getIdentifier() == 0) {
             System.out.println(Simulator.getCurrentTime()/1000000000 + "s: Pushback Queue: New drop rates computed: " + dropRate1 + ", and " + dropRate2);
-        }
+        }*/
 
         if (enableRateLimiting &&
                 // dropRate1 >= PushbackConstants.SUSTAINED_CONGESTION_DROPRATE &&

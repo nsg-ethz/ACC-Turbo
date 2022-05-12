@@ -37,7 +37,7 @@ public class ACCAgent {
     // Called when the drop rate exceeds a pre-configured value to identify the aggregates responsible for congestion and controll them
     public void identifyAggregate(double estimatedArrivalRate, double linkCapacity) {
 
-        System.out.println("Call to identify aggregate: (estimatedArrivalRate: " + estimatedArrivalRate + " (bit/s), linkCapacity: " + linkCapacity + " (bit/s))");
+        //System.out.println("Call to identify aggregate: (estimatedArrivalRate: " + estimatedArrivalRate + " (bit/s), linkCapacity: " + linkCapacity + " (bit/s))");
 
         // Configure a refresh event (if it is the first time called) to revisit the aggregates periodically
         if (this.firstTime) {

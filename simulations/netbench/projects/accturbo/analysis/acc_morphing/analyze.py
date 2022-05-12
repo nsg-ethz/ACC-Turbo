@@ -136,19 +136,23 @@ def analyze_drop_rate(input_throughput_file, drops_file, droprate_file, start_ti
 if __name__ == "__main__":
 
     # Call analysis functions
-    for scheduler in ["acc"]:
+    if len(sys.argv) != 3:
+        print("Running analyze.py requires 3 arguments")
 
-        analyze_throughput('temp/accturbo/acc_morphing/{}/aggregate_input_throughput.csv.log'.format(scheduler),
-                           'projects/accturbo/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(scheduler),
+    else:
+        print("Running analyze.py {}".format(sys.argv))
+
+        analyze_throughput('temp/accturbo/acc_morphing/{}/aggregate_input_throughput.csv.log'.format(sys.argv[1]),
+                           'projects/accturbo/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(sys.argv[1]),
                            "input", 0, 50)
 
-        analyze_throughput('temp/accturbo/acc_morphing/{}/aggregate_output_throughput.csv.log'.format(scheduler),
-                           'projects/accturbo/analysis/acc_morphing/{}/aggregate_output_throughput.dat'.format(scheduler), "output", 0, 50)
+        analyze_throughput('temp/accturbo/acc_morphing/{}/aggregate_output_throughput.csv.log'.format(sys.argv[1]),
+                           'projects/accturbo/analysis/acc_morphing/{}/aggregate_output_throughput.dat'.format(sys.argv[1]), "output", 0, 50)
 
-        analyze_total_throughput('temp/accturbo/acc_morphing/{}/aggregate_drops.csv.log'.format(scheduler),
-                                 'projects/accturbo/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(scheduler), 0, 50)
+        analyze_total_throughput('temp/accturbo/acc_morphing/{}/aggregate_drops.csv.log'.format(sys.argv[1]),
+                                 'projects/accturbo/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(sys.argv[1]), 0, 50)
 
-        analyze_drop_rate('projects/accturbo/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(scheduler),
-                          'projects/accturbo/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(scheduler),
-                          'projects/accturbo/analysis/acc_morphing/{}/aggregate_droprate.dat'.format(scheduler),
+        analyze_drop_rate('projects/accturbo/analysis/acc_morphing/{}/aggregate_input_throughput.dat'.format(sys.argv[1]),
+                          'projects/accturbo/analysis/acc_morphing/{}/aggregate_total_drops.dat'.format(sys.argv[1]),
+                          'projects/accturbo/analysis/acc_morphing/{}/aggregate_droprate.dat'.format(sys.argv[1]),
                           0, 50)

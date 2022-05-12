@@ -133,8 +133,6 @@ def analyze_drop_rate(input_throughput_file, drops_file, droprate_file, start_ti
 # Call analysis functions
 if __name__ == "__main__":
 
-    print(sys.argv)
-
     # Call analysis functions
     if len(sys.argv) != 3:
         print("Running analyze.py requires 3 arguments")
