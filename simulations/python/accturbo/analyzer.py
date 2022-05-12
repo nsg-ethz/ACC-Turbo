@@ -140,9 +140,6 @@ class Analyzer():
         elif (clustering_type.split("_")[1] == "Random"):
             clustering = random_clustering.RandomClustering(num_clusters, feature_set)
 
-        elif (clustering_type.split("_")[1] == "Hash"):
-            clustering = hash_clustering.HashClustering(num_clusters, feature_set)
-
         else:
             # Offline k-means
             batch_packets = []

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "Running ACC-Turbo Figure 2 evaluation using run_fig_2.sh"
+echo -e "Running ACC-Turbo Figure 3 evaluation using run_fig_3.sh"
 
 # Compile
 cd netbench
