@@ -9,8 +9,8 @@ import random
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-sys.path.append('/home/albert/DDoS-AID_private/code/clustering_analysis/')
-from clustering import range_based_clustering, representative_based_clustering, random_clustering, hash_clustering
+#sys.path.append('/home/albert/DDoS-AID_private/code/clustering_analysis/')
+from clustering import range_based_clustering, representative_based_clustering, random_clustering
 
 from sklearn.cluster import KMeans
 import numpy as np
