@@ -7,48 +7,48 @@ echo -e "Executed scheduling analysis.sh"
 ##############
 
 # Input-file configuration
-SIMULATION_ID="CICDDoS2019"                         #(String) CICDDoS2019, Morphing (used to define e.g., where can the ground truth be found)
+SIMULATION_ID="CICDDoS2019"
 INPUT_PCAP_SEED="/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0"
 INPUT_PCAP_RANGE_ENABLED="True"
-INPUT_PCAP_RANGE_INIT=0                             #(Int)
-INPUT_PCAP_RANGE_END=400                            #(Int)
-INPUT_PCAP_TIME_ADJUSTMENT="Remove,5"               #(String) Add/Remove,hours  # There is a difference of 5h with respect to UTC in that dataset
+INPUT_PCAP_RANGE_INIT=0
+INPUT_PCAP_RANGE_END=400
+INPUT_PCAP_TIME_ADJUSTMENT="Remove,5"
 INPUT_PCAP_TIME_START="None"
 INPUT_PCAP_TIME_END="None"
                   
 # Clustering-algorithm configuration
-CLUSTERING_TYPE="Online_Range_Fast_Manhattan" #(String)  "Online_Range_Fast_Manhattan", "Online_Range_Fast_Anime", "Online_Range_Exhaustive_Manhattan", "Online_Range_Exhaustive_Anime", "Online_Representative_Fast", "Online_Representative_Exhaustive", "Offline_KMeans", "Online_Random_Fast", "Online_Representative_Exhaustive_Offline-Centroid-Initialization", "Online_Representative_Fast_Offline-Centroid-Initialization"
-NUM_CLUSTERS=10                                     #(Integer) Can be set to 1 to measure the overall throughput
-RESET_CLUSTERS=1                                #(Float)   In seconds (w). Can be set to -1 to avoid resetting in online k-means. 
-LEARNING_RATE=0.3                                   #(Float)   Between 0 and 1. Only used in representative-based clustering. 0 means representative not updated. 1 means representative set to new packet)
-FEATURE_SET="src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,ttl" #(String) Complete if "len,id,frag_offset,ttl,proto,src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,dport"
+CLUSTERING_TYPE="Online_Range_Fast_Manhattan"
+NUM_CLUSTERS=10
+RESET_CLUSTERS=1
+LEARNING_RATE=0.3
+FEATURE_SET="src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,ttl"
 NORMALIZE_FEATURE_VALUES="False"
 
 # PRIORITIZATION CONFIGURATION
-PRIORITIZING_TYPE="ThroughputSize"                  #(String) "Throughput", "Numpackets", "Size", "ThroughputXSize", "Entropy"
-UPDATE_PRIORITIES_WINDOW=0                      #(Float) Seconds. If the window is 0, the priorities will be updated per packet (ideal). 0.001 also works well
+PRIORITIZING_TYPE="ThroughputSize"
+UPDATE_PRIORITIES_WINDOW=0
 
 # Logging configuration
-MONITORING_WINDOW=1                             #(Float)   Monitoring window (in seconds)
+MONITORING_WINDOW=1
 THROUGHPUT_LOGGING="False"
 TRAFFIC_DISTRIBUTIONS_LOGGING="False"
 TRAFFIC_DISTRIBUTIONS_HISTOGRAM_LOGGING="False"
 CLUSTERING_PERFORMANCE_LOGGING="False"
-CLUSTERING_PERFORMANCE_TIME_LOGGING="False"     #(String)  "True" or "False" depending on whether we want to keep track of all the purities/true_positive/true_negative/recalls and J computed along the simulation
+CLUSTERING_PERFORMANCE_TIME_LOGGING="False"
 PRIORITY_PERFORMANCE_LOGGING="False"
-PRIORITY_PERFORMANCE_TIME_LOGGING="False"       #(String)  "True" or "False" depending on whether we want to keep track of all the purities/true_positive/true_negative/recalls and J computed along the simulation
+PRIORITY_PERFORMANCE_TIME_LOGGING="False"
 THROUGHPUT_PRIORITIES_LOGGING="False"
 SIGNATURE_EVALUATION_LOGGING="False"
 
 # Output logfiles configuration
-OUTPUT_LOGFILES_SEED="pcaps/"
+OUTPUT_LOGFILES_SEED="python/accturbo/plots/"
 OUTPUT_PCAP="True"
 OUTPUT_PCAP_SEED="pcaps/"
-#python3 python/accr/main.py $SIMULATION_ID $INPUT_PCAP_SEED $INPUT_PCAP_RANGE_ENABLED $INPUT_PCAP_RANGE_INIT $INPUT_PCAP_RANGE_END $INPUT_PCAP_TIME_ADJUSTMENT $INPUT_PCAP_TIME_START $INPUT_PCAP_TIME_END $CLUSTERING_TYPE $NUM_CLUSTERS $RESET_CLUSTERS $LEARNING_RATE $FEATURE_SET $NORMALIZE_FEATURE_VALUES $PRIORITIZING_TYPE $UPDATE_PRIORITIES_WINDOW $MONITORING_WINDOW $THROUGHPUT_LOGGING $TRAFFIC_DISTRIBUTIONS_LOGGING $TRAFFIC_DISTRIBUTIONS_HISTOGRAM_LOGGING $CLUSTERING_PERFORMANCE_LOGGING $CLUSTERING_PERFORMANCE_TIME_LOGGING $PRIORITY_PERFORMANCE_LOGGING $PRIORITY_PERFORMANCE_TIME_LOGGING $THROUGHPUT_PRIORITIES_LOGGING $SIGNATURE_EVALUATION_LOGGING $OUTPUT_LOGFILES_SEED $OUTPUT_PCAP $OUTPUT_PCAP_SEED
+python3 python/accr/main.py $SIMULATION_ID $INPUT_PCAP_SEED $INPUT_PCAP_RANGE_ENABLED $INPUT_PCAP_RANGE_INIT $INPUT_PCAP_RANGE_END $INPUT_PCAP_TIME_ADJUSTMENT $INPUT_PCAP_TIME_START $INPUT_PCAP_TIME_END $CLUSTERING_TYPE $NUM_CLUSTERS $RESET_CLUSTERS $LEARNING_RATE $FEATURE_SET $NORMALIZE_FEATURE_VALUES $PRIORITIZING_TYPE $UPDATE_PRIORITIES_WINDOW $MONITORING_WINDOW $THROUGHPUT_LOGGING $TRAFFIC_DISTRIBUTIONS_LOGGING $TRAFFIC_DISTRIBUTIONS_HISTOGRAM_LOGGING $CLUSTERING_PERFORMANCE_LOGGING $CLUSTERING_PERFORMANCE_TIME_LOGGING $PRIORITY_PERFORMANCE_LOGGING $PRIORITY_PERFORMANCE_TIME_LOGGING $THROUGHPUT_PRIORITIES_LOGGING $SIGNATURE_EVALUATION_LOGGING $OUTPUT_LOGFILES_SEED $OUTPUT_PCAP $OUTPUT_PCAP_SEED
 
 INPUT_PCAP_RANGE_INIT=401                             #(Int)
 INPUT_PCAP_RANGE_END=819                              #(Int)
-#python3 python/accr/main.py $SIMULATION_ID $INPUT_PCAP_SEED $INPUT_PCAP_RANGE_ENABLED $INPUT_PCAP_RANGE_INIT $INPUT_PCAP_RANGE_END $INPUT_PCAP_TIME_ADJUSTMENT $INPUT_PCAP_TIME_START $INPUT_PCAP_TIME_END $CLUSTERING_TYPE $NUM_CLUSTERS $RESET_CLUSTERS $LEARNING_RATE $FEATURE_SET $NORMALIZE_FEATURE_VALUES $PRIORITIZING_TYPE $UPDATE_PRIORITIES_WINDOW $MONITORING_WINDOW $THROUGHPUT_LOGGING $TRAFFIC_DISTRIBUTIONS_LOGGING $TRAFFIC_DISTRIBUTIONS_HISTOGRAM_LOGGING $CLUSTERING_PERFORMANCE_LOGGING $CLUSTERING_PERFORMANCE_TIME_LOGGING $PRIORITY_PERFORMANCE_LOGGING $PRIORITY_PERFORMANCE_TIME_LOGGING $THROUGHPUT_PRIORITIES_LOGGING $SIGNATURE_EVALUATION_LOGGING $OUTPUT_LOGFILES_SEED $OUTPUT_PCAP $OUTPUT_PCAP_SEED
+python3 python/accr/main.py $SIMULATION_ID $INPUT_PCAP_SEED $INPUT_PCAP_RANGE_ENABLED $INPUT_PCAP_RANGE_INIT $INPUT_PCAP_RANGE_END $INPUT_PCAP_TIME_ADJUSTMENT $INPUT_PCAP_TIME_START $INPUT_PCAP_TIME_END $CLUSTERING_TYPE $NUM_CLUSTERS $RESET_CLUSTERS $LEARNING_RATE $FEATURE_SET $NORMALIZE_FEATURE_VALUES $PRIORITIZING_TYPE $UPDATE_PRIORITIES_WINDOW $MONITORING_WINDOW $THROUGHPUT_LOGGING $TRAFFIC_DISTRIBUTIONS_LOGGING $TRAFFIC_DISTRIBUTIONS_HISTOGRAM_LOGGING $CLUSTERING_PERFORMANCE_LOGGING $CLUSTERING_PERFORMANCE_TIME_LOGGING $PRIORITY_PERFORMANCE_LOGGING $PRIORITY_PERFORMANCE_TIME_LOGGING $THROUGHPUT_PRIORITIES_LOGGING $SIGNATURE_EVALUATION_LOGGING $OUTPUT_LOGFILES_SEED $OUTPUT_PCAP $OUTPUT_PCAP_SEED
 
 ##############
 # Netbench
@@ -129,67 +129,3 @@ java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/bottleneck_cap
 
 python3 netbench/projects/accr/analysis/bottleneck_capacities_analysis/analyze.py
 gnuplot netbench/projects/accr/analysis/bottleneck_capacities_analysis/plot.gnuplot
-
-##############
-# Num clusters
-##############
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_0001_60_Exhaustive_03_0_400_Fifo_80_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_0001_60_Exhaustive_03_401_800_Fifo_80_005.properties
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_0001_60_Exhaustive_03_0_400_PifoGT_80_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_0001_60_Exhaustive_03_401_800_PifoGT_80_005.properties
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_2_0001_60_Exhaustive_03_0_400_Pifo_80_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_2_0001_60_Exhaustive_03_401_800_Pifo_80_005.properties
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_4_0001_60_Exhaustive_03_0_400_Pifo_80_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_4_0001_60_Exhaustive_03_401_800_Pifo_80_005.properties 
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_6_0001_60_Exhaustive_03_0_400_Pifo_80_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_6_0001_60_Exhaustive_03_401_800_Pifo_80_005.properties 
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_8_0001_60_Exhaustive_03_0_400_Pifo_80_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_8_0001_60_Exhaustive_03_401_800_Pifo_80_005.properties 
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_10_0001_60_Exhaustive_03_0_400_Pifo_80_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/num_clusters/clustering_1_Range_10_0001_60_Exhaustive_03_401_800_Pifo_80_005.properties
-
-#python3 netbench/projects/accr/analysis/num_clusters_analysis/analyze.py
-#gnuplot netbench/projects/accr/analysis/num_clusters_analysis/plot.gnuplot
-
-
-##############
-# Queue depths
-##############
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/50/clustering_1_Range_10_0001_60_Exhaustive_03_0_400_Pifo_50_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/50/clustering_1_Range_10_0001_60_Exhaustive_03_401_800_Pifo_50_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/50/clustering_1_0001_60_Exhaustive_03_0_400_PifoGT_50_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/50/clustering_1_0001_60_Exhaustive_03_401_800_PifoGT_50_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/50/clustering_1_0001_60_Exhaustive_03_0_400_Fifo_50_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/50/clustering_1_0001_60_Exhaustive_03_401_800_Fifo_50_005.properties
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/100/clustering_1_Range_10_0001_60_Exhaustive_03_0_400_Pifo_100_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/100/clustering_1_Range_10_0001_60_Exhaustive_03_401_800_Pifo_100_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/100/clustering_1_0001_60_Exhaustive_03_0_400_PifoGT_100_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/100/clustering_1_0001_60_Exhaustive_03_401_800_PifoGT_100_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/100/clustering_1_0001_60_Exhaustive_03_0_400_Fifo_100_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/100/clustering_1_0001_60_Exhaustive_03_401_800_Fifo_100_005.properties
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/250/clustering_1_Range_10_0001_60_Exhaustive_03_0_400_Pifo_250_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/250/clustering_1_Range_10_0001_60_Exhaustive_03_401_800_Pifo_250_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/250/clustering_1_0001_60_Exhaustive_03_0_400_PifoGT_250_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/250/clustering_1_0001_60_Exhaustive_03_401_800_PifoGT_250_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/250/clustering_1_0001_60_Exhaustive_03_0_400_Fifo_250_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/250/clustering_1_0001_60_Exhaustive_03_401_800_Fifo_250_005.properties
-
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/500/clustering_1_Range_10_0001_60_Exhaustive_03_0_400_Pifo_500_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/500/clustering_1_Range_10_0001_60_Exhaustive_03_401_800_Pifo_500_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/500/clustering_1_0001_60_Exhaustive_03_0_400_PifoGT_500_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/500/clustering_1_0001_60_Exhaustive_03_401_800_PifoGT_500_005.properties
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/500/clustering_1_0001_60_Exhaustive_03_0_400_Fifo_500_005.properties 
-#java -jar -ea netbench/NetBench.jar ./netbench/projects/accr/runs/queue_depths/500/clustering_1_0001_60_Exhaustive_03_401_800_Fifo_500_005.properties
-
-#python3 netbench/projects/accr/analysis/queue_depths_analysis/analyze.py
-#gnuplot netbench/projects/accr/analysis/queue_depths_analysis/plot.gnuplot
