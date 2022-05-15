@@ -577,7 +577,7 @@ class Analyzer():
             full_packet = {
                 "len"         : ip.len,
                 "id"          : ip.id,
-                "frag_offset" : ip.off,
+                "frag_offset" : ip._flags_offset,
                 "ttl"         : ip.ttl,
                 "proto"       : ip.p,
                 "src0"        : src0,
@@ -596,7 +596,7 @@ class Analyzer():
                 full_packet = {
                     "len"         : float(ip.len/65535),
                     "id"          : float(ip.id/65535),
-                    "frag_offset" : float(ip.off/8191),
+                    "frag_offset" : float(ip._flags_offset/8191),
                     "ttl"         : float(ip.ttl/255),
                     "proto"       : float(ip.p/255),
                     "src0"        : float(src0/255),
