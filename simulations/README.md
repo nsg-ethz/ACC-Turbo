@@ -1,8 +1,6 @@
 
 # ACC-Turbo: Reproducing the results
 
-<br>
-
 ## Background 
 
 **Figure 2: Comparison between ACC and ACC-Turbo**: 
@@ -52,9 +50,6 @@
 * **Figure 3d: ACC-Turbo**:
     * Result: `./temp/accturbo/acc_morphing/accturbo`
     * Plot: `./projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf`
-
-<br>
-<br>
 
 ## Simulation-based Evaluation
 
