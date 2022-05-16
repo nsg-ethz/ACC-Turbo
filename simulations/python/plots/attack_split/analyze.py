@@ -4,36 +4,58 @@ import os
 
 if __name__ == '__main__':
 
-    if len(sys.argv) != 2: 
-        print("Syntax reguired: analyze.py name_analysis")
-    else:
+    # We initialize the file
+    input_file = open('python/plots/attack_split/clustering_performance_logs.dat', 'r')
+    output_file = open('python/plots/attack_split/attack_split.dat', 'w')
+    output_file.write("#Attack    Purity_Reflection    Purity_Exploitation\n")
 
-            output_file_features_purity = open('plot_features_purity.dat', 'w')
+    purity_ntp = "0"
+    purity_dns = "0"
+    purity_mssql = "0"
+    purity_netbios = "0"
+    purity_snmp = "0"
+    purity_ssdp = "0"
+    purity_tftp = "0"
+    purity_udp = "0"
+    purity_udplag = "0"
+    
+    for line in input_file.readlines():
+        if ("NTP" in line):
+            purity_ntp = line.split(",")[1]
 
-            # We initialize the file
-            output_file_features_purity.write("#    Range_Exhaustive    Range_Fast    Representative_Exhaustive    Representative_Fast\n")
+        elif ("DNS" in line):
+            purity_dns = line.split(",")[1]      
+    
+        elif ("MSSQL" in line):
+            purity_mssql = line.split(",")[1]           
 
-            for features in feature_list:
-                average_purity_range_exhaustive = ""
-                average_purity_range_fast = ""
-                average_purity_representative_exhaustive = ""
-                average_purity_representative_fast = ""    
+        elif ("NetBIOS" in line):
+            purity_netbios = line.split(",")[1] 
 
-                input_file = open('clustering_performance_logs.dat', 'r')
-                for line in input_file.readlines():
-                    if ("Online_Range_Exhaustive_10_1_0.3_False_1_" + features) in line:
-                        average_purity_range_exhaustive = line.split(",")[1]
-            
-                    elif ("Online_Range_Fast_10_1_0.3_False_1_" + features) in line:
-                        average_purity_range_fast = line.split(",")[1]      
-            
-                    elif ("Online_Representative_Exhaustive_10_1_0.3_False_1_" + features) in line:
-                        average_purity_representative_exhaustive = line.split(",")[1]      
-            
-                    elif ("Online_Representative_Fast_10_1_0.3_False_1_" + features) in line:
-                        average_purity_representative_fast = line.split(",")[1]   
+        elif ("SNMP" in line):
+            purity_snmp = line.split(",")[1] 
 
-                output_file_features_purity.write(features + "    " + average_purity_range_exhaustive + "    " + average_purity_range_fast + "    " + average_purity_representative_exhaustive + "    " + average_purity_representative_fast + "\n")
-                input_file.close()
+        elif ("SSDP" in line):
+            purity_ssdp = line.split(",")[1] 
 
-            output_file_features_purity.close()
+        elif ("TFTP" in line):
+            purity_tftp = line.split(",")[1] 
+
+        elif ("UDP" in line):
+            purity_udp = line.split(",")[1]                                
+
+        elif ("UDPLag" in line):
+            purity_udplag = line.split(",")[1]      
+    
+    input_file.close()
+                        
+    output_file.write("NTP    " + purity_ntp + "    " + "0 \n")
+    output_file.write("DNS    " + purity_dns + "    " + "0 \n")
+    output_file.write("MSSQL    " + purity_mssql + "    " + "0 \n")
+    output_file.write("NetBIOS    " + purity_netbios + "    " + "0 \n")
+    output_file.write("SNMP    " + purity_snmp + "    " + "0 \n")
+    output_file.write("SSDP    " + purity_ssdp + "    " + "0 \n")
+    output_file.write("TFTP    " + purity_tftp + "    " + "0 \n")
+    output_file.write("UDP    0    " + purity_udp + "\n")  #Exploitation
+    output_file.write("UDPLag    0    " + purity_udplag + "\n")  #Exploitation
+    output_file.close()
