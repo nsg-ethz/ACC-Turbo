@@ -1,7 +1,8 @@
-load "python/palette/spectral.pal"
+load "python/plots/spectral.pal"
 
 # General configuration
 set terminal pdfcairo
+set datafile separator ","
 
 # Histogram configuration
 set boxwidth 0.8
@@ -26,6 +27,6 @@ set xtics rotate by 33
 set xtics out offset -1.25,-1.25
 set yrange [50:100]
 set ytics ("50" 50, "60" 60, "70" 70, "80" 80, "90" 90, "100" 100)
-set output "vectors_purity.pdf"
-plot "vectors_purity.dat" using 2 title 'Reflection-based' ls 8 lw 3, \
+set output "python/plots/attack_split/vectors_purity.pdf"
+plot "python/plots/attack_split/vectors_purity.dat" using 2 title 'Reflection-based' ls 8 lw 3, \
                        '' using 3 title 'Exploitation-based' ls 2 lw 3
