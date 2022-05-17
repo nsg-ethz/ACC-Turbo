@@ -10,6 +10,11 @@ set style histogram
 set style fill solid 0.6
 set bars front
 
+set key out horiz top
+set style histogram
+set term pdfcairo enhanced font "Helvetica,20" size 4.2in,2.5in
+set key font "Helvetica,16"
+
 ###################
 # Scheduler performance
 ###################
