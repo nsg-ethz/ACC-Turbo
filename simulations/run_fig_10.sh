@@ -19,7 +19,7 @@ INPUT_PCAP_TIME_END="None"
 # Clustering-algorithm configuration
 CLUSTERING_TYPE="Online_Range_Fast_Manhattan"
 NUM_CLUSTERS=10
-RESET_CLUSTERS=1
+RESET_CLUSTERS=60
 LEARNING_RATE=0.3
 FEATURE_SET="len,id,frag_offset,ttl,proto,src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,dport"
 NORMALIZE_FEATURE_VALUES="False"

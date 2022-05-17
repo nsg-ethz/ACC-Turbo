@@ -472,7 +472,7 @@ class Analyzer():
                     continue # We skip that iteration
 
                 # If we want to just look at reflection:
-                reflection = False
+                #reflection = False
                 if ((date_time > ntp_start and date_time < ntp_end) 
                 or (date_time > dns_start and date_time < dns_end)
                 or (date_time > ldap_start and date_time < ldap_end)
@@ -483,8 +483,8 @@ class Analyzer():
                 or (date_time > tftp_start and date_time < tftp_end)):
                     reflection = True
 
-                if reflection == False:
-                    continue
+                #if reflection == False:
+                #    continue
 
             # We define the initial time reference
             if is_first_packet == True:
