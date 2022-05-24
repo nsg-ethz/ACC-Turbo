@@ -3,7 +3,7 @@
 
 ## Background 
 
-**Setup requirements**: 
+**Setup requirements**: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
 
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
