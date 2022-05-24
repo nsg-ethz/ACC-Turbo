@@ -1,7 +1,7 @@
 
 # ACC-Turbo: Reproducing the results
 
-## Background 
+## Hardware-based Evaluation 
 
 **Setup requirements**: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
 
@@ -21,7 +21,7 @@
     * Execute (receiving server): ``
     * Execute (sending server): ``
     
-    * Results (receiving server): [`run_fig_06b/results/accturbo_throughput_nic_benign.dat`](run_fig_06b/results/accturbo_throughput_nic_benign.dat), [`run_fig_06a/results/accturbo_throughput_nic_malicious.dat`](run_fig_06a/results/accturbo_throughput_nic_malicious.dat)
+    * Results (receiving server): [`run_fig_06b/results/accturbo_throughput_nic_benign.dat`](run_fig_06b/results/accturbo_throughput_nic_benign.dat), [`run_fig_06a/results/accturbo_throughput_nic_malicious.dat`](run_fig_06b/results/accturbo_throughput_nic_malicious.dat)
     * Process results (receiving server): `gnuplot run_fig_06b/results/accturbo_in_out_plot.gnuplot`
     * Plot (receiving server): [`run_fig_06b/results/accturbo_in_out_plot.pdf`](run_fig_06b/results/accturbo_in_out_plot.pdf)
 
