@@ -8,10 +8,10 @@
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
 * **Figure 6a: FIFO**:
-    1. Execute (tofino switch): `./run_fig_06a/run_fig_6a_tofino.sh`
-    2. Execute (receiving server): `./run_fig_06a/run_fig_6a_receiver.sh`
-    3. Execute (sending server): `./run_fig_06a/run_fig_6a_sender.sh`
-    
+1. Execute (tofino switch): `./run_fig_06a/run_fig_6a_tofino.sh`
+2. Execute (receiving server): `./run_fig_06a/run_fig_6a_receiver.sh`
+3. Execute (sending server): `./run_fig_06a/run_fig_6a_sender.sh`
+
     * Results (receiving server): `run_fig_06a/results/fifo_throughput_nic_benign.dat`, `run_fig_06a/results/fifo_throughput_nic_malicious.dat`
     * Process results (receiving server): `gnuplot run_fig_06a/results/fifo_in_out_plot.gnuplot`
     * Plot (receiving server): `run_fig_06a/results/fifo_in_out_plot.pdf`
