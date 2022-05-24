@@ -20,9 +20,9 @@ class Controller:
             
             # We create the log files for the evaluation
             if measure_throughput:
-                file_throughput_benign = open("analysis/throughput_benign.dat", "w")
+                file_throughput_benign = open("run_fig_07a/results/throughput_benign.dat", "w")
                 file_throughput_benign.write("# Timestamp(ns),Bits\n")
-                file_throughput_malicious = open("analysis/throughput_malicious.dat", "w")
+                file_throughput_malicious = open("run_fig_07a/results/throughput_malicious.dat", "w")
                 file_throughput_malicious.write("# Timestamp(ns),Bits\n")
                 first_pass = True
 
