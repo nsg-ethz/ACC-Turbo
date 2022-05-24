@@ -1,4 +1,4 @@
-load "~/albert/ddos-aid/simulations/python/palette/spectral.pal"
+load "../palette/spectral.pal"
 
 set terminal pdfcairo
 
@@ -15,9 +15,9 @@ set yrange [0:100]
 set ytics ("0" 0, "25" 25, "50" 50, "75" 75, "100" 100)
 set key font "Helvetica,17" 
 set ylabel "Benign-packet drops (%)"
-set output "analysis/speed.pdf"
+set output "speed.pdf"
 
-plot "analysis/speed.dat"using 5:xtic(1) title "DDoS-AID" w lp ls 27 lw 4, \
+plot "speed.dat"using 5:xtic(1) title "ACC-Turbo" w lp ls 27 lw 4, \
  '' using 4:xtic(1) title "FIFO" w lp ls 21 lw 4, \
 '' using 2:xtic(1) title "Jaqen Th=10^7 pks" w lp ls 28 lw 4, \
 '' using 3:xtic(1) title "Jaqen Th=10^4 pks" w lp ls 28 lw 4 dt 2
