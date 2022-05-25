@@ -1,7 +1,7 @@
 # -----------------
 # Ingress setup
 # -----------------
-ingress = bfrt.ddos_aid.pipe.MyIngress
+ingress = bfrt.accturbo.pipe.MyIngress
 
 # Table: tbl_compute_distance_cluster{1,2,3,4}_{dst0,dst1,dst2,dst3}_{min,max}
 # Action: compute_distance_cluster{1,2,3,4}_{dst0,dst1,dst2,dst3}_{min,max}
@@ -178,7 +178,7 @@ for queue_id in range(4):
 # -----------------
 # Egress setup
 # -----------------
-egress = bfrt.ddos_aid.pipe.MyEgress
+egress = bfrt.accturbo.pipe.MyEgress
 
 # We initialize the timer
 egress.timestamp.add(0)
