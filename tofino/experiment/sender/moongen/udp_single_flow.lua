@@ -12,7 +12,7 @@ local timer  = require "timer"
 
 function configure(parser)
         -- general configs
-        parser:argument("dev", "Device to use."):default(3):convert(tonumber)
+        parser:argument("dev", "Device to use."):default(1):convert(tonumber)
 
         -- configs for the pcap generation
         parser:argument("file", "File to replay."):args(1)
