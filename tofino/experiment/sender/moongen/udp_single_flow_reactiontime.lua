@@ -104,7 +104,7 @@ function launch_attack(queue, size, flows, id)
                 -- send out all packets and frees old bufs that have been sent
                 queue:send(bufs)
                 -- Rate limiting
-                mg.sleepMicros(58) -- tunned such that each attack sends at 10Gbps with framing
+                --mg.sleepMicros(58) -- tunned such that each attack sends at 10Gbps with framing
         end
 end
 
