@@ -3,7 +3,10 @@
 
 ## Hardware-based Evaluation 
 
-**Setup requirements**: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
+**Setup requirements**: 
+- Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
+- Download caida_baseline.pcap to the server in the sender folder
+- Install Moongen, the NICs, the Tofino SDE, tmux etc.
 
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
