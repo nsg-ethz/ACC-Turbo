@@ -136,7 +136,7 @@ class Controller:
                         ma_throughput_malicious[i] = 0
                         ma_throughput_benign[i] = 0
 
-                    with open("analysis/throughput_malicious.dat") as file:
+                    with open("../run_fig_07a/results/fifo_throughput_malicious.dat") as file:
                         reader = csv.reader(file)
                         for row in reader:
                             if row[0] != "# Timestamp(ns)":
@@ -146,7 +146,7 @@ class Controller:
                                 throughput_malicious[slot] = throughput_malicious[slot] + bits
                     file.close()
 
-                    with open("analysis/throughput_benign.dat") as file:
+                    with open("../run_fig_07a/results/fifo_throughput_benign.dat") as file:
                         reader = csv.reader(file)
                         for row in reader:
                             if row[0] != "# Timestamp(ns)":

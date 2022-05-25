@@ -29,6 +29,9 @@ if __name__ == "__main__":
         elif sys.argv[1] == "udp_single_flow":
             os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/udp_single_flow.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))
 
+        elif sys.argv[1] == "udp_single_flow_reactiontime":
+            os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/udp_single_flow_reactiontime.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))
+
         elif sys.argv[1] == "udp_source_spoof":
             os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/udp_source_spoof.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))
 

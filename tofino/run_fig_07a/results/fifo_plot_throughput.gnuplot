@@ -1,4 +1,4 @@
-load "~/albert/ddos-aid/simulations/python/palette/spectral.pal"
+load "palette/spectral.pal"
 
 set terminal pdfcairo
 
@@ -17,7 +17,7 @@ set yrange [0:10e9]
 set ytics ("0" 0, "2" 2e9, "4" 4e9, "6" 6e9, "8" 8e9, "10" 10e9)
 set key font "Helvetica,17" 
 set ylabel "Throughput (Gbps)"
-set output "analysis/output_throughput.pdf"
+set output "run_fig_07a/results/fifo_output_throughput.pdf"
 
-plot "analysis/fifo_throughput_malicious.dat" using 1:2 title "Output Attack" w l ls 1 lw 4, \
-     "analysis/fifo_throughput_benign.dat" using 1:2 title "Output Benign" w l ls 7 lw 4
+plot "run_fig_07a/results/fifo_throughput_malicious.dat" using 1:2 title "Output Attack" w l ls 1 lw 4, \
+     "run_fig_07a/results/fifo_throughput_benign.dat" using 1:2 title "Output Benign" w l ls 7 lw 4
