@@ -41,8 +41,8 @@ function master(args)
         local packetSize = 1200
         local attackID = 1
 
-        -- We can wait 10 seconds until attack started
-        mg.sleepMillis(10000)
+        -- We can wait 20 seconds until attack started
+        mg.sleepMillis(20000)
 
         -- The attack lasts for RUN_TIME = 80 seconds (defined later)
         mg.startTask("launch_attack", dev:getTxQueue(1), packetSize, flows, 1)
@@ -50,13 +50,11 @@ function master(args)
         mg.startTask("launch_attack", dev:getTxQueue(3), packetSize, flows, 1)
         mg.startTask("launch_attack", dev:getTxQueue(4), packetSize, flows, 1)
 
-        -- We let the simulation 10 seconds more to see the recovery after the attack
-        -- mg.sleepMillis(90000)
-        -- 
+        -- We let the simulation 80 seconds more
+        mg.sleepMillis(80000)
+        mg.stop()
 
         -- monitor progress
-        mg.sleepMillis(100000)
-        mg.stop()
         mg.waitForTasks()
 end
 
