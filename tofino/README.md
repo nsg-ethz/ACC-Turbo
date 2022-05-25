@@ -28,7 +28,8 @@
 **Figure 7: Reaction-time evaluation**: 
 
 * **Figure 7a: FIFO**:
-    * Execute (tofino switch): `./run_fig_07a/run_fig_07a_tofino.sh`
+    * Execute (tofino switch): `sudo ./run_fig_07a/run_fig_07a_tofino.sh`
+    * Wait ~15 seconds, until the ports are up and the controller is running
     * Execute (sending server): `./run_fig_07a/run_fig_07a_sender.sh`
     
     * Results (tofino switch): [`run_fig_07a/results/fifo_throughput_benign.dat`](run_fig_07a/results/fifo_throughput_benign.dat), [`run_fig_07a/results/fifo_throughput_malicious.dat`](run_fig_07a/results/fifo_throughput_malicious.dat)

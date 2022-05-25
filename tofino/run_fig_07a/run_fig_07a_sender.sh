@@ -1,1 +1,1 @@
-python3 start_sender.py udp_single_flow
+python3 experiment/sender/start_sender.py udp_single_flow
