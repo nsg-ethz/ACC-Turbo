@@ -20,6 +20,6 @@ if __name__ == "__main__":
     # The receiver of the original DDoS-AID paper (NSDI '21 version)
     if len(sys.argv) == 2:
         if sys.argv[1] == "fifo":
-            os.system("sudo /opt/MoonGen/build/MoonGen experiment/receiver/moongen/receiver_fifo.lua 1")
-        else if sys.argv[1] == "accturbo":
-            os.system("sudo /opt/MoonGen/build/MoonGen experiment/receiver/moongen/receiver_accturbo.lua 1")
+            os.system("sudo /opt/MoonGen/build/MoonGen experiment/receiver/receiver_fifo.lua 2")
+        elif sys.argv[1] == "accturbo":
+            os.system("sudo /opt/MoonGen/build/MoonGen experiment/receiver/receiver_accturbo.lua 2")

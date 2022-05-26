@@ -1,1 +1,1 @@
-python3 experiment/receiver/receiver.py fifo
+python3 experiment/receiver/start_receiver.py fifo

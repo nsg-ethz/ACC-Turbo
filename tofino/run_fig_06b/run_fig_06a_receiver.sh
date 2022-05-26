@@ -1,1 +1,1 @@
-python3 experiment/receiver/receiver.py accturbo
+python3 experiment/receiver/start_receiver.py accturbo
