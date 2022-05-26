@@ -43,3 +43,6 @@ if __name__ == "__main__":
 
         elif sys.argv[1] == "randomized_udp":
             os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/randomized_udp.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))
+
+        elif sys.argv[1] == "morphing":
+            os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/morphing.lua --pcap-rate-multiplier {} {} {}".format(1, dev, file))

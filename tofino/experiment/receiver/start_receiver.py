@@ -19,4 +19,4 @@ if __name__ == "__main__":
     
     # The receiver of the original DDoS-AID paper (NSDI '21 version)
     if len(sys.argv) == 1:
-        os.system("sudo /opt/MoonGen/build/MoonGen moongen/receiver.lua 1")
+        os.system("sudo /opt/MoonGen/build/MoonGen experiment/receiver/moongen/receiver.lua 1")

@@ -3,7 +3,7 @@
 
 # Compile p4 program
 . /data/set_sde_9.5.0.sh
-#sudo ../../p4_build_albert.sh --with-p4c="/data/bf-sde-9.5.0/install/bin/bf-p4c" p4src/heavy_hitter_reaction.p4
+#../../p4_build_albert.sh --with-p4c="/data/bf-sde-9.5.0/install/bin/bf-p4c" p4src/heavy_hitter_reaction.p4
 
 #sudo /home/nsg/bf-sde-9.2.0/install/bin/bf_kdrv_mod_unload 
 #sudo /home/nsg/bf-sde-9.5.0/install/bin/bf_kdrv_mod_load /home/nsg/bf-sde-9.5.0/install/

@@ -15,9 +15,9 @@ class Controller:
         try:
 
             # We create the log files for the evaluation
-            file_throughput_benign = open("analysis/throughput_benign.dat", "w")
+            file_throughput_benign = open("../run_fig_07b/results/accturbo_throughput_benign.dat", "w")
             file_throughput_benign.write("# Timestamp(ns),Bits\n")
-            file_throughput_malicious = open("analysis/throughput_malicious.dat", "w")
+            file_throughput_malicious = open("../run_fig_07b/results/accturbo_throughput_malicious.dat", "w")
             file_throughput_malicious.write("# Timestamp(ns),Bits\n")
             
             to_file_throughput_malicious = ""
@@ -88,7 +88,7 @@ class Controller:
             self.core.insert_register_entry("MyIngress.cluster1_dst2_max", 140, 127)
             self.core.insert_register_entry("MyIngress.cluster1_dst3_min", 140, 0)
             self.core.insert_register_entry("MyIngress.cluster1_dst3_max", 140, 127)
-        
+
             self.core.insert_register_entry("MyIngress.cluster2_dst0_min", 140, 0)
             self.core.insert_register_entry("MyIngress.cluster2_dst0_max", 140, 255)
             self.core.insert_register_entry("MyIngress.cluster2_dst1_min", 140, 0)
@@ -252,7 +252,7 @@ class Controller:
                     ma_throughput_malicious[i] = 0
                     ma_throughput_benign[i] = 0
 
-                with open("analysis/throughput_malicious.dat") as file:
+                with open("../run_fig_07b/results/accturbo_throughput_malicious.dat") as file:
                     reader = csv.reader(file)
                     for row in reader:
                         if row[0] != "# Timestamp(ns)":
@@ -262,7 +262,7 @@ class Controller:
                             throughput_malicious[slot] = throughput_malicious[slot] + bits
                 file.close()
 
-                with open("analysis/throughput_benign.dat") as file:
+                with open("../run_fig_07b/results/accturbo_throughput_benign.dat") as file:
                     reader = csv.reader(file)
                     for row in reader:
                         if row[0] != "# Timestamp(ns)":
@@ -278,10 +278,10 @@ class Controller:
                     ma_throughput_benign[slot] = (throughput_benign[slot-1] + throughput_benign[slot])/2
 
                 # Write results in file
-                w_malicious = open("analysis/throughput_malicious.dat", 'w')
+                w_malicious = open("../run_fig_07b/results/accturbo_throughput_malicious.dat", 'w')
                 w_malicious.write("# Timestamp(s),Bits\n")
 
-                w_benign = open("analysis/throughput_benign.dat", 'w')
+                w_benign = open("../run_fig_07b/results/accturbo_throughput_benign.dat", 'w')
                 w_benign.write("# Timestamp(s),Bits\n")
 
                 axis = range(0, total_time_seconds)
