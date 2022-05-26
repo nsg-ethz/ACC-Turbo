@@ -60,8 +60,8 @@ function dumper(queue, args, threadId)
     
     -- we create the packet counters (directly logged to output files in csv format)
     local captureCtr, filterCtr
-	captureCtr = stats:newPktRxCounter("Capture benign", "CSV", "throughput_nic_benign.dat")
-    filterCtr = stats:newPktRxCounter("Capture malicious", "CSV", "throughput_nic_malicious.dat")
+	captureCtr = stats:newPktRxCounter("Capture benign", "CSV", "run_fig_06a/results/fifo_throughput_benign.dat")
+    filterCtr = stats:newPktRxCounter("Capture malicious", "CSV", "run_fig_06a/results/fifo_throughput_malicious.dat")
 
 	if args.file then
 		if args.threads > 1 then
