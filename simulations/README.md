@@ -3,6 +3,9 @@
 
 ## Background 
 
+pip3 install dpkt
+pip3 install matplotlib
+
 **Figure 2: Comparison between ACC and ACC-Turbo**: 
 
 * Execute: `./run_fig_02.sh`
