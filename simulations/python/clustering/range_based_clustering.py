@@ -39,7 +39,6 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
 	## Computes the distance between two clusters. Used to decide which clusters to merge during the clustering process.
     def compute_distance_manhattan(self, cluster_a, cluster_b): 
 
-
         distance = 0
         for feature in self.feature_list:
 
@@ -57,10 +56,18 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                     distance_feature = cluster_a.signature[feature][0] - cluster_b.signature[feature][1]
 
             elif feature in nominal_features:
-                # if max(cluster_a) < min(cluster_b): distance = min(cluster_b) - max(cluster_a)
+                # Helper: signature(cluster_a) = {x, y, z}   <->   signature(cluster_b) = {x, q, s}
+                # Distance is: the numbers on cluster_a's set which are not included in cluster_b's set, plus the numbers on cluster_b's set which are not included in cluster_a's set
+                for key in cluster_a.signature[feature]:
+                    if not cluster_b.signature[feature].has_key(key):
+                        distance_feature = distance_feature + 1
+
+                for key in cluster_b.signature[feature]:
+                    if not cluster_a.signature[feature].has_key(key):
+                        distance_feature = distance_feature + 1
             
             else:
-                raise Exception("Feature should be nominal or ordinal")
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
 
             distance = distance + distance_feature
             if (distance < 0):
@@ -71,10 +78,27 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
     # Method to merge cluster "src_cluster" into "dst_cluster"
     def merge_cluster(self, src_cluster, dst_cluster):
 
-        signature_merged_clusted = {}
+        signature_merged_cluster = {}
         for feature in self.feature_list:
-            signature_merged_clusted[feature] = (min(dst_cluster.signature[feature][0], src_cluster.signature[feature][0]), max(dst_cluster.signature[feature][1], src_cluster.signature[feature][1]))
-        dst_cluster.signature = signature_merged_clusted
+            
+            # We merge the ranges of src_cluster.signature[feature] and dst_cluster.signature[feature]
+            if feature in ordinal_features:
+                signature_merged_cluster[feature] = {min(dst_cluster.signature[feature][0], src_cluster.signature[feature][0]), max(dst_cluster.signature[feature][1], src_cluster.signature[feature][1])}
+            
+            # We merge the sets of src_cluster.signature[feature] and dst_cluster.signature[feature]
+            elif feature in nominal_features:
+                signature_merged_cluster[feature] = {}
+                for key in src_cluster.signature[feature]:
+                    signature_merged_cluster[feature].append(key)
+                for key in dst_cluster.signature[feature]:
+                    if not signature_merged_cluster[feature].has_key(key):
+                        signature_merged_cluster[feature].append(key)
+            
+            else:
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+        
+        # We return the merged cluster
+        dst_cluster.signature = signature_merged_cluster
 	
 	## Computes the result of clustering one new packet following the exhaustive version of the range_based clustering algorithm	
     def fit_exhaustive(self, packet, ip_len, distance_type):
