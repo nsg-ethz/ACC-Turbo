@@ -14,6 +14,7 @@ class RepresentativeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         for feature in self.feature_list:
             sum = sum + (abs(cluster_a.signature[feature][0] - cluster_b.signature[feature][0]) ** 2)
         distance = math.sqrt(sum)
+        assert (distance > 0)
         return distance
 
     # Method to update the centroid of "dst_cluster" with the information of "src_cluster"

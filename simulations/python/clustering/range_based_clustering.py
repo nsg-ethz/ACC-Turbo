@@ -11,29 +11,80 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         self.feature_list = feature_set.split(",") # List of features that we want to use
         clustering_algorithm.ClusteringAlgorithm.__init__(self, num_clusters) 
 
-	## Computes the distance between two clusters. Used to decide which clusters to merge during the clustering process.
-    ## Distance follows the cost function proposed in "Automatic Inference of High-Level Network Intents by Mining Forwarding Patterns".
-    def compute_distance_anime(self, cluster_a, cluster_b): 
+	# Computes the distance between two clusters. Used to decide which clusters to merge during the clustering process.
+    # Distance follows the cost function proposed in "Automatic Inference of High-Level Network Intents by Mining Forwarding Patterns".
+    # Helper: d(c_a, c_b) = delta(c_a u c_b) - (delta(c_a) + delta(c_b))
+    def compute_distance_anime(self, cluster_a, cluster_b):        
 
+        # We first compute the signature of the merged cluster (c_a u c_b)
         signature_merged_cluster = {}
         for feature in self.feature_list:
-            signature_merged_cluster[feature] = (min(cluster_a.signature[feature][0], cluster_b.signature[feature][0]), max(cluster_a.signature[feature][1], cluster_b.signature[feature][1]))
+            
+            # We merge the ranges of cluster_a.signature[feature] and cluster_b.signature[feature]
+            if feature in ordinal_features:
+                signature_merged_cluster[feature] = {min(cluster_a.signature[feature][0], cluster_b.signature[feature][0]), max(cluster_a.signature[feature][1], cluster_b.signature[feature][1])}
+            
+            # We merge the sets of src_cluster.signature[feature] and dst_cluster.signature[feature]
+            elif feature in nominal_features:
+                signature_merged_cluster[feature] = {}
+                for key in cluster_a.signature[feature]:
+                    signature_merged_cluster[feature].append(key)
+                for key in cluster_b.signature[feature]:
+                    if not signature_merged_cluster[feature].has_key(key):
+                        signature_merged_cluster[feature].append(key)
+            
+            else:
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
 
+        # We compute: delta(c_a u c_b)
         delta_merged_cluster = 1 # We initialize the cost
-        for value in signature_merged_cluster.values():
-            delta_merged_cluster = delta_merged_cluster * ((value[1]+1)-value[0]) # We compute the range (max-min) for each 
+        for feature in self.feature_list:
+            if feature in ordinal_features:
+                delta_merged_cluster = delta_merged_cluster * ((signature_merged_cluster[feature][1]+1) - signature_merged_cluster[feature][0])
 
+            elif feature in nominal_features:
+                set_size = 0
+                for key in signature_merged_cluster[feature]:
+                    set_size = set_size + 1    
+                delta_merged_cluster = delta_merged_cluster * (set_size)
+
+            else:
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+
+        # We compute: delta(c_a)
         delta_cluster_a = 1 # We initialize the cost
-        for value in cluster_a.signature.values():
-            delta_cluster_a = delta_cluster_a * ((value[1]+1)-value[0])
+        for feature in self.feature_list:
+            if feature in ordinal_features:
+                delta_cluster_a = delta_cluster_a * ((cluster_a[feature][1]+1) - cluster_a[feature][0])
 
+            elif feature in nominal_features:
+                set_size = 0
+                for key in cluster_a[feature]:
+                    set_size = set_size + 1    
+                delta_cluster_a = delta_cluster_a * (set_size)
+
+            else:
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+
+        # We compute: delta(c_b)
         delta_cluster_b = 1 # We initialize the cost
-        for value in cluster_b.signature.values():
-            delta_cluster_b = delta_cluster_b * ((value[1]+1)-value[0]) # We compute the range (max-min) for each 
+        for feature in self.feature_list:
+            if feature in ordinal_features:
+                delta_cluster_b = delta_cluster_b * ((cluster_b[feature][1]+1) - cluster_b[feature][0])
 
+            elif feature in nominal_features:
+                set_size = 0
+                for key in cluster_b[feature]:
+                    set_size = set_size + 1    
+                delta_cluster_b = delta_cluster_b * (set_size)
+
+            else:
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+
+        # We compute: d(c_a, c_b)
         distance = delta_merged_cluster - (delta_cluster_a + delta_cluster_b)
-        #if (distance < 0):
-            #print("Computed negative anime distance")
+        
+        assert (distance > 0)
         return distance
 
 	## Computes the distance between two clusters. Used to decide which clusters to merge during the clustering process.
@@ -70,9 +121,8 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
 
             distance = distance + distance_feature
-            if (distance < 0):
-                print("Computed negative manhattan distance !!")
 
+        assert (distance > 0)
         return distance
 
     # Method to merge cluster "src_cluster" into "dst_cluster"
