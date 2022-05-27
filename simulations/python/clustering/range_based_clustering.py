@@ -1,8 +1,11 @@
-
-
 from clustering import cluster, clustering_algorithm
 
 class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
+
+    global ordinal_features 
+    global nominal_features
+    ordinal_features = ["len","ttl","src0","src1","src2","src3","dst0","dst1","dst2","dst3"]
+    nominal_features = ["id","frag_offset","proto","sport","dport"] # For these ones, we just give them value when they are the same (distance when they are not the same does not matter)
 
     def __init__(self, num_clusters, feature_set):
         self.feature_list = feature_set.split(",") # List of features that we want to use
@@ -36,7 +39,6 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
 	## Computes the distance between two clusters. Used to decide which clusters to merge during the clustering process.
     def compute_distance_manhattan(self, cluster_a, cluster_b): 
 
-        # Helper: | min(cluster_a) ...... max(cluster_a) |   <->   | min(cluster_b) ...... max(cluster_b) |
 
         distance = 0
         for feature in self.feature_list:
@@ -44,16 +46,21 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
             distance_feature = 0
 
             if feature in ordinal_features:
+                # Helper: | min(cluster_a) ...... max(cluster_a) |   <->   | min(cluster_b) ...... max(cluster_b) |
                 # if max(cluster_a) < min(cluster_b): distance = min(cluster_b) - max(cluster_a)
                 if (cluster_a.signature[feature][1] < cluster_b.signature[feature][0]):
                     distance_feature = cluster_b.signature[feature][0] - cluster_a.signature[feature][1]
 
+                # Helper: | min(cluster_b) ...... max(cluster_b) |   <->   | min(cluster_a) ...... max(cluster_a) |
                 # if min(cluster_a) > max(cluster_b): distance = min(cluster_a) - max(cluster_b)
                 elif (cluster_a.signature[feature][0] > cluster_b.signature[feature][1]):
                     distance_feature = cluster_a.signature[feature][0] - cluster_b.signature[feature][1]
 
+            elif feature in nominal_features:
+                # if max(cluster_a) < min(cluster_b): distance = min(cluster_b) - max(cluster_a)
+            
             else:
-                
+                raise Exception("Feature should be nominal or ordinal")
 
             distance = distance + distance_feature
             if (distance < 0):
@@ -79,7 +86,12 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         packet_signature = {}
         assert len(packet) == len(self.feature_list)
         for feature in self.feature_list:
-            packet_signature[feature] = (packet[i],packet[i])
+            if feature in self.ordinal_features:
+                packet_signature[feature] = {packet[i],packet[i]} # We initialize the range with the packet's feature value
+            elif feature in self.nominal_features:
+                packet_signature[feature] = {packet[i]} # We initialize the set
+            else:
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
             i = i + 1
 
         # Create new cluster for the packet
@@ -168,7 +180,12 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         packet_signature = {}
         assert len(packet) == len(self.feature_list)
         for feature in self.feature_list:
-            packet_signature[feature] = (packet[i],packet[i])
+            if feature in self.ordinal_features:
+                packet_signature[feature] = {packet[i],packet[i]} # We initialize the range with the packet's feature value
+            elif feature in self.nominal_features:
+                packet_signature[feature] = {packet[i]} # We initialize the set
+            else:
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
             i = i + 1
 
         # Create new cluster for the packet (note that we do not update current_cluster_id straight away, since we will only use that cluster id if the new cluster is selected.

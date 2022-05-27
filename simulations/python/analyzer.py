@@ -644,9 +644,6 @@ class Analyzer():
                     if(clustering_type.split("_")[3] == "Offline-Centroid-Initialization"):
                         batch_packets_offline.append(packet)
 
-            elif clustering_type == "Online_Random_Fast" or clustering_type == "Online_Hash":
-                selected_cluster = clustering.fit(packet, ip.len)
-
             else:
                 # "Offline k-means": We just append the generated packet to a batch of packets, 
                 #                    which we will then cluster together

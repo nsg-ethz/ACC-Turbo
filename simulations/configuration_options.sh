@@ -25,8 +25,7 @@
 #                                                         "Online_Range_Exhaustive_Anime", 
 #                                                         "Online_Representative_Fast", 
 #                                                         "Online_Representative_Exhaustive", 
-#                                                         "Offline_KMeans", 
-#                                                         "Online_Random_Fast", 
+#                                                         "Offline_KMeans",
 #                                                         "Online_Representative_Exhaustive_Offline-Centroid-Initialization", 
 #                                                         "Online_Representative_Fast_Offline-Centroid-Initialization"
 #                            NUM_CLUSTERS:   (Integer)    10                                   (can be set to 1 to measure the overall throughput)
