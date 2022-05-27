@@ -43,13 +43,17 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
 
             distance_feature = 0
 
-            # if max(cluster_a) < min(cluster_b): distance = min(cluster_b) - max(cluster_a)
-            if (cluster_a.signature[feature][1] < cluster_b.signature[feature][0]):
-                distance_feature = cluster_b.signature[feature][0] - cluster_a.signature[feature][1]
+            if feature in ordinal_features:
+                # if max(cluster_a) < min(cluster_b): distance = min(cluster_b) - max(cluster_a)
+                if (cluster_a.signature[feature][1] < cluster_b.signature[feature][0]):
+                    distance_feature = cluster_b.signature[feature][0] - cluster_a.signature[feature][1]
 
-            # if min(cluster_a) > max(cluster_b): distance = min(cluster_a) - max(cluster_b)
-            elif (cluster_a.signature[feature][0] > cluster_b.signature[feature][1]):
-                distance_feature = cluster_a.signature[feature][0] - cluster_b.signature[feature][1]
+                # if min(cluster_a) > max(cluster_b): distance = min(cluster_a) - max(cluster_b)
+                elif (cluster_a.signature[feature][0] > cluster_b.signature[feature][1]):
+                    distance_feature = cluster_a.signature[feature][0] - cluster_b.signature[feature][1]
+
+            else:
+                
 
             distance = distance + distance_feature
             if (distance < 0):

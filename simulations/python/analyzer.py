@@ -72,7 +72,6 @@ class Analyzer():
             "[INFO] input_pcap_time_end: " + str(input_pcap_time_end) + "\n" +
             "[INFO] ------------------------------------------------------------------------ \n" + 
             "[INFO]  --- # Clustering-algorithm configuration \n" +
-
             "[INFO] clustering_type: " + str(clustering_type) + "\n" +
             "[INFO] num_clusters: " + str(num_clusters) + "\n" +
             "[INFO] reset_clusters_window: " + str(reset_clusters_window) + "\n" +
@@ -350,6 +349,7 @@ class Analyzer():
 
             # Analyze only the parts in which there is attack
             if(simulation_id == "CICDDoS2019"):
+                
                 # According to the CSV analysis
                 ntp_start       = datetime.datetime(2018, 12, 1, 10, 35, 0, 0) # we can see in the plot that it is not starting at 9...
                 ntp_end         = datetime.datetime(2018, 12, 1, 10, 51, 39, 813446)
@@ -382,7 +382,7 @@ class Analyzer():
                 syn_end         = datetime.datetime(2018, 12, 1, 13, 34, 27, 403192)
                 
                 tftp_start      = datetime.datetime(2018, 12, 1, 13, 34, 27, 403713)
-                tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0)# we can see in the plot that it is not ending at 16
+                tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0) # we can see in the plot that it is not ending at 16
 
                 # According to the website
                 #ntp_start       = datetime.datetime(2018, 12, 1, 10, 35, 0, 0)
@@ -410,7 +410,7 @@ class Analyzer():
                 #tftp_start      = datetime.datetime(2018, 12, 1, 13, 35, 0, 0)
                 #tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0)
 
-                # Provisionally we use the input_pcap_time_start field to select the attack that we want to run
+                # We use the input_pcap_time_start field to select the attack that we want to run
                 if (input_pcap_time_start == "NTP"):
                     if (date_time < ntp_start or date_time > ntp_end):
                         continue
