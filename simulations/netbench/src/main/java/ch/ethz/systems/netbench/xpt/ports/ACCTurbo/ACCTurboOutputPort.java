@@ -16,7 +16,7 @@ public class ACCTurboOutputPort extends OutputPort {
 
     public ACCTurboOutputPort(NetworkDevice ownNetworkDevice, NetworkDevice targetNetworkDevice, Link link, long numberQueues, long sizePerQueuePackets) {
         super(ownNetworkDevice, targetNetworkDevice, link, new PriorityQueues(numberQueues, sizePerQueuePackets, ownNetworkDevice));
-        UpdatePrioritiesEvent updatePrioritiesEvent = new UpdatePrioritiesEvent(1000000000L, this); // At each second
+        UpdatePrioritiesEvent updatePrioritiesEvent = new UpdatePrioritiesEvent(100000000L, this); // At each second
         Simulator.registerEvent(updatePrioritiesEvent);
         this.clusterList = new ArrayList<ACCTurboCluster>();
         this.currentClusterId = 1;
@@ -52,13 +52,15 @@ public class ACCTurboOutputPort extends OutputPort {
 
             //  Create new cluster for the packet (note that we do not update current_cluster_id straight away, since we will only use that cluster id if the new cluster is selected.
             //  If the new cluster is merged to an existing one, we don't need to update the current_cluster_id)
-            ACCTurboCluster newCluster = new ACCTurboCluster(packetSignature, this.currentClusterId, this.numClusters);
+            ACCTurboCluster newCluster = new ACCTurboCluster(packetSignature, this.numClusters);
+            //System.out.println("New packet: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
 
             //  If the cluster list is empty, we just add the new custer to the list
-            if (this.clusterList.size() == 0 && this.numClusters > 1) {
+            if (this.clusterList.size() == 0) {
 
                 //  Append the new cluster directly to the list
                 clusterList.add(newCluster);
+                System.out.println("Added new cluster: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
                 this.currentClusterId = this.currentClusterId + 1;
                 selectedCluster = newCluster;
 
@@ -70,9 +72,12 @@ public class ACCTurboOutputPort extends OutputPort {
                 long minDistance = 0;
                 ACCTurboCluster minCluster = null;
                 boolean isFirst = true;
+
                 while (iter.hasNext()) {
                     ACCTurboCluster existingCluster = (ACCTurboCluster) iter.next();
                     distance = this.computeDistanceManhattan(existingCluster, newCluster);
+                    // System.out.println("Computed distance between clusters: [" + existingCluster.getSignature().getMin() + ", " + existingCluster.getSignature().getMax() + "] and ["
+                    //        + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "] = " + distance);
                     if (isFirst) {
                         minDistance = distance;
                         minCluster = existingCluster;
@@ -84,13 +89,17 @@ public class ACCTurboOutputPort extends OutputPort {
                         }
                     }
                 }
+                // System.out.println("Minimum distance= " + minDistance);
 
                 //  Then we decide. If the list is already full, then we merge to the closest distance
                 if (this.clusterList.size() >= this.numClusters) {
 
                     //  Merge the new cluster to the closest one
                     this.mergeCluster(newCluster, minCluster);
-                    minCluster.update_num_packets(newCluster);
+
+                    //System.out.println("Packet : [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]" +
+                    //        " merged to cluster  [" + minCluster.getSignature().getMin() + ", " + minCluster.getSignature().getMax() + "]");
+                    minCluster.updateNumPackets(newCluster);
                     selectedCluster = minCluster;
                 } else {
 
@@ -98,22 +107,24 @@ public class ACCTurboOutputPort extends OutputPort {
                     if (minDistance == 0) {
                         //  Merge the new cluster to the closest one
                         this.mergeCluster(newCluster, minCluster);
-                        minCluster.update_num_packets(newCluster);
+                        //System.out.println("Packet : [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]" +
+                        //        " merged to cluster  [" + minCluster.getSignature().getMin() + ", " + minCluster.getSignature().getMax() + "]");
+                        minCluster.updateNumPackets(newCluster);
                         selectedCluster = minCluster;
                     } else {
 
                         //  Append the new cluster directly to the list
                         this.clusterList.add(newCluster);
+                        System.out.println("Added new cluster: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
                         selectedCluster = newCluster;
                         this.currentClusterId = this.currentClusterId + 1;
-
-                        //  We append the label (cluster_id) to the list
                     }
                 }
             }
 
             // We set the packet's priority based on its selected cluster
             int priority = selectedCluster.getPriority();
+            //System.out.println("Selected cluster's priority: " + priority);
 
             // We enqueue the packet based on this priority
             PriorityQueues pq = (PriorityQueues)this.getQueue();
@@ -175,7 +186,7 @@ public class ACCTurboOutputPort extends OutputPort {
     }
 
 
-    void update_priorities() {
+    void updatePriorities() {
 
         // Compute the new priorities, sorting the clusters by throughput
         HashMap<Integer, Integer> clustersByThroughput = new HashMap<>();
@@ -204,7 +215,7 @@ public class ACCTurboOutputPort extends OutputPort {
         }
 
         // When the processing is finished, we schedule it again for SUSTAINED CONGESTION PERIOD ns from now
-        UpdatePrioritiesEvent updatePrioritiesEvent = new UpdatePrioritiesEvent(100000000L, this); // At each ms
+        UpdatePrioritiesEvent updatePrioritiesEvent = new UpdatePrioritiesEvent(100000000L, this);
         Simulator.registerEvent(updatePrioritiesEvent);
     }
 
