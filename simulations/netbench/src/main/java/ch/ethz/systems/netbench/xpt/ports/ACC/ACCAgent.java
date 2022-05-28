@@ -61,7 +61,7 @@ public class ACCAgent {
             // We make sure that the aggregate is not already in the rate-limiting list
             RateLimitSession rateLimitSession = this.pushbackQueue.rlsList.containsAggSpec(aggSpec);
             if (rateLimitSession != null) {
-                System.out.println("Identified an aggregate which was already in the rate-limiting list: " + aggSpec.dstPrefix);
+                // System.out.println("Identified an aggregate which was already in the rate-limiting list: " + aggSpec.dstPrefix);
 
                 // This could keep the lowerbound unnecessarily down. But don't be sympathetic with aggregates, which have been identified again.
                 if (aggReturn.limit < rateLimitSession.lowerBound) {
