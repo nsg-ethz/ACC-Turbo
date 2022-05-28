@@ -1,4 +1,4 @@
-load "python/palette/spectral.pal"
+load "../python/plots/spectral.pal"
 
 set terminal pdfcairo
 #set term pdfcairo enhanced font "Helvetica,16" size 4in,2.5in

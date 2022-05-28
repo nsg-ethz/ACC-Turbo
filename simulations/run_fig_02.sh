@@ -16,7 +16,7 @@ mvn clean compile assembly:single
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_original/slowgrow_acc.properties
     gnuplot projects/accturbo/analysis/acc_original/slowgrow_acc/plot.gnuplot
 
-    #/* Figure 2c: ACC: Impact of K (ACC constants are specified at compile time, so you have to change K values from the ACC constants file before each simulation)*/
+    #/* Figure 2c: ACC: Impact of K */
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_reactiontime/K10.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_reactiontime/K15.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_reactiontime/K20.properties
