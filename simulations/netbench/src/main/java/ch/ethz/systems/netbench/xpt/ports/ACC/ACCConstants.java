@@ -28,6 +28,6 @@ public class ACCConstants {
 
 
     // PLAY WITH THESE:
-    public static final double PUSHBACK_CYCLE_TIME = 50; // Original value: 5 (in seconds)
+    public static final double PUSHBACK_CYCLE_TIME = 5; // Original value: 5 (in seconds)
     public static final double SUSTAINED_CONGESTION_DROPRATE = 0.10;  // Original value: 0.10
 }
