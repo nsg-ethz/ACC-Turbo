@@ -3,6 +3,8 @@ package ch.ethz.systems.netbench.xpt.ports.ACC;
 import ch.ethz.systems.netbench.core.Simulator;
 import ch.ethz.systems.netbench.core.network.Packet;
 
+import java.util.ArrayList;
+
 public class ACCAgent {
 
     public int lastIndex;
@@ -152,6 +154,8 @@ public class ACCAgent {
 
         // Check if some sessions need to be discarded because of rate-limiting too many sessions
         double now = Simulator.getCurrentTime()/1000000000;
+
+        ArrayList<RateLimitSession> sessionsToDelete = new ArrayList<>();
         for(RateLimitSession listItem1 : this.pushbackQueue.rlsList.list){
             if (numSessions > ACCConstants.MAX_SESSIONS && listItem1 != null){
                 int rank = this.pushbackQueue.rlsList.rankRate(listItem1.getArrivalRateForStatus());
@@ -160,10 +164,15 @@ public class ACCAgent {
                     if (ACCConstants.LOWER_BOUND_MODE == 1 && this.idTree.lowerBound<listItem1.getArrivalRateForStatus()){
                         this.idTree.lowerBound = listItem1.getArrivalRateForStatus();
                     }
-                    pushbackCancel(listItem1);
-                    numSessions--;
+                    sessionsToDelete.add(listItem1);
                 }
             }
+        }
+
+        // We delete the selected sessions
+        for (int i = 0; i < sessionsToDelete.size(); i++) {
+            pushbackCancel(sessionsToDelete.get(i));
+            numSessions--;
         }
 
         double linkCapacity = this.pushbackQueue.getBandwidthBitPerNs()*1000000000; // In bits per second

@@ -15,9 +15,9 @@ def get_drops(input_throughput_file, output_throughput_file):
                 packet_size_bit = float(row[1])
                 flow_id = int(row[2])
 
-                if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < 31) or (timestamp > 36 and timestamp < 41):
-                    if flow_id < 5:
-                        benign_input = benign_input + packet_size_bit
+                #if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < 31) or (timestamp > 36 and timestamp < 41):
+                if flow_id < 5:
+                    benign_input = benign_input + packet_size_bit
     csv_file.close()
 
     # Read output-throughput file
@@ -30,9 +30,9 @@ def get_drops(input_throughput_file, output_throughput_file):
                 packet_size_bit = float(row[1])
                 flow_id = int(row[2])
 
-                if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < 31) or (timestamp > 36 and timestamp < 41):
-                    if flow_id < 5:
-                        benign_output = benign_output + packet_size_bit
+                #if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < 31) or (timestamp > 36 and timestamp < 41):
+                if flow_id < 5:
+                    benign_output = benign_output + packet_size_bit
     csv_file.close()
 
     # Compute drop percentages
@@ -54,9 +54,9 @@ def analyze_accuracy(input_throughput_file, output_throughput_file, results_file
                 packet_size_bit = float(row[1])
                 flow_id = int(row[2])
 
-                if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < 31) or (timestamp > 36 and timestamp < 41):
-                    if flow_id < 5:
-                        benign_input = benign_input + packet_size_bit
+                #if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < #31) or (timestamp > 36 and timestamp < 41):
+                if flow_id < 5:
+                    benign_input = benign_input + packet_size_bit
     csv_file.close()
 
     # Read output-throughput file
@@ -69,9 +69,9 @@ def analyze_accuracy(input_throughput_file, output_throughput_file, results_file
                 packet_size_bit = float(row[1])
                 flow_id = int(row[2])
 
-                if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < 31) or (timestamp > 36 and timestamp < 41):
-                    if flow_id < 5:
-                        benign_output = benign_output + packet_size_bit
+                #if (timestamp > 6 and timestamp < 11) or (timestamp > 16 and timestamp < 21) or (timestamp > 26 and timestamp < #31) or (timestamp > 36 and timestamp < 41):
+                if flow_id < 5:
+                    benign_output = benign_output + packet_size_bit
     csv_file.close()
 
     # Compute drop percentages
@@ -98,8 +98,6 @@ if __name__ == "__main__":
                              'temp/accturbo/acc_accuracy_K/accturbo/aggregate_output_throughput.csv.log')
     # Call analysis functions
     for scheduler in ["K1", "K25", "K50", "K100", "K250", "K500", "K1000"]:
-
-        print(scheduler)
         analyze_accuracy('temp/accturbo/acc_accuracy_K/{}/aggregate_input_throughput.csv.log'.format(scheduler),
                          'temp/accturbo/acc_accuracy_K/{}/aggregate_output_throughput.csv.log'.format(scheduler),
                          'projects/accturbo/analysis/acc_accuracy_K/benign_drops.dat', scheduler, fifo_drops, accturbo_drops)

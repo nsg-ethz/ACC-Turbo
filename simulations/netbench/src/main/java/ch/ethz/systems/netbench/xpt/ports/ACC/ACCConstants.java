@@ -2,6 +2,8 @@ package ch.ethz.systems.netbench.xpt.ports.ACC;
 
 public class ACCConstants {
 
+    // Configuration in the original paper: https://sources.debian.org/src/ns2/2.35%2Bdfsg-3.1/pushback/pushback-constants.h/
+
     public static final int NO_BITS = 4;
     public static final int MAX_CLUSTER = 20;
     public static final int CLUSTER_LEVEL = 4;

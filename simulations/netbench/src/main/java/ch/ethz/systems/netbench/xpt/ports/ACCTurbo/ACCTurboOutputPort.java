@@ -200,7 +200,7 @@ public class ACCTurboOutputPort extends OutputPort {
         while (iterator.hasNext()) {
             ACCTurboCluster currentCluster = (ACCTurboCluster) iterator.next();
             clustersByThroughput.put(currentCluster, currentCluster.getNumPackets());
-            System.out.println("Cluster: [" + currentCluster.getSignature().getMin() + ", " + currentCluster.getSignature().getMax() + "] has numpackets " + currentCluster.getNumPackets());
+            // System.out.println("Cluster: [" + currentCluster.getSignature().getMin() + ", " + currentCluster.getSignature().getMax() + "] has numpackets " + currentCluster.getNumPackets());
         }
 
         Map<ACCTurboCluster, Integer> sorted_counters = this.sortByValues(clustersByThroughput);
@@ -212,7 +212,7 @@ public class ACCTurboOutputPort extends OutputPort {
 
             ACCTurboCluster c = (ACCTurboCluster) me.getKey();
             c.setPriority(prio);
-            System.out.println("Cluster: [" + c.getSignature().getMin() + ", " + c.getSignature().getMax() + "] has priority " + prio);
+            // System.out.println("Cluster: [" + c.getSignature().getMin() + ", " + c.getSignature().getMax() + "] has priority " + prio);
             prio = prio - 1;
 
             // Reset counters
@@ -222,7 +222,7 @@ public class ACCTurboOutputPort extends OutputPort {
         // When the processing is finished, we schedule it again for SUSTAINED CONGESTION PERIOD ns from now
         UpdatePrioritiesEvent updatePrioritiesEvent = new UpdatePrioritiesEvent(100000000L, this);
         Simulator.registerEvent(updatePrioritiesEvent);
-        System.out.println("------------------");
+        // System.out.println("------------------");
     }
 
     private HashMap sortByValues(HashMap map) {
