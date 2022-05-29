@@ -26,6 +26,92 @@ public class ACCTurboOutputPort extends OutputPort {
     @Override
     public void enqueue(Packet packet) {
 
+        // -------------------------------------------------------------
+        // ACC-Turbo processing
+        // -------------------------------------------------------------
+
+        //  We cluster the packets based on their flow IDs
+        long flowId = packet.getFlowId();
+        ACCTurboCluster selectedCluster;
+        ACCTurboSignature packetSignature = new ACCTurboSignature(flowId, flowId);
+
+        //  Create new cluster for the packet (note that we do not update current_cluster_id straight away, since we will only use that cluster id if the new cluster is selected.
+        //  If the new cluster is merged to an existing one, we don't need to update the current_cluster_id)
+        ACCTurboCluster newCluster = new ACCTurboCluster(packetSignature, this.numClusters);
+        //System.out.println("New packet: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
+
+        //  If the cluster list is empty, we just add the new custer to the list
+        if (this.clusterList.size() == 0) {
+
+            //  Append the new cluster directly to the list
+            clusterList.add(newCluster);
+            System.out.println("Added new cluster: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
+            this.currentClusterId = this.currentClusterId + 1;
+            selectedCluster = newCluster;
+
+        } else { //  If it is not empty, we compute the minimum distance (to the clusters in the list)
+
+            //  Compute the distances of the new (virtual) cluster with all existing clusters
+            Iterator iter = clusterList.iterator();
+            long distance;
+            long minDistance = 0;
+            ACCTurboCluster minCluster = null;
+            boolean isFirst = true;
+
+            while (iter.hasNext()) {
+                ACCTurboCluster existingCluster = (ACCTurboCluster) iter.next();
+                distance = this.computeDistanceManhattan(existingCluster, newCluster);
+                // System.out.println("Computed distance between clusters: [" + existingCluster.getSignature().getMin() + ", " + existingCluster.getSignature().getMax() + "] and ["
+                //        + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "] = " + distance);
+                if (isFirst) {
+                    minDistance = distance;
+                    minCluster = existingCluster;
+                    isFirst = false;
+                } else {
+                    if (distance < minDistance) {
+                        minDistance = distance;
+                        minCluster = existingCluster;
+                    }
+                }
+            }
+            // System.out.println("Minimum distance= " + minDistance);
+
+            //  Then we decide. If the list is already full, then we merge to the closest distance
+            if (this.clusterList.size() >= this.numClusters) {
+
+                //  Merge the new cluster to the closest one
+                this.mergeCluster(newCluster, minCluster);
+                //System.out.println("Packet : [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]" +
+                //        " merged to cluster  [" + minCluster.getSignature().getMin() + ", " + minCluster.getSignature().getMax() + "]");
+
+                minCluster.updateNumPackets(newCluster);
+                selectedCluster = minCluster;
+            } else {
+
+                //  If the list is not full, we decide whether we want to create a new cluster or merge to the closest one.
+                if (minDistance == 0) {
+                    //  Merge the new cluster to the closest one
+                    this.mergeCluster(newCluster, minCluster);
+                    // System.out.println("Packet : [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]" +
+                    //         " merged to cluster  [" + minCluster.getSignature().getMin() + ", " + minCluster.getSignature().getMax() + "]");
+                    minCluster.updateNumPackets(newCluster);
+                    selectedCluster = minCluster;
+                } else {
+
+                    //  Append the new cluster directly to the list
+                    this.clusterList.add(newCluster);
+                    System.out.println("Added new cluster: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
+                    selectedCluster = newCluster;
+                    this.currentClusterId = this.currentClusterId + 1;
+                }
+            }
+        }
+
+        // We set the packet's priority based on its selected cluster
+        int priority = (numClusters - 1) - selectedCluster.getPriority();
+
+        // -------------------------------------------------------------
+
         // If it is not sending, then the queue is empty at the moment,
         // so this packet can be immediately send
         if (!getIsSending()) {
@@ -44,87 +130,6 @@ public class ACCTurboOutputPort extends OutputPort {
             setIsSending();
 
         } else { // If it is still sending, the packet is added to the queue, making it non-empty
-
-            //  We cluster the packets based on their flow IDs
-            long flowId = packet.getFlowId();
-            ACCTurboCluster selectedCluster;
-            ACCTurboSignature packetSignature = new ACCTurboSignature(flowId, flowId);
-
-            //  Create new cluster for the packet (note that we do not update current_cluster_id straight away, since we will only use that cluster id if the new cluster is selected.
-            //  If the new cluster is merged to an existing one, we don't need to update the current_cluster_id)
-            ACCTurboCluster newCluster = new ACCTurboCluster(packetSignature, this.numClusters);
-            //System.out.println("New packet: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
-
-            //  If the cluster list is empty, we just add the new custer to the list
-            if (this.clusterList.size() == 0) {
-
-                //  Append the new cluster directly to the list
-                clusterList.add(newCluster);
-                System.out.println("Added new cluster: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
-                this.currentClusterId = this.currentClusterId + 1;
-                selectedCluster = newCluster;
-
-            } else { //  If it is not empty, we compute the minimum distance (to the clusters in the list)
-
-                //  Compute the distances of the new (virtual) cluster with all existing clusters
-                Iterator iter = clusterList.iterator();
-                long distance;
-                long minDistance = 0;
-                ACCTurboCluster minCluster = null;
-                boolean isFirst = true;
-
-                while (iter.hasNext()) {
-                    ACCTurboCluster existingCluster = (ACCTurboCluster) iter.next();
-                    distance = this.computeDistanceManhattan(existingCluster, newCluster);
-                    // System.out.println("Computed distance between clusters: [" + existingCluster.getSignature().getMin() + ", " + existingCluster.getSignature().getMax() + "] and ["
-                    //        + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "] = " + distance);
-                    if (isFirst) {
-                        minDistance = distance;
-                        minCluster = existingCluster;
-                        isFirst = false;
-                    } else {
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                            minCluster = existingCluster;
-                        }
-                    }
-                }
-                // System.out.println("Minimum distance= " + minDistance);
-
-                //  Then we decide. If the list is already full, then we merge to the closest distance
-                if (this.clusterList.size() >= this.numClusters) {
-
-                    //  Merge the new cluster to the closest one
-                    this.mergeCluster(newCluster, minCluster);
-
-                    //System.out.println("Packet : [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]" +
-                    //        " merged to cluster  [" + minCluster.getSignature().getMin() + ", " + minCluster.getSignature().getMax() + "]");
-                    minCluster.updateNumPackets(newCluster);
-                    selectedCluster = minCluster;
-                } else {
-
-                    //  If the list is not full, we decide whether we want to create a new cluster or merge to the closest one.
-                    if (minDistance == 0) {
-                        //  Merge the new cluster to the closest one
-                        this.mergeCluster(newCluster, minCluster);
-                        //System.out.println("Packet : [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]" +
-                        //        " merged to cluster  [" + minCluster.getSignature().getMin() + ", " + minCluster.getSignature().getMax() + "]");
-                        minCluster.updateNumPackets(newCluster);
-                        selectedCluster = minCluster;
-                    } else {
-
-                        //  Append the new cluster directly to the list
-                        this.clusterList.add(newCluster);
-                        System.out.println("Added new cluster: [" + newCluster.getSignature().getMin() + ", " + newCluster.getSignature().getMax() + "]");
-                        selectedCluster = newCluster;
-                        this.currentClusterId = this.currentClusterId + 1;
-                    }
-                }
-            }
-
-            // We set the packet's priority based on its selected cluster
-            int priority = selectedCluster.getPriority();
-            //System.out.println("Selected cluster's priority: " + priority);
 
             // We enqueue the packet based on this priority
             PriorityQueues pq = (PriorityQueues)this.getQueue();
@@ -189,34 +194,35 @@ public class ACCTurboOutputPort extends OutputPort {
     void updatePriorities() {
 
         // Compute the new priorities, sorting the clusters by throughput
-        HashMap<Integer, Integer> clustersByThroughput = new HashMap<>();
-        int list_position = 0;
+        HashMap<ACCTurboCluster, Integer> clustersByThroughput = new HashMap<>();
 
         Iterator iterator = clusterList.iterator();
         while (iterator.hasNext()) {
             ACCTurboCluster currentCluster = (ACCTurboCluster) iterator.next();
-            clustersByThroughput.put(list_position, currentCluster.getNumPackets());
-            list_position = list_position + 1;
+            clustersByThroughput.put(currentCluster, currentCluster.getNumPackets());
+            System.out.println("Cluster: [" + currentCluster.getSignature().getMin() + ", " + currentCluster.getSignature().getMax() + "] has numpackets " + currentCluster.getNumPackets());
         }
 
-        Map<Integer, Integer> sorted_counters = this.sortByValues(clustersByThroughput);
+        Map<ACCTurboCluster, Integer> sorted_counters = this.sortByValues(clustersByThroughput);
         int prio = this.numClusters - 1;
         Set set2 = sorted_counters.entrySet();
         Iterator iterator2 = set2.iterator();
         while(iterator2.hasNext()) {
             Map.Entry me = (Map.Entry)iterator2.next();
-            this.clusterList.get((int) me.getKey()).setPriority(prio); // smaller throughput, bigger priority
-            //System.out.print(me.getKey() + ": ");
-            //System.out.print(me.getValue() + " -> priority: ");
-            //System.out.println(newPriority);
+
+            ACCTurboCluster c = (ACCTurboCluster) me.getKey();
+            c.setPriority(prio);
+            System.out.println("Cluster: [" + c.getSignature().getMin() + ", " + c.getSignature().getMax() + "] has priority " + prio);
+            prio = prio - 1;
 
             // Reset counters
-            this.clusterList.get((int) me.getKey()).resetNumPackets();
+            c.resetNumPackets();
         }
 
         // When the processing is finished, we schedule it again for SUSTAINED CONGESTION PERIOD ns from now
         UpdatePrioritiesEvent updatePrioritiesEvent = new UpdatePrioritiesEvent(100000000L, this);
         Simulator.registerEvent(updatePrioritiesEvent);
+        System.out.println("------------------");
     }
 
     private HashMap sortByValues(HashMap map) {
