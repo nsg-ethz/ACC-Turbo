@@ -18,5 +18,8 @@ if __name__ == "__main__":
     #os.system("sudo /opt/MoonGen/build/MoonGen moongen/dump_pkts_from_nic_to_pcap.lua -f output.pcap -s 2000 0")
     
     # The receiver of the original DDoS-AID paper (NSDI '21 version)
-    if len(sys.argv) == 1:
-        os.system("sudo /opt/MoonGen/build/MoonGen moongen/receiver.lua 1")
+    if len(sys.argv) == 2:
+        if sys.argv[1] == "fifo":
+            os.system("sudo /opt/MoonGen/build/MoonGen experiment/receiver/receiver_fifo.lua 2")
+        elif sys.argv[1] == "accturbo":
+            os.system("sudo /opt/MoonGen/build/MoonGen experiment/receiver/receiver_accturbo.lua 2")

@@ -22,18 +22,18 @@ if __name__ == '__main__':
 
         # Clustering-algorithm configuration       
         clustering_type = sys.argv[9]
-        num_clusters = int(sys.argv[10])                 #(Can be set to 1 to measure the overall throughput)
-        reset_clusters_window = float(sys.argv[11])     #(In seconds) (w). Can be set to -1 to avoid resetting in online k-means. 
-        learning_rate = float(sys.argv[12])             #(Between 0 and 1. Only used in representative-based clustering. 0 means representative not updated. 1 means representative set to new packet)
+        num_clusters = int(sys.argv[10])                # (Can be set to 1 to measure the overall throughput)
+        reset_clusters_window = float(sys.argv[11])     # (In seconds) (w). Can be set to -1 to avoid resetting in online k-means. 
+        learning_rate = float(sys.argv[12])             # (Between 0 and 1. Only used in representative-based clustering. 0 means representative not updated. 1 means representative set to new packet)
         feature_set = sys.argv[13]
         normalize_feature_values = sys.argv[14]
 
         # Prioritization configuration
         prioritizing_type = sys.argv[15]
-        update_priorities_window = float(sys.argv[16])  #(In seconds)
+        update_priorities_window = float(sys.argv[16])  # (In seconds)
 
         # Logging configuration
-        monitoring_window = float(sys.argv[17])         #(In seconds) 
+        monitoring_window = float(sys.argv[17])         # (In seconds) 
         throughput_logging = sys.argv[18]
         traffic_distributions_logging = sys.argv[19]
         traffic_distributions_histogram_logging = sys.argv[20]
@@ -49,12 +49,12 @@ if __name__ == '__main__':
         output_pcap = sys.argv[28]
         output_pcap_seed = sys.argv[29]
 
-        # We create a list with all the input pcap files we want to analyze
+        # We create a list with all the input pcap files that we want to analyze
         input_pcap_list = []
         if input_pcap_range_enabled == "False":
             input_pcap_list.append(input_pcap_seed)
         else:
-            for file_id in range(input_pcap_range_init,input_pcap_range_end):
+            for file_id in range(input_pcap_range_init, input_pcap_range_end):
                 if file_id == 0:
                     file_name = '/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0'
                 else:

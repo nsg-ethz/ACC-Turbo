@@ -1,12 +1,14 @@
 # ACC-Turbo
 
-This repository contains the code used in [ACC-Turbo](https://nsg.ee.ethz.ch/fileadmin/user_upload/ACC-Turbo.pdf), which we will present at [SIGCOMM'22](https://conferences.sigcomm.org/sigcomm/2022/).
+This repository contains the code used in [ACC-Turbo](https://nsg.ee.ethz.ch/fileadmin/user_upload/ACC-Turbo.pdf), which will be presented at [SIGCOMM'22](https://conferences.sigcomm.org/sigcomm/2022/).
 
 ## What can I find in this repo?
 
-* `simulations` contains the code of all the experiments for sections 2 (Background) and 8 (Simulation-based Evaluation) of the paper. It includes an implementation of ACC-Turbo on Python and the experiments on [NetBench](https://github.com/ndal-eth/netbench).
+* `simulations` contains the code of all the experiments for **Section 2 (Background)** and **Section 8 (Simulation-based Evaluation)** of the paper. It includes an implementation of ACC-Turbo on Python and the experiments on [NetBench](https://github.com/ndal-eth/netbench).
 
-* `tofino` contains the code to run SP-PIFO on programmable switches (including the P4 code and the controller) and the code required to generate the traffic from the server. This is the code used to make the plots of section 7 (Hardware-based Evaluation).
+* `tofino` contains the code of all the experiments for **Section 7 (Hardware-based Evaluation)** of the paper. It includes the code to run ACC-Turbo on programmable switches (both the P4 code and the Python-based controller), and the code required to generate and receive the traffic from each of the servers. It also includes the code to process the results and generate the plots in the paper.
+
+* `paper.pdf` contains the latest version of the paper.
 
  ## Contact
 

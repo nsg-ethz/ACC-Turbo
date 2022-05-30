@@ -1,0 +1,1 @@
+python3 experiment/receiver/start_receiver.py fifo

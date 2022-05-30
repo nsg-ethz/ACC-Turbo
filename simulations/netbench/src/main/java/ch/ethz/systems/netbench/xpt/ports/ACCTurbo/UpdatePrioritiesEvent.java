@@ -14,6 +14,6 @@ public class UpdatePrioritiesEvent extends Event {
     @Override
     public void trigger() {
         // We call the queue timeout when the Event is triggered
-        this.accturbo.update_priorities();
+        this.accturbo.updatePriorities();
     }
 }

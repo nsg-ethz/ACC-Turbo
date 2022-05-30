@@ -10,7 +10,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 #sys.path.append('/home/albert/DDoS-AID_private/code/clustering_analysis/')
-from clustering import range_based_clustering, representative_based_clustering, random_clustering
+from clustering import range_based_clustering, representative_based_clustering
 
 from sklearn.cluster import KMeans
 import numpy as np
@@ -72,7 +72,6 @@ class Analyzer():
             "[INFO] input_pcap_time_end: " + str(input_pcap_time_end) + "\n" +
             "[INFO] ------------------------------------------------------------------------ \n" + 
             "[INFO]  --- # Clustering-algorithm configuration \n" +
-
             "[INFO] clustering_type: " + str(clustering_type) + "\n" +
             "[INFO] num_clusters: " + str(num_clusters) + "\n" +
             "[INFO] reset_clusters_window: " + str(reset_clusters_window) + "\n" +
@@ -106,9 +105,11 @@ class Analyzer():
 
         # We start processing the pcap files (individually)
         for input_pcap_name in self.input_pcap_list:     
-            pool.apply_async(self.analyze, args=(self.simulation_id, input_pcap_name, self.input_pcap_range_enabled, self.input_pcap_time_adjustment, self.input_pcap_time_start, self.input_pcap_time_end, self.clustering_type, self.num_clusters, self.reset_clusters_window, self.learning_rate, self.feature_set, self.normalize_feature_values, self.prioritizing_type, self.update_priorities_window, self.monitoring_window, self.throughput_logging, self.traffic_distributions_logging, self.traffic_distributions_histogram_logging, self.clustering_performance_logging, self.clustering_performance_time_logging, self.priority_performance_logging, self.priority_performance_time_logging, self.throughput_priorities_logging, self.signature_evaluation_logging, self.output_logfiles_seed, self.output_pcap, self.output_pcap_seed)) 
-            #handler = pool.apply_async(self.analyze, args=(self.simulation_id, input_pcap_name, self.input_pcap_range_enabled, self.input_pcap_time_adjustment, self.input_pcap_time_start, self.input_pcap_time_end, self.clustering_type, self.num_clusters, self.reset_clusters_window, self.learning_rate, self.feature_set, self.normalize_feature_values, self.prioritizing_type, self.update_priorities_window, self.monitoring_window, self.throughput_logging, self.traffic_distributions_logging, self.traffic_distributions_histogram_logging, self.clustering_performance_logging, self.clustering_performance_time_logging, self.priority_performance_logging, self.priority_performance_time_logging, self.throughput_priorities_logging, self.signature_evaluation_logging, self.output_logfiles_seed, self.output_pcap, self.output_pcap_seed))
-            #handler.get()
+            #pool.apply_async(self.analyze, args=(self.simulation_id, input_pcap_name, self.input_pcap_range_enabled, self.input_pcap_time_adjustment, self.input_pcap_time_start, self.input_pcap_time_end, self.clustering_type, self.num_clusters, self.reset_clusters_window, self.learning_rate, self.feature_set, self.normalize_feature_values, self.prioritizing_type, self.update_priorities_window, self.monitoring_window, self.throughput_logging, self.traffic_distributions_logging, self.traffic_distributions_histogram_logging, self.clustering_performance_logging, self.clustering_performance_time_logging, self.priority_performance_logging, self.priority_performance_time_logging, self.throughput_priorities_logging, self.signature_evaluation_logging, self.output_logfiles_seed, self.output_pcap, self.output_pcap_seed)) 
+            
+            # TO DEBUG:
+            handler = pool.apply_async(self.analyze, args=(self.simulation_id, input_pcap_name, self.input_pcap_range_enabled, self.input_pcap_time_adjustment, self.input_pcap_time_start, self.input_pcap_time_end, self.clustering_type, self.num_clusters, self.reset_clusters_window, self.learning_rate, self.feature_set, self.normalize_feature_values, self.prioritizing_type, self.update_priorities_window, self.monitoring_window, self.throughput_logging, self.traffic_distributions_logging, self.traffic_distributions_histogram_logging, self.clustering_performance_logging, self.clustering_performance_time_logging, self.priority_performance_logging, self.priority_performance_time_logging, self.throughput_priorities_logging, self.signature_evaluation_logging, self.output_logfiles_seed, self.output_pcap, self.output_pcap_seed))
+            handler.get()
         pool.close()
         pool.join()
 
@@ -136,9 +137,6 @@ class Analyzer():
                 if(clustering_type.split("_")[3] == "Offline-Centroid-Initialization"):
                     batch_packets_offline = []
                     offline = KMeans(n_clusters=num_clusters)
-
-        elif (clustering_type.split("_")[1] == "Random"):
-            clustering = random_clustering.RandomClustering(num_clusters, feature_set)
 
         else:
             # Offline k-means
@@ -350,6 +348,7 @@ class Analyzer():
 
             # Analyze only the parts in which there is attack
             if(simulation_id == "CICDDoS2019"):
+                
                 # According to the CSV analysis
                 ntp_start       = datetime.datetime(2018, 12, 1, 10, 35, 0, 0) # we can see in the plot that it is not starting at 9...
                 ntp_end         = datetime.datetime(2018, 12, 1, 10, 51, 39, 813446)
@@ -382,7 +381,7 @@ class Analyzer():
                 syn_end         = datetime.datetime(2018, 12, 1, 13, 34, 27, 403192)
                 
                 tftp_start      = datetime.datetime(2018, 12, 1, 13, 34, 27, 403713)
-                tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0)# we can see in the plot that it is not ending at 16
+                tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0) # we can see in the plot that it is not ending at 16
 
                 # According to the website
                 #ntp_start       = datetime.datetime(2018, 12, 1, 10, 35, 0, 0)
@@ -410,7 +409,7 @@ class Analyzer():
                 #tftp_start      = datetime.datetime(2018, 12, 1, 13, 35, 0, 0)
                 #tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0)
 
-                # Provisionally we use the input_pcap_time_start field to select the attack that we want to run
+                # We use the input_pcap_time_start field to select the attack that we want to run
                 if (input_pcap_time_start == "NTP"):
                     if (date_time < ntp_start or date_time > ntp_end):
                         continue
@@ -472,7 +471,7 @@ class Analyzer():
                     continue # We skip that iteration
 
                 # If we want to just look at reflection:
-                reflection = False
+                #reflection = False
                 if ((date_time > ntp_start and date_time < ntp_end) 
                 or (date_time > dns_start and date_time < dns_end)
                 or (date_time > ldap_start and date_time < ldap_end)
@@ -483,8 +482,8 @@ class Analyzer():
                 or (date_time > tftp_start and date_time < tftp_end)):
                     reflection = True
 
-                if reflection == False:
-                    continue
+                #if reflection == False:
+                #    continue
 
             # We define the initial time reference
             if is_first_packet == True:
@@ -643,9 +642,6 @@ class Analyzer():
                 if(len(clustering_type.split("_")) == 4):
                     if(clustering_type.split("_")[3] == "Offline-Centroid-Initialization"):
                         batch_packets_offline.append(packet)
-
-            elif clustering_type == "Online_Random_Fast" or clustering_type == "Online_Hash":
-                selected_cluster = clustering.fit(packet, ip.len)
 
             else:
                 # "Offline k-means": We just append the generated packet to a batch of packets, 

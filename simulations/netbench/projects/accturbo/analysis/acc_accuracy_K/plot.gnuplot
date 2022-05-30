@@ -1,4 +1,4 @@
-load "../python/palette/spectral.pal"
+load "../python/plots/spectral.pal"
 
 set terminal pdfcairo
 set datafile separator ","
@@ -10,7 +10,7 @@ set ylabel "% Benign Drops"
 set yrange [0:100]
 
 set xlabel "K (seconds)"
-set xtics ("0.001" 0, "0.025" 1, "0.05" 2, "0.1" 3, "0.25" 4, "0.5" 5, "1" 6)
+set xtics ("0.01" 0, "0.025" 1, "0.05" 2, "0.1" 3, "0.25" 4, "0.5" 5, "1" 6, "1.5" 7, "2" 8)
 
 set output "projects/accturbo/analysis/acc_accuracy_K/benign_drops.pdf"
 plot "projects/accturbo/analysis/acc_accuracy_K/benign_drops.dat" using 4 title "ACC-Turbo" w lp ls 27 lw 4, \

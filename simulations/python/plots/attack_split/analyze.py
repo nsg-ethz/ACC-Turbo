@@ -41,7 +41,7 @@ if __name__ == '__main__':
         elif ("TFTP" in line):
             purity_tftp = line.split(",")[1] 
 
-        elif ("UDP" in line):
+        elif ("UDP" in line and not "UDPLag" in line):
             purity_udp = line.split(",")[1]                                
 
         elif ("UDPLag" in line):

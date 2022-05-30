@@ -1,10 +1,10 @@
 #Attack    Purity_Reflection    Purity_Exploitation
-NTP    75.0    0 
-DNS    95.60715364864348    0 
-MSSQL    100.0    0 
-NetBIOS    93.84666149068323    0 
-SNMP    91.64871406154418    0 
+NTP    0    0 
+DNS    0    0 
+MSSQL    0    0 
+NetBIOS    0    0 
+SNMP    0    0 
 SSDP    0    0 
-TFTP    99.01526317830961    0 
+TFTP    0    0 
 UDP    0    0
 UDPLag    0    0

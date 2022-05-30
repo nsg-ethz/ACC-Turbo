@@ -20,9 +20,9 @@ class Controller:
             
             # We create the log files for the evaluation
             if measure_throughput:
-                file_throughput_benign = open("analysis/throughput_benign.dat", "w")
+                file_throughput_benign = open("../run_fig_07a/results/fifo_throughput_benign.dat", "w")
                 file_throughput_benign.write("# Timestamp(ns),Bits\n")
-                file_throughput_malicious = open("analysis/throughput_malicious.dat", "w")
+                file_throughput_malicious = open("../run_fig_07a/results/fifo_throughput_malicious.dat", "w")
                 file_throughput_malicious.write("# Timestamp(ns),Bits\n")
                 first_pass = True
 
@@ -136,7 +136,7 @@ class Controller:
                         ma_throughput_malicious[i] = 0
                         ma_throughput_benign[i] = 0
 
-                    with open("analysis/throughput_malicious.dat") as file:
+                    with open("../run_fig_07a/results/fifo_throughput_malicious.dat") as file:
                         reader = csv.reader(file)
                         for row in reader:
                             if row[0] != "# Timestamp(ns)":
@@ -146,7 +146,7 @@ class Controller:
                                 throughput_malicious[slot] = throughput_malicious[slot] + bits
                     file.close()
 
-                    with open("analysis/throughput_benign.dat") as file:
+                    with open("../run_fig_07a/results/fifo_throughput_benign.dat") as file:
                         reader = csv.reader(file)
                         for row in reader:
                             if row[0] != "# Timestamp(ns)":
@@ -162,10 +162,10 @@ class Controller:
                         ma_throughput_benign[slot] = (throughput_benign[slot-1] + throughput_benign[slot])/2
 
                     # Write results in file
-                    w_malicious = open("analysis/throughput_malicious.dat", 'w')
+                    w_malicious = open("../run_fig_07a/results/fifo_throughput_malicious.dat", 'w')
                     w_malicious.write("# Timestamp(s),Bits\n")
 
-                    w_benign = open("analysis/throughput_benign.dat", 'w')
+                    w_benign = open("../run_fig_07a/results/fifo_throughput_benign.dat", 'w')
                     w_benign.write("# Timestamp(s),Bits\n")
 
                     axis = range(0, total_time_seconds)
