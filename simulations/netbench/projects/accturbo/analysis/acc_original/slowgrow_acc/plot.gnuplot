@@ -1,4 +1,4 @@
-load "../python/palette/spectral.pal"
+load "../python/plots/spectral.pal"
 
 set terminal pdfcairo
 

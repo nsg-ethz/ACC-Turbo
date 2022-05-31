@@ -24,6 +24,8 @@ if __name__ == '__main__':
         average_purity_range_fast_anime = ""
         average_purity_range_fast_manhattan = ""
         average_purity_representative_fast = ""
+        average_purity_representative_fast_initialized = ""
+        average_purity_offlinekmeans = ""
 
         average_recall_benign_range_exhaustive_anime = ""
         average_recall_benign_range_exhaustive_manhattan = ""
@@ -31,6 +33,8 @@ if __name__ == '__main__':
         average_recall_benign_range_fast_anime = ""
         average_recall_benign_range_fast_manhattan = ""
         average_recall_benign_representative_fast = ""
+        average_recall_benign_representative_fast_initialized = ""
+        average_recall_benign_offlinekmeans = ""
 
         average_recall_malicious_range_exhaustive_anime = ""
         average_recall_malicious_range_exhaustive_manhattan = ""
@@ -38,45 +42,47 @@ if __name__ == '__main__':
         average_recall_malicious_range_fast_anime = ""
         average_recall_malicious_range_fast_manhattan = ""
         average_recall_malicious_representative_fast = "" 
+        average_recall_malicious_representative_fast_initialized = ""
+        average_recall_malicious_offlinekmeans = ""
 
         input_file = open('python/plots/num_clusters/clustering_performance_logs.dat', 'r')
         for line in input_file.readlines():
-            if ("Online_Range_Fast_Manhattan_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            if ("Online_Range_Fast_Manhattan_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_range_fast_manhattan = line.split(",")[1]
                 average_recall_benign_range_fast_manhattan = line.split(",")[4]
                 average_recall_malicious_range_fast_manhattan = line.split(",")[5].split("\n")[0]      
     
-            elif ("Online_Representative_Fast_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            elif ("Online_Representative_Fast_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_representative_fast = line.split(",")[1]
                 average_recall_benign_representative_fast = line.split(",")[4]
                 average_recall_malicious_representative_fast = line.split(",")[5].split("\n")[0]    
 
-            elif ("Online_Range_Fast_Anime_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            elif ("Online_Range_Fast_Anime_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_range_fast_anime = line.split(",")[1]
                 average_recall_benign_range_fast_anime = line.split(",")[4]
                 average_recall_malicious_range_fast_anime = line.split(",")[5].split("\n")[0]                
 
-            elif ("Online_Range_Exhaustive_Manhattan_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            elif ("Online_Range_Exhaustive_Manhattan_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_range_exhaustive_manhattan = line.split(",")[1]
                 average_recall_benign_range_exhaustive_manhattan = line.split(",")[4]
                 average_recall_malicious_range_exhaustive_manhattan = line.split(",")[5].split("\n")[0]
 
-            elif ("Online_Representative_Exhaustive_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            elif ("Online_Representative_Exhaustive_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_representative_exhaustive = line.split(",")[1]
                 average_recall_benign_representative_exhaustive = line.split(",")[4]
                 average_recall_malicious_representative_exhaustive = line.split(",")[5].split("\n")[0]                  
 
-            elif ("Online_Range_Exhaustive_Anime_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            elif ("Online_Range_Exhaustive_Anime_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_range_exhaustive_anime = line.split(",")[1]
                 average_recall_benign_range_exhaustive_anime = line.split(",")[4]
                 average_recall_malicious_range_exhaustive_anime = line.split(",")[5].split("\n")[0]
 
-            elif ("Online_Representative_Fast_Offline-Centroid-Initialization_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            elif ("Online_Representative_Fast_Offline-Centroid-Initialization_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_representative_fast_initialized = line.split(",")[1]
                 average_recall_benign_representative_fast_initialized = line.split(",")[4]
                 average_recall_malicious_representative_fast_initialized = line.split(",")[5].split("\n")[0]              
     
-            elif ("Offline_KMeans_" + str(num_clusters) + "_60_0.3_False_Throughput_0_60_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len") in line:
+            elif ("Offline_KMeans_" + str(num_clusters) + "_60_0.3_False_Throughput_-1_60_len_id_frag_offset_ttl_proto_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport") in line:
                 average_purity_offlinekmeans = line.split(",")[1]
                 average_recall_benign_offlinekmeans = line.split(",")[4]
                 average_recall_malicious_offlinekmeans = line.split(",")[5].split("\n")[0]      

@@ -10,7 +10,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
 #sys.path.append('/home/albert/DDoS-AID_private/code/clustering_analysis/')
-from clustering import range_based_clustering, representative_based_clustering, random_clustering
+from clustering import range_based_clustering, representative_based_clustering
 
 from sklearn.cluster import KMeans
 import numpy as np
@@ -106,6 +106,8 @@ class Analyzer():
         # We start processing the pcap files (individually)
         for input_pcap_name in self.input_pcap_list:     
             pool.apply_async(self.analyze, args=(self.simulation_id, input_pcap_name, self.input_pcap_range_enabled, self.input_pcap_time_adjustment, self.input_pcap_time_start, self.input_pcap_time_end, self.clustering_type, self.num_clusters, self.reset_clusters_window, self.learning_rate, self.feature_set, self.normalize_feature_values, self.prioritizing_type, self.update_priorities_window, self.monitoring_window, self.throughput_logging, self.traffic_distributions_logging, self.traffic_distributions_histogram_logging, self.clustering_performance_logging, self.clustering_performance_time_logging, self.priority_performance_logging, self.priority_performance_time_logging, self.throughput_priorities_logging, self.signature_evaluation_logging, self.output_logfiles_seed, self.output_pcap, self.output_pcap_seed)) 
+            
+            # TO DEBUG:
             #handler = pool.apply_async(self.analyze, args=(self.simulation_id, input_pcap_name, self.input_pcap_range_enabled, self.input_pcap_time_adjustment, self.input_pcap_time_start, self.input_pcap_time_end, self.clustering_type, self.num_clusters, self.reset_clusters_window, self.learning_rate, self.feature_set, self.normalize_feature_values, self.prioritizing_type, self.update_priorities_window, self.monitoring_window, self.throughput_logging, self.traffic_distributions_logging, self.traffic_distributions_histogram_logging, self.clustering_performance_logging, self.clustering_performance_time_logging, self.priority_performance_logging, self.priority_performance_time_logging, self.throughput_priorities_logging, self.signature_evaluation_logging, self.output_logfiles_seed, self.output_pcap, self.output_pcap_seed))
             #handler.get()
         pool.close()
@@ -135,9 +137,6 @@ class Analyzer():
                 if(clustering_type.split("_")[3] == "Offline-Centroid-Initialization"):
                     batch_packets_offline = []
                     offline = KMeans(n_clusters=num_clusters)
-
-        elif (clustering_type.split("_")[1] == "Random"):
-            clustering = random_clustering.RandomClustering(num_clusters, feature_set)
 
         else:
             # Offline k-means

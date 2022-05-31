@@ -1,4 +1,4 @@
-load "~/DDoS-AID_private/code/python/palette/spectral.pal"
+load "python/plots/spectral.pal"
 
 # General configuration
 set terminal pdfcairo
@@ -50,7 +50,7 @@ set xtics out offset 0,0
 set yrange [0:100]
 set ytics ("0" 0, "50" 50, "100" 100)
 set output "schedulers.pdf"
-plot "schedulers.dat" using 2 title 'N.P.' ls 8 lw 3, \
+plot "priority_performance_logs.dat" using 2 title 'N.P.' ls 8 lw 3, \
                 '' using 3 title 'Th.' ls 4 lw 3, \
                 '' using 4 title 'N.P./Size' ls 3 lw 3, \
-                '' using 5 title 'Th./Size' ls 2 lw 3, \
+                '' using 5 title 'Th./Size' ls 2 lw 3

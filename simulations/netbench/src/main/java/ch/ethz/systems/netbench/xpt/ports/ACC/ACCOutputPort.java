@@ -7,7 +7,7 @@ import ch.ethz.systems.netbench.ext.basic.IpHeader;
 import ch.ethz.systems.netbench.ext.basic.IpPacket;
 import ch.ethz.systems.netbench.xpt.tcpbase.FullExtTcpPacket;
 
-
+// Implementation of ACC. Translated to java from the original code: https://sources.debian.org/src/ns2/2.35%2Bdfsg-3.1/pushback/
 public class ACCOutputPort extends OutputPort {
 
     private final long maxQueueSize;

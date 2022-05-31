@@ -17,13 +17,15 @@ mvn clean compile assembly:single
     gnuplot projects/accturbo/analysis/acc_morphing/acc/plot.gnuplot
 
     #/* Figure 3c: Speed vs. accuracy */
-    java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K1.properties
+    java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K10.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K25.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K50.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K100.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K250.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K500.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K1000.properties
+    java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K1500.properties
+    java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/K2000.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/accturbo.properties
     java -jar -ea NetBench.jar projects/accturbo/runs/acc_accuracy_K/fifo.properties
 
