@@ -1,0 +1,1 @@
+python3 run_fig_07c/receiver/start_receiver.py
