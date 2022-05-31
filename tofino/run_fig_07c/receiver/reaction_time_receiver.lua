@@ -22,7 +22,7 @@ function configure(parser)
 end
 
 function master(args)
-	local dev = device.config{port = 1, rxQueues = 1, rssQueues = 1, dropEnable = false, rxDescs =  4096}
+	local dev = device.config{port = 2, rxQueues = 1, rssQueues = 1, dropEnable = false, rxDescs =  4096}
     device.waitForLinks()
 
 	lm.startTask("dumper", dev:getRxQueue(0), args)
@@ -35,8 +35,8 @@ function dumper(queue, args)
     
     -- we create the packet counters (directly logged to output files in csv format)
     local captureCtr, filterCtr
-	captureCtr = stats:newPktRxCounter("Capture benign", "CSV", "throughput_program1.dat")
-    filterCtr = stats:newPktRxCounter("Capture malicious", "CSV", "throughput_program2.dat")
+	captureCtr = stats:newPktRxCounter("Capture program 2", "CSV", "run_fig_07c/results/throughput_program2.dat")
+    filterCtr = stats:newPktRxCounter("Capture program 1", "CSV", "run_fig_07c/results/throughput_program1.dat")
 	
 	local bufs = memory.bufArray()
 	while lm.running() do
