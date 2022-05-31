@@ -19,11 +19,6 @@ set key font "Helvetica,16"
 # Num clusters
 ###################
 
-set key out horiz top
-set style histogram
-set term pdfcairo enhanced font "Helvetica,19" size 4in,2.5in
-set key font "Helvetica,18" 
-
 # X-Axis
 set xlabel "Num Clusters"
 set xtics ("2" 0, "4" 1, "6" 2, "8" 3, "10" 4)
