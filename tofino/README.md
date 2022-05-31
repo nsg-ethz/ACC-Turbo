@@ -7,6 +7,7 @@
 - Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
 - Download caida_baseline.pcap to the server in the sender folder
 - Install Moongen, the NICs, the Tofino SDE, tmux etc.
+-Tmux
 
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
@@ -32,8 +33,9 @@
 
 * **Figure 7a: FIFO**:
     * Execute (tofino switch): `sudo ./run_fig_07a/run_fig_07a_tofino.sh`
-    * Wait ~15 seconds, until the ports are up and the controller is running
+    * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07a/run_fig_07a_sender.sh`
+    * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
     
     * Results (tofino switch): [`run_fig_07a/results/fifo_throughput_benign.dat`](run_fig_07a/results/fifo_throughput_benign.dat), [`run_fig_07a/results/fifo_throughput_malicious.dat`](run_fig_07a/results/fifo_throughput_malicious.dat)
     * Process results (tofino switch): `gnuplot run_fig_07a/results/fifo_plot_throughput.gnuplot`
@@ -41,8 +43,10 @@
 
 * **Figure 7b: ACC-Turbo**:
     * Execute (tofino switch): `./run_fig_07b/run_fig_07b_tofino.sh`
+    * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07b/run_fig_07b_sender.sh`
-    
+    * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
+
     * Results (tofino switch): [`run_fig_07b/results/accturbo_throughput_benign.dat`](run_fig_07b/results/accturbo_throughput_benign.dat), [`run_fig_07b/results/accturbo_throughput_malicious.dat`](run_fig_07b/results/accturbo_throughput_malicious.dat)
     * Process results (tofino switch): `gnuplot run_fig_07b/results/accturbo_plot_throughput.gnuplot`
     * Plot (tofino switch): [`run_fig_07b/results/accturbo_output_throughput.pdf`](run_fig_07b/results/accturbo_output_throughput.pdf)
@@ -58,8 +62,10 @@
 
 * **Figure 7d: Jaqen**:
     * Execute (tofino switch): `./run_fig_07d/run_fig_07d_tofino.sh`
+    * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07d/run_fig_07d_sender.sh`
-    
+    * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
+
     * Results (tofino switch): [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07c/results/throughput_program2.dat), [`run_fig_07d/results/jaqen_throughput_malicious.dat`](run_fig_07c/results/throughput_program2.dat)
     * Process results (tofino switch): `gnuplot run_fig_07d/results/jaqen_plot_throughput.gnuplot`
     * Plot (tofino switch): [`run_fig_07d/results/jaqen_output_throughput.pdf`](run_fig_07d/results/jaqen_output_throughput.pdf)
