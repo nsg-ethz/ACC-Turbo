@@ -7,4 +7,4 @@ import sys
 
 if __name__ == "__main__":
 
-    os.system("sudo /opt/MoonGen/build/MoonGen reaction_time_receiver.lua")
+    os.system("sudo /opt/MoonGen/build/MoonGen run_fig_07c/receiver/reaction_time_receiver.lua")
