@@ -32,7 +32,7 @@
 **Figure 7: Reaction-time evaluation**: 
 
 * **Figure 7a: FIFO**:
-    * Execute (tofino switch): `sudo ./run_fig_07a/run_fig_07a_tofino.sh`
+    * Execute (tofino switch): `./run_fig_07a/run_fig_07a_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07a/run_fig_07a_sender.sh`
     * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
