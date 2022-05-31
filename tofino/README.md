@@ -52,8 +52,8 @@
     * Plot (tofino switch): [`run_fig_07b/results/accturbo_output_throughput.pdf`](run_fig_07b/results/accturbo_output_throughput.pdf)
 
 * **Figure 7c: Reprogramming time**:
-    * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (receiving server): `./run_fig_07c/run_fig_07c_receiver.sh`
+    * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (sending server): `./run_fig_07c/run_fig_07c_sender.sh`
 
     * Results (receiving server): [`run_fig_07c/results/throughput_program1.dat`](run_fig_07c/results/throughput_program1.dat), [`run_fig_07c/results/throughput_program2.dat`](run_fig_07c/results/throughput_program2.dat)
