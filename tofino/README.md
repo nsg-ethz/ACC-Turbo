@@ -57,6 +57,7 @@
     * Execute (receiving server): `./run_fig_07c/run_fig_07c_receiver.sh`
     * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (sending server): `./run_fig_07c/run_fig_07c_sender.sh`
+    * Wait until the second program has fully loaded in the Tofino, and its tmux session has started. You can then close the sender, receiver and tofino.
 
     * Results (receiving server): [`run_fig_07c/results/throughput_program1.dat`](run_fig_07c/results/throughput_program1.dat), [`run_fig_07c/results/throughput_program2.dat`](run_fig_07c/results/throughput_program2.dat)
     * Process results (receiving server): `gnuplot run_fig_07c/results/plot.gnuplot`
