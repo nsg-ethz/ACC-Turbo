@@ -1,6 +1,15 @@
 
 # ACC-Turbo: Reproducing the results
 
+## Install dependencies
+
+- Install dpkt: `pip3 install dpkt`
+- Install matplotlib: `pip3 install matplotlib`
+- Install sklearn: `pip3 install sklearn`
+- Install gnuplot: `apt-get install gnuplot`
+
+
+
 ## Background 
 
 **Figure 2: Comparison between ACC and ACC-Turbo**: 
