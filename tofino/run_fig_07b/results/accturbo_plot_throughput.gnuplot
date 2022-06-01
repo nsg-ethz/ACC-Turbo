@@ -1,4 +1,4 @@
-load "~/albert/ddos-aid/simulations/python/palette/spectral.pal"
+load "palette/spectral.pal"
 
 set terminal pdfcairo
 

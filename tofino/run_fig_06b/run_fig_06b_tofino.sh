@@ -40,12 +40,5 @@ tmux select-pane -t 3
 tmux send-keys -t tofino '. set_sde_9.5.0.sh' Enter
 tmux send-keys -t tofino '../../run_pd_rpc.py pd_rpc/fifo.py' Enter
 
-# Add a new window pane for the controller
-tmux split-window -h -p 50
-tmux select-pane -t 4
-tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
-tmux send-keys -t tofino 'cd  python_controller/' Enter
-tmux send-keys -t tofino 'python simple_forwarder_controller.py'
-
 # Attach to the session we have just created
 tmux attach-session -t tofino

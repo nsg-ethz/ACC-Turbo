@@ -3,6 +3,10 @@
 
 ## Background 
 
+**Requirements**:
+
+- Install gnuplot: `apt-get install gnuplot`
+
 **Figure 2: Comparison between ACC and ACC-Turbo**: 
 
 * Execute: `./run_fig_02.sh`
@@ -52,6 +56,14 @@
     * Plot: [`netbench/projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf`](netbench/projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf)
 
 ## Simulation-based Evaluation
+
+**Requirements**:
+
+- Install dpkt: `pip3 install dpkt`
+- Install matplotlib: `pip3 install matplotlib`
+- Install sklearn: `pip3 install sklearn`
+- Download the CIC DDoS2019 dataset (https://www.unb.ca/cic/datasets/ddos-2019.html). We only use the second day (i.e., testing day), since our clustering algorithm is unsupervised. The files are located in `/mnt/fischer/albert/DDoS2019/` and have names `SAT-01-12-2018_0` until `SAT-01-12-2018_0818`.
+- Install gnuplot: `apt-get install gnuplot`
 
 **Figure 9: Performance by attack type and features**: 
 

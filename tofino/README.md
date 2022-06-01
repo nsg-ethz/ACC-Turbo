@@ -5,35 +5,39 @@
 
 **Setup requirements**: 
 - Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
-- Download caida_baseline.pcap to the server in the sender folder
-- Install Moongen, the NICs, the Tofino SDE, tmux etc.
+- Download `caida_baseline.pcap` and place it in `experiment/sender/` in the sender server.
+- Install Moongen in both, sender and receiver servers. We place it at `opt/MoonGen/`.
+- Install the corresponding NICs in the servers, with DPKT. 
+- Install the Tofino 1, with SDE . /data/set_sde_9.5.0.sh
+- Install tmux on the Tofino switch. 
 
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
 * **Figure 6a: FIFO**:
-    * Execute (tofino switch): `./run_fig_06a/run_fig_6a_tofino.sh`
-    * Execute (receiving server): `./run_fig_06a/run_fig_6a_receiver.sh`
-    * Execute (sending server): `./run_fig_06a/run_fig_6a_sender.sh`
+    * Execute (tofino switch): `./run_fig_06a/run_fig_06a_tofino.sh`
+    * Execute (receiving server): `./run_fig_06a/run_fig_06a_receiver.sh`
+    * Execute (sending server): `./run_fig_06a/run_fig_06a_sender.sh`
     
-    * Results (receiving server): [`run_fig_06a/results/fifo_throughput_nic_benign.dat`](run_fig_06a/results/fifo_throughput_nic_benign.dat), [`run_fig_06a/results/fifo_throughput_nic_malicious.dat`](run_fig_06a/results/fifo_throughput_nic_malicious.dat)
+    * Results (receiving server): [`run_fig_06a/results/fifo_throughput_benign.dat`](run_fig_06a/results/fifo_throughput_benign.dat), [`run_fig_06a/results/fifo_throughput_malicious.dat`](run_fig_06a/results/fifo_throughput_malicious.dat)
     * Process results (receiving server): `gnuplot run_fig_06a/results/fifo_in_out_plot.gnuplot`
     * Plot (receiving server): [`run_fig_06a/results/fifo_in_out_plot.pdf`](run_fig_06a/results/fifo_in_out_plot.pdf)
 
 * **Figure 6b: ACC-Turbo**:
-    * Execute (tofino switch): `./run_fig_06b/run_ddos_aid920.sh`
-    * Execute (receiving server): ``
-    * Execute (sending server): ``
+    * Execute (tofino switch): `./run_fig_06b/run_fig_06b_tofino.sh`
+    * Execute (receiving server): `./run_fig_06b/run_fig_06b_receiver.sh`
+    * Execute (sending server): `./run_fig_06b/run_fig_06b_sender.sh`
     
-    * Results (receiving server): [`run_fig_06b/results/accturbo_throughput_nic_benign.dat`](run_fig_06b/results/accturbo_throughput_nic_benign.dat), [`run_fig_06a/results/accturbo_throughput_nic_malicious.dat`](run_fig_06b/results/accturbo_throughput_nic_malicious.dat)
+    * Results (receiving server): [`run_fig_06b/results/accturbo_throughput_benign.dat`](run_fig_06b/results/accturbo_throughput_benign.dat), [`run_fig_06a/results/accturbo_throughput_malicious.dat`](run_fig_06b/results/accturbo_throughput_malicious.dat)
     * Process results (receiving server): `gnuplot run_fig_06b/results/accturbo_in_out_plot.gnuplot`
     * Plot (receiving server): [`run_fig_06b/results/accturbo_in_out_plot.pdf`](run_fig_06b/results/accturbo_in_out_plot.pdf)
 
 **Figure 7: Reaction-time evaluation**: 
 
 * **Figure 7a: FIFO**:
-    * Execute (tofino switch): `sudo ./run_fig_07a/run_fig_07a_tofino.sh`
-    * Wait ~15 seconds, until the ports are up and the controller is running
+    * Execute (tofino switch): `./run_fig_07a/run_fig_07a_tofino.sh`
+    * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07a/run_fig_07a_sender.sh`
+    * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
     
     * Results (tofino switch): [`run_fig_07a/results/fifo_throughput_benign.dat`](run_fig_07a/results/fifo_throughput_benign.dat), [`run_fig_07a/results/fifo_throughput_malicious.dat`](run_fig_07a/results/fifo_throughput_malicious.dat)
     * Process results (tofino switch): `gnuplot run_fig_07a/results/fifo_plot_throughput.gnuplot`
@@ -41,16 +45,19 @@
 
 * **Figure 7b: ACC-Turbo**:
     * Execute (tofino switch): `./run_fig_07b/run_fig_07b_tofino.sh`
+    * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07b/run_fig_07b_sender.sh`
-    
+    * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
+
     * Results (tofino switch): [`run_fig_07b/results/accturbo_throughput_benign.dat`](run_fig_07b/results/accturbo_throughput_benign.dat), [`run_fig_07b/results/accturbo_throughput_malicious.dat`](run_fig_07b/results/accturbo_throughput_malicious.dat)
     * Process results (tofino switch): `gnuplot run_fig_07b/results/accturbo_plot_throughput.gnuplot`
     * Plot (tofino switch): [`run_fig_07b/results/accturbo_output_throughput.pdf`](run_fig_07b/results/accturbo_output_throughput.pdf)
 
 * **Figure 7c: Reprogramming time**:
-    * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (receiving server): `./run_fig_07c/run_fig_07c_receiver.sh`
+    * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (sending server): `./run_fig_07c/run_fig_07c_sender.sh`
+    * Wait until the second program has fully loaded in the Tofino, and its tmux session has started. You can then close the sender, receiver and tofino.
 
     * Results (receiving server): [`run_fig_07c/results/throughput_program1.dat`](run_fig_07c/results/throughput_program1.dat), [`run_fig_07c/results/throughput_program2.dat`](run_fig_07c/results/throughput_program2.dat)
     * Process results (receiving server): `gnuplot run_fig_07c/results/plot.gnuplot`
@@ -58,8 +65,10 @@
 
 * **Figure 7d: Jaqen**:
     * Execute (tofino switch): `./run_fig_07d/run_fig_07d_tofino.sh`
+    * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07d/run_fig_07d_sender.sh`
-    
+    * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
+
     * Results (tofino switch): [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07c/results/throughput_program2.dat), [`run_fig_07d/results/jaqen_throughput_malicious.dat`](run_fig_07c/results/throughput_program2.dat)
     * Process results (tofino switch): `gnuplot run_fig_07d/results/jaqen_plot_throughput.gnuplot`
     * Plot (tofino switch): [`run_fig_07d/results/jaqen_output_throughput.pdf`](run_fig_07d/results/jaqen_output_throughput.pdf)

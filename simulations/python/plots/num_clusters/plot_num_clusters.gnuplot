@@ -10,14 +10,14 @@ set style histogram
 set style fill solid 0.6
 set bars front
 
+set key out horiz top
+set style histogram
+set term pdfcairo enhanced font "Helvetica,20" size 4.2in,2.5in
+set key font "Helvetica,16"
+
 ###################
 # Num clusters
 ###################
-
-set key out horiz top
-set style histogram
-set term pdfcairo enhanced font "Helvetica,19" size 4in,2.5in
-set key font "Helvetica,18" 
 
 # X-Axis
 set xlabel "Num Clusters"
