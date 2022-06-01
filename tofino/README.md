@@ -14,20 +14,20 @@
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
 * **Figure 6a: FIFO**:
-    * Execute (tofino switch): `./run_fig_06a/run_fig_6a_tofino.sh`
-    * Execute (receiving server): `./run_fig_06a/run_fig_6a_receiver.sh`
-    * Execute (sending server): `./run_fig_06a/run_fig_6a_sender.sh`
+    * Execute (tofino switch): `./run_fig_06a/run_fig_06a_tofino.sh`
+    * Execute (receiving server): `./run_fig_06a/run_fig_06a_receiver.sh`
+    * Execute (sending server): `./run_fig_06a/run_fig_06a_sender.sh`
     
-    * Results (receiving server): [`run_fig_06a/results/fifo_throughput_nic_benign.dat`](run_fig_06a/results/fifo_throughput_nic_benign.dat), [`run_fig_06a/results/fifo_throughput_nic_malicious.dat`](run_fig_06a/results/fifo_throughput_nic_malicious.dat)
+    * Results (receiving server): [`run_fig_06a/results/fifo_throughput_benign.dat`](run_fig_06a/results/fifo_throughput_benign.dat), [`run_fig_06a/results/fifo_throughput_malicious.dat`](run_fig_06a/results/fifo_throughput_malicious.dat)
     * Process results (receiving server): `gnuplot run_fig_06a/results/fifo_in_out_plot.gnuplot`
     * Plot (receiving server): [`run_fig_06a/results/fifo_in_out_plot.pdf`](run_fig_06a/results/fifo_in_out_plot.pdf)
 
 * **Figure 6b: ACC-Turbo**:
-    * Execute (tofino switch): `./run_fig_06b/run_ddos_aid920.sh`
-    * Execute (receiving server): ``
-    * Execute (sending server): ``
+    * Execute (tofino switch): `./run_fig_06b/run_fig_06b_tofino.sh`
+    * Execute (receiving server): `./run_fig_06b/run_fig_06b_receiver.sh`
+    * Execute (sending server): `./run_fig_06b/run_fig_06b_sender.sh`
     
-    * Results (receiving server): [`run_fig_06b/results/accturbo_throughput_nic_benign.dat`](run_fig_06b/results/accturbo_throughput_nic_benign.dat), [`run_fig_06a/results/accturbo_throughput_nic_malicious.dat`](run_fig_06b/results/accturbo_throughput_nic_malicious.dat)
+    * Results (receiving server): [`run_fig_06b/results/accturbo_throughput_benign.dat`](run_fig_06b/results/accturbo_throughput_benign.dat), [`run_fig_06a/results/accturbo_throughput_malicious.dat`](run_fig_06b/results/accturbo_throughput_malicious.dat)
     * Process results (receiving server): `gnuplot run_fig_06b/results/accturbo_in_out_plot.gnuplot`
     * Plot (receiving server): [`run_fig_06b/results/accturbo_in_out_plot.pdf`](run_fig_06b/results/accturbo_in_out_plot.pdf)
 
