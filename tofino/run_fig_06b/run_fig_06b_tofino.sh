@@ -3,7 +3,7 @@
 
 # Compile p4 program
 . /data/set_sde_9.5.0.sh
-#../../p4_build_albert.sh --with-p4c="/data/bf-sde-9.5.0/install/bin/bf-p4c" p4src/simple_forwarder.p4
+../../p4_build_albert.sh --with-p4c="/data/bf-sde-9.5.0/install/bin/bf-p4c" p4src/ddos_aid_4x4_singlepipe_p4_16_modified.p4
 
 #sudo /home/nsg/bf-sde-9.2.0/install/bin/bf_kdrv_mod_unload 
 #sudo /home/nsg/bf-sde-9.5.0/install/bin/bf_kdrv_mod_load /home/nsg/bf-sde-9.5.0/install/
@@ -15,8 +15,7 @@
 # Create a new tmux session (in the background) where we run the code
 tmux new -s tofino -d
 tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
-# Load drivers after reboot: /usr/bin/sudo $SDE_INSTALL/bin/bf_kdrv_mod_load $SDE_INSTALL
-tmux send-keys -t tofino '../../run_switchd.sh -p simple_forwarder' Enter
+tmux send-keys -t tofino '../../run_switchd.sh -p ddos_aid_4x4_singlepipe_p4_16_modified' Enter
 
 # Configure the ports
 tmux send-keys -t tofino 'ucli' Enter
@@ -32,13 +31,20 @@ tmux send-keys -t tofino 'pm show' Enter
 tmux split-window -h -p 75
 tmux select-pane -t 2
 tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
-tmux send-keys -t tofino '../../run_bfshell.sh -b bfrt/simple_forwarder_cp_setup.py' Enter
+tmux send-keys -t tofino '../../run_bfshell.sh -b bfrt/ddosaid_modified_cp_setup.py' Enter
 
 # Add a new window pane for the pd-rpc
 tmux split-window -h -p 66
 tmux select-pane -t 3
-tmux send-keys -t tofino '. set_sde_9.5.0.sh' Enter
-tmux send-keys -t tofino '../../run_pd_rpc.py pd_rpc/fifo.py' Enter
+tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
+tmux send-keys -t tofino '../../run_pd_rpc.py pd_rpc/priority_queueing.py' Enter
+
+# Add a new window pane for the controller
+tmux split-window -h -p 50
+tmux select-pane -t 4
+tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
+tmux send-keys -t tofino 'cd  python_controller/' Enter
+tmux send-keys -t tofino 'python ddosaidmodified_controller.py'
 
 # Attach to the session we have just created
 tmux attach-session -t tofino
