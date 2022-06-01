@@ -29,7 +29,7 @@ if __name__ == "__main__":
             os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/morphing.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))
 
         elif sys.argv[1] == "nsdi":
-            os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/nsdi_traffic_gen.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))
+            os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/original_traffic_generation.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))
 
         elif sys.argv[1] == "udp_carpet_bombing":
             os.system("sudo /opt/MoonGen/build/MoonGen experiment/sender/moongen/udp_carpet_bombing.lua --pcap-rate-multiplier {} {} {}".format(rate_multiplier, dev, file))

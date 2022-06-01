@@ -31,7 +31,7 @@ tmux send-keys -t tofino 'pm show' Enter
 tmux split-window -h -p 75
 tmux select-pane -t 2
 tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
-tmux send-keys -t tofino '../../run_bfshell.sh -b bfrt/ddosaid_modified_cp_setup.py' Enter
+tmux send-keys -t tofino '../../run_bfshell.sh -b bfrt/setup_modified.py' Enter
 
 # Add a new window pane for the pd-rpc
 tmux split-window -h -p 66
@@ -44,7 +44,7 @@ tmux split-window -h -p 50
 tmux select-pane -t 4
 tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
 tmux send-keys -t tofino 'cd  python_controller/' Enter
-tmux send-keys -t tofino 'python ddosaidmodified_controller.py'
+tmux send-keys -t tofino 'python controller_modified.py'
 
 # Attach to the session we have just created
 tmux attach-session -t tofino
