@@ -1,1 +1,1 @@
-python3 experiment/sender/start_sender.py nsdi
+python3 experiment/sender/start_sender.py original
