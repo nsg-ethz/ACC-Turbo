@@ -2,11 +2,6 @@ from clustering import cluster, clustering_algorithm
 
 class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
 
-    global ordinal_features 
-    global nominal_features
-    ordinal_features = ["len","ttl","src0","src1","src2","src3","dst0","dst1","dst2","dst3"]
-    nominal_features = ["id","frag_offset","proto","sport","dport"] # For these ones, we just give them value when they are the same (distance when they are not the same does not matter)
-
     def __init__(self, num_clusters, feature_set):
         self.feature_list = feature_set.split(",") # List of features that we want to use
         clustering_algorithm.ClusteringAlgorithm.__init__(self, num_clusters) 
@@ -21,11 +16,11 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         for feature in self.feature_list:
             
             # We merge the ranges of cluster_a.signature[feature] and cluster_b.signature[feature]
-            if feature in ordinal_features:
+            if feature in self.ordinal_features:
                 signature_merged_cluster[feature] = [min(cluster_a.signature[feature][0], cluster_b.signature[feature][0]), max(cluster_a.signature[feature][1], cluster_b.signature[feature][1])]
             
             # We merge the sets of src_cluster.signature[feature] and dst_cluster.signature[feature]
-            elif feature in nominal_features:
+            elif feature in self.nominal_features:
                 signature_merged_cluster[feature] = []
                 for key in cluster_a.signature[feature]:
                     signature_merged_cluster[feature].append(key)
@@ -39,13 +34,11 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         # We compute: delta(c_a u c_b)
         delta_merged_cluster = 1 # We initialize the cost
         for feature in self.feature_list:
-            if feature in ordinal_features:
+            if feature in self.ordinal_features:
                 delta_merged_cluster = delta_merged_cluster * ((signature_merged_cluster[feature][1]+1) - signature_merged_cluster[feature][0])
 
-            elif feature in nominal_features:
-                set_size = 0
-                for key in signature_merged_cluster[feature]:
-                    set_size = set_size + 1    
+            elif feature in self.nominal_features:
+                set_size = len(signature_merged_cluster[feature])
                 delta_merged_cluster = delta_merged_cluster * (set_size)
 
             else:
@@ -54,13 +47,11 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         # We compute: delta(c_a)
         delta_cluster_a = 1 # We initialize the cost
         for feature in self.feature_list:
-            if feature in ordinal_features:
-                delta_cluster_a = delta_cluster_a * ((cluster_a[feature][1]+1) - cluster_a[feature][0])
+            if feature in self.ordinal_features:
+                delta_cluster_a = delta_cluster_a * ((cluster_a.signature[feature][1]+1) - cluster_a.signature[feature][0])
 
-            elif feature in nominal_features:
-                set_size = 0
-                for key in cluster_a[feature]:
-                    set_size = set_size + 1    
+            elif feature in self.nominal_features:
+                set_size = len(cluster_a.signature[feature])
                 delta_cluster_a = delta_cluster_a * (set_size)
 
             else:
@@ -69,13 +60,11 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         # We compute: delta(c_b)
         delta_cluster_b = 1 # We initialize the cost
         for feature in self.feature_list:
-            if feature in ordinal_features:
-                delta_cluster_b = delta_cluster_b * ((cluster_b[feature][1]+1) - cluster_b[feature][0])
+            if feature in self.ordinal_features:
+                delta_cluster_b = delta_cluster_b * ((cluster_b.signature[feature][1]+1) - cluster_b.signature[feature][0])
 
-            elif feature in nominal_features:
-                set_size = 0
-                for key in cluster_b[feature]:
-                    set_size = set_size + 1    
+            elif feature in self.nominal_features:
+                set_size = len(cluster_b.signature[feature])
                 delta_cluster_b = delta_cluster_b * (set_size)
 
             else:
@@ -95,7 +84,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
 
             distance_feature = 0
 
-            if feature in ordinal_features:
+            if feature in self.ordinal_features:
                 # Helper: | min(cluster_a) ...... max(cluster_a) |   <->   | min(cluster_b) ...... max(cluster_b) |
                 # if max(cluster_a) < min(cluster_b): distance = min(cluster_b) - max(cluster_a)
                 if (cluster_a.signature[feature][1] < cluster_b.signature[feature][0]):
@@ -106,12 +95,12 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 elif (cluster_a.signature[feature][0] > cluster_b.signature[feature][1]):
                     distance_feature = cluster_a.signature[feature][0] - cluster_b.signature[feature][1]
 
-            elif feature in nominal_features:
+            elif feature in self.nominal_features:
                 # Helper: signature(cluster_a) = {x, y, z}   <->   signature(cluster_b) = {x, q, s}
                 # Distance is: the numbers on cluster_a's set which are not included in cluster_b's set, plus the numbers on cluster_b's set which are not included in cluster_a's set
                 for key in cluster_a.signature[feature]:
                     if not key in cluster_b.signature[feature]:
-                        distance_feature = distance_feature + 1
+                        distance_feature = distance_feature + 1 
 
                 for key in cluster_b.signature[feature]:
                     if not key in cluster_a.signature[feature]:
@@ -132,11 +121,11 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         for feature in self.feature_list:
             
             # We merge the ranges of src_cluster.signature[feature] and dst_cluster.signature[feature]
-            if feature in ordinal_features:
+            if feature in self.ordinal_features:
                 signature_merged_cluster[feature] = [min(dst_cluster.signature[feature][0], src_cluster.signature[feature][0]), max(dst_cluster.signature[feature][1], src_cluster.signature[feature][1])]
             
             # We merge the sets of src_cluster.signature[feature] and dst_cluster.signature[feature]
-            elif feature in nominal_features:
+            elif feature in self.nominal_features:
                 signature_merged_cluster[feature] = []
                 for key in src_cluster.signature[feature]:
                     signature_merged_cluster[feature].append(key)
@@ -160,9 +149,9 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         packet_signature = {}
         assert len(packet) == len(self.feature_list)
         for feature in self.feature_list:
-            if feature in ordinal_features:
+            if feature in self.ordinal_features:
                 packet_signature[feature] = [packet[i],packet[i]] # We initialize the range with the packet's feature value
-            elif feature in nominal_features:
+            elif feature in self.nominal_features:
                 packet_signature[feature] = [packet[i]] # We initialize the set
             else:
                 raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
@@ -254,9 +243,9 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         packet_signature = {}
         assert len(packet) == len(self.feature_list)
         for feature in self.feature_list:
-            if feature in ordinal_features:
+            if feature in self.ordinal_features:
                 packet_signature[feature] = [packet[i],packet[i]] # We initialize the range with the packet's feature value
-            elif feature in nominal_features:
+            elif feature in self.nominal_features:
                 packet_signature[feature] = [packet[i]] # We initialize the set
             else:
                 raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
