@@ -108,6 +108,9 @@ class ClusteringAlgorithm:
 
                 current_cluster.set_priority(size/current_cluster.packets)
 
+        else:
+            raise Exception("Ranking algorithm not supported: %s".format(prioritizing_type))
+
 
     def set_current_cluster_id(self, cluster_id):
         this.current_cluster_id = cluster_id
