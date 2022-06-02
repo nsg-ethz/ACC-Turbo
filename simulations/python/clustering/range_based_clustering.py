@@ -38,9 +38,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 delta_merged_cluster = delta_merged_cluster * ((signature_merged_cluster[feature][1]+1) - signature_merged_cluster[feature][0])
 
             elif feature in self.nominal_features:
-                set_size = 0
-                for key in signature_merged_cluster[feature]:
-                    set_size = set_size + 1    
+                set_size = len(signature_merged_cluster[feature])
                 delta_merged_cluster = delta_merged_cluster * (set_size)
 
             else:
@@ -53,9 +51,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 delta_cluster_a = delta_cluster_a * ((cluster_a.signature[feature][1]+1) - cluster_a.signature[feature][0])
 
             elif feature in self.nominal_features:
-                set_size = 0
-                for key in cluster_a.signature[feature]:
-                    set_size = set_size + 1    
+                set_size = len(cluster_a.signature[feature])
                 delta_cluster_a = delta_cluster_a * (set_size)
 
             else:
@@ -68,9 +64,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 delta_cluster_b = delta_cluster_b * ((cluster_b.signature[feature][1]+1) - cluster_b.signature[feature][0])
 
             elif feature in self.nominal_features:
-                set_size = 0
-                for key in cluster_b.signature[feature]:
-                    set_size = set_size + 1    
+                set_size = len(cluster_b.signature[feature])
                 delta_cluster_b = delta_cluster_b * (set_size)
 
             else:
@@ -106,7 +100,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 # Distance is: the numbers on cluster_a's set which are not included in cluster_b's set, plus the numbers on cluster_b's set which are not included in cluster_a's set
                 for key in cluster_a.signature[feature]:
                     if not key in cluster_b.signature[feature]:
-                        distance_feature = distance_feature + 1
+                        distance_feature = distance_feature + 1 
 
                 for key in cluster_b.signature[feature]:
                     if not key in cluster_a.signature[feature]:
