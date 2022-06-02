@@ -162,7 +162,7 @@ parser MyIngressParser(packet_in                pkt,
         resubmit_h rh;
         pkt.extract(rh); // Extracted 16 bits into metadata
         meta.cluster_id = rh.cluster_id;
-        pkt.advance(PORT_METADATA_SIZE - 16); // For the tofino model we have to remove it
+        //pkt.advance(PORT_METADATA_SIZE - 16); // For the tofino model we have to remove it
         transition parse_ethernet;
     }
 
@@ -199,6 +199,10 @@ control MyIngress(
     inout ingress_intrinsic_metadata_for_tm_t        ig_tm_md) {   
 
     /* Define variables, actions and tables here */
+    action send(PortId_t port) {
+        ig_tm_md.ucast_egress_port = port;
+    }
+
     action set_qid(QueueId_t qid) {
         ig_tm_md.qid = qid;
     }
@@ -2327,7 +2331,7 @@ control MyEgress(
             do_bytes_count.apply();
 
             // For debugging
-            // hdr.ipv4.diffserv = (bit<8>)eg_intr_md.egress_qid;
+            hdr.ipv4.diffserv = (bit<8>)eg_intr_md.egress_qid;
 
         }
     }

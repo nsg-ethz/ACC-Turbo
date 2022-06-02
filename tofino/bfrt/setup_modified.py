@@ -189,44 +189,4 @@ bfrt.complete_operations()
 #egress.do_bytes_count.dump(from_hw=True, table=True)
 #ingress.cluster_to_prio.dump(from_hw=True, table=True)
 
-#ingress.cluster1_sport_min.get(140, from_hw=True)
-#ingress.cluster2_sport_min.get(140, from_hw=True)
-#ingress.cluster3_sport_min.get(140, from_hw=True)
-#ingress.cluster4_sport_min.get(140, from_hw=True)
-
-#ingress.cluster1_sport_max.get(140, from_hw=True)
-#ingress.cluster2_sport_max.get(140, from_hw=True)
-#ingress.cluster3_sport_max.get(140, from_hw=True)
-#ingress.cluster4_sport_max.get(140, from_hw=True)
-
-#ingress.cluster1_dst2_min.get(140, from_hw=True)
-#ingress.cluster2_dst2_min.get(140, from_hw=True)
-#ingress.cluster3_dst2_min.get(140, from_hw=True)
-#ingress.cluster4_dst2_min.get(140, from_hw=True)
-
-#ingress.cluster1_dst2_max.get(140, from_hw=True)
-#ingress.cluster2_dst2_max.get(140, from_hw=True)
-#ingress.cluster3_dst2_max.get(140, from_hw=True)
-#ingress.cluster4_dst2_max.get(140, from_hw=True)
-
-#ingress.cluster1_dst3_min.get(140, from_hw=True)
-#ingress.cluster2_dst3_min.get(140, from_hw=True)
-#ingress.cluster3_dst3_min.get(140, from_hw=True)
-#ingress.cluster4_dst3_min.get(140, from_hw=True)
-
-#ingress.cluster1_dst3_max.get(140, from_hw=True)
-#ingress.cluster2_dst3_max.get(140, from_hw=True)
-#ingress.cluster3_dst3_max.get(140, from_hw=True)
-#ingress.cluster4_dst3_max.get(140, from_hw=True)
-
-#ingress.cluster1_dport_min.get(140, from_hw=True)
-#ingress.cluster2_dport_min.get(140, from_hw=True)
-#ingress.cluster3_dport_min.get(140, from_hw=True)
-#ingress.cluster4_dport_min.get(140, from_hw=True)
-
-#ingress.cluster1_dport_max.get(140, from_hw=True)
-#ingress.cluster2_dport_max.get(140, from_hw=True)
-#ingress.cluster3_dport_max.get(140, from_hw=True)
-#ingress.cluster4_dport_max.get(140, from_hw=True)
-
 # Important: dump(from_hw=True) to read the value from the switch, otherwise it would show the latest one cached

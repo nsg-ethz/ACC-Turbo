@@ -1,4 +1,4 @@
-load "~/DDoS-AID/code/python/palette/spectral.pal"
+load "palette/spectral.pal"
 
 set terminal pdfcairo
 
@@ -16,13 +16,13 @@ set yrange [0:10000]
 set ytics ("0" 0, "2" 2000, "4" 4000, "6" 6000, "8" 8000, "10" 10000)
 set key font "Helvetica,17" 
 set ylabel "Throughput (Gbps)"
-set output "plot.pdf"
+set output "run_fig_07c/results/plot.pdf"
 
 #plot path."output_throughput_malicious.dat" using 1:2 title "Output Malicious" w l ls 1 lw 4, \
      path."input_throughput_malicious.dat" using 1:2 title "Input Malicious" w l ls 1 lw 4 dashtype "_", \
      path."output_throughput_benign.dat" using 1:2 title "Output Benign" w l ls 7 lw 4, \
      path."input_throughput_benign.dat" using 1:2 title "Input Benign" w l ls 7 lw 4 dashtype "_"
 
-plot "throughput_program1.dat" using 5 title "Program 1" w l ls 2 lw 4, \
-     "throughput_program2.dat" using 5 title "Program 2" w l ls 8 lw 4          
+plot "run_fig_07c/results/throughput_program1.dat" using 5 title "Program 1" w l ls 2 lw 4, \
+     "run_fig_07c/results/throughput_program2.dat" using 5 title "Program 2" w l ls 8 lw 4          
      
