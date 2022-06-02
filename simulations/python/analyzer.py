@@ -138,10 +138,12 @@ class Analyzer():
                     batch_packets_offline = []
                     offline = KMeans(n_clusters=num_clusters)
 
-        else:
-            # Offline k-means
+        elif (clustering_type.split("_")[1] == "KMeans"):
             batch_packets = []
             clustering = KMeans(n_clusters=num_clusters)
+
+        else:
+            raise Exception("Clustering algorithm not supported: %s".format(clustering_type))
 
         ##################
         # We prepare the logging files and the logging configuration
@@ -271,11 +273,12 @@ class Analyzer():
                     for a in range(0, 256):
                         distrib_benign[feature][a] = 0
                         distrib_malicious[feature][a] = 0
-                else:
-                    # frag_offset
+                elif (feature == "frag_offset"):
                     for a in range(0, 8192):
                         distrib_benign[feature][a] = 0
                         distrib_malicious[feature][a] = 0
+                else:
+                    raise Exception("Feature not supported: %s".format(feature))
 
         # Traffic-distributions histogram logging 
         if traffic_distributions_histogram_logging == "True":
@@ -329,23 +332,6 @@ class Analyzer():
             else:
                 date_time = datetime.datetime.fromtimestamp(timestamp)
 
-            # We only analyze the fragment of the attack we are interested in
-            #if input_pcap_time_start != "None":
-            #    start_time_list = input_pcap_time_start.split("_")
-            #    assert len(start_time_list) == 7
-            #    start_time = datetime.datetime(int(start_time_list[0]), int(start_time_list[1]), int(start_time_list[2]), int(start_time_list[3]), int(start_time_list[4]), int(start_time_list[5]), int(start_time_list[6]))
-            # 
-            #    if date_time < start_time:
-            #        continue # We skip that iteration
-
-            #if input_pcap_time_end != "None":
-            #    end_time_list = input_pcap_time_end.split("_")
-            #    assert len(end_time_list) == 7
-            #    end_time = datetime.datetime(int(end_time_list[0]), int(end_time_list[1]), int(end_time_list[2]), int(end_time_list[3]), int(end_time_list[4]), int(end_time_list[5]), int(end_time_list[6]))
-            #            
-            #    if date_time > end_time: 
-            #        continue # We skip that iteration
-
             # Analyze only the parts in which there is attack
             if(simulation_id == "CICDDoS2019"):
                 
@@ -382,32 +368,6 @@ class Analyzer():
                 
                 tftp_start      = datetime.datetime(2018, 12, 1, 13, 34, 27, 403713)
                 tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0) # we can see in the plot that it is not ending at 16
-
-                # According to the website
-                #ntp_start       = datetime.datetime(2018, 12, 1, 10, 35, 0, 0)
-                #ntp_end         = datetime.datetime(2018, 12, 1, 10, 45, 0, 0)
-                #dns_start       = datetime.datetime(2018, 12, 1, 10, 52, 0, 0)
-                #dns_end         = datetime.datetime(2018, 12, 1, 11, 5, 0, 0)
-                #ldap_start      = datetime.datetime(2018, 12, 1, 11, 22, 0, 0)
-                #ldap_end        = datetime.datetime(2018, 12, 1, 11, 32, 0, 0)
-                #mssql_start     = datetime.datetime(2018, 12, 1, 11, 36, 0, 0)
-                #mssql_end       = datetime.datetime(2018, 12, 1, 11, 45, 0, 0)
-                #netbios_start   = datetime.datetime(2018, 12, 1, 11, 50, 0, 0)
-                #netbios_end     = datetime.datetime(2018, 12, 1, 12, 0, 0, 0)
-                #snmp_start      = datetime.datetime(2018, 12, 1, 12, 12, 0, 0)
-                #snmp_end        = datetime.datetime(2018, 12, 1, 12, 23, 0, 0)
-                #ssdp_start      = datetime.datetime(2018, 12, 1, 12, 27, 0, 0)
-                #ssdp_end        = datetime.datetime(2018, 12, 1, 12, 37, 0, 0)
-                #udp_start       = datetime.datetime(2018, 12, 1, 12, 45, 0, 0)
-                #udp_end         = datetime.datetime(2018, 12, 1, 13, 9, 0, 0)
-                #udplag_start    = datetime.datetime(2018, 12, 1, 13, 11, 0, 0)
-                #udplag_end      = datetime.datetime(2018, 12, 1, 13, 15, 0, 0)
-                #webddos_start   = datetime.datetime(2018, 12, 1, 13, 18, 0, 0)
-                #webddos_end     = datetime.datetime(2018, 12, 1, 13, 29, 0, 0)
-                #syn_start       = datetime.datetime(2018, 12, 1, 13, 29, 0, 0)
-                #syn_end         = datetime.datetime(2018, 12, 1, 13, 34, 0, 0)
-                #tftp_start      = datetime.datetime(2018, 12, 1, 13, 35, 0, 0)
-                #tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0)
 
                 # We use the input_pcap_time_start field to select the attack that we want to run
                 if (input_pcap_time_start == "NTP"):
@@ -455,19 +415,7 @@ class Analyzer():
                         continue
 
                 # We focus on the parts where there is attack going on
-                if ((date_time < ntp_start) 
-                #    or (date_time > ntp_end and date_time < dns_start) 
-                #    or (date_time > dns_end and date_time < ldap_start) 
-                    #or (date_time > ldap_end and date_time < mssql_start) 
-                    #or (date_time > mssql_end and date_time < netbios_start) 
-                    #or (date_time > netbios_end and date_time < snmp_start) 
-                    #or (date_time > snmp_end and date_time < ssdp_start) 
-                    #or (date_time > ssdp_end and date_time < udp_start) 
-                #    or (date_time > udp_end and date_time < udplag_start) 
-                #    or (date_time > udplag_end and date_time < syn_start)  # we skip webddos as dataset-authors suggest, for not being volumetric
-                    #or (date_time > syn_end and date_time < tftp_start)
-                    or (date_time > tftp_end)):
-
+                if ((date_time < ntp_start) or (date_time > tftp_end)):
                     continue # We skip that iteration
 
                 # If we want to just look at reflection:
@@ -532,14 +480,11 @@ class Analyzer():
 
             # We extract the source and destination port of the transport layer
             if isinstance(ip.data, dpkt.tcp.TCP):
-            #if type(ip.data) == dpkt.tcp.TCP:
-            #ip.p == dpkt.ip.IP_PROTO_TCP:
                 tcp = ip.data
                 sport = tcp.sport
                 dport = tcp.dport
 
             elif isinstance(ip.data, dpkt.udp.UDP): 
-            #elif type(ip.data) == dpkt.udp.UDP:
                 udp = ip.data
                 sport = udp.sport
                 dport = udp.dport
@@ -643,11 +588,13 @@ class Analyzer():
                     if(clustering_type.split("_")[3] == "Offline-Centroid-Initialization"):
                         batch_packets_offline.append(packet)
 
-            else:
-                # "Offline k-means": We just append the generated packet to a batch of packets, 
-                #                    which we will then cluster together
+            elif clustering_type == "Offline_KMeans":
+                # We just append the generated packet to a batch of packets, which we will then cluster together
                 batch_packets.append(packet)
-            
+
+            else:
+                raise Exception("Clustering algorithm not supported: %s".format(clustering_type))
+
             # We compute the packet priority (only possible for online approaches)
             packet_priority = 0
             if (clustering_type.split("_")[0] == "Online"):
@@ -684,6 +631,9 @@ class Analyzer():
                         # Benign
                         original_labels_packets.append(True)
 
+                else:
+                    raise Exception("Simulation ID not supported: %s".format(simulation_id))
+
             # Priority time logging
             if priority_performance_logging == "True":
 
@@ -703,6 +653,9 @@ class Analyzer():
                         current_benign_packets = current_benign_packets + 1
                         current_benign_priorities = current_benign_priorities + packet_priority
 
+                else:
+                    raise Exception("Simulation ID not supported: %s".format(simulation_id))
+
             # Throughput logging
             if throughput_logging == "True":
 
@@ -717,6 +670,9 @@ class Analyzer():
                         current_throughput_malicious = current_throughput_malicious + int(ip.len)*8 + (60*8) + (60*8)
                     else:
                         current_throughput_benign = current_throughput_benign + int(ip.len)*8 + (60*8) + (60*8)
+
+                else:
+                    raise Exception("Simulation ID not supported: %s".format(simulation_id))
 
             # Throughput priorities logging
             if throughput_priorities_logging == "True":
@@ -738,6 +694,9 @@ class Analyzer():
                         else:
                             distrib_benign[feature][full_packet[feature]] = distrib_benign[feature][full_packet[feature]] + 1
 
+                    else:
+                        raise Exception("Simulation ID not supported: %s".format(simulation_id))
+
             # Traffic-distribution logging
             if traffic_distributions_histogram_logging == "True":
                 
@@ -753,6 +712,9 @@ class Analyzer():
                             histogram_malicious[feature_name][packet_priority].append(full_packet[feature_name])
                         else:
                             histogram_benign[feature_name][packet_priority].append(full_packet[feature_name])
+
+                    else:
+                        raise Exception("Simulation ID not supported: %s".format(simulation_id))
 
             # We update the priorities (potentially per packet)
             if (update_priorities_window != -1):
@@ -993,10 +955,11 @@ class Analyzer():
                                     (feature == "src0") or (feature == "src1") or (feature == "src2") or (feature == "src3") or 
                                     (feature == "dst0") or (feature == "dst1") or (feature == "dst2") or (feature == "dst3")):
                                     feature_max = 256
-                                else:
-                                    # frag_offset
+                                elif (feature == "frag_offset"):
                                     feature_max = 8192
-
+                                else:
+                                    raise Exception("Feature not supported: %s".format(feature))
+                                
                                 histogram_benign_file.write("#")
                                 histogram_malicious_file.write("#")
 

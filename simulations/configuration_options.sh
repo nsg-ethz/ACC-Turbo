@@ -37,7 +37,7 @@
 #===============================================================================
 # Scheduling-algorithm configuration
 #===============================================================================
-#                       PRIORITIZING_TYPE:    (String)    "Throughput", "Numpackets", "Size", "ThroughputXSize"
+#                       PRIORITIZING_TYPE:    (String)    "Throughput", "NumPackets", "NumPacketsSize", "ThroughputSize", "ThroughputDirect", "NumPacketsDirect", "ThroughputSizeDirect", "NumPacketsSizeDirect"
 #                UPDATE_PRIORITIES_WINDOW:     (Float)    -1, 0, 0.001                         (in seconds; -1 to disable; if the window is 0, the priorities are updated per packet)
 
 #===============================================================================
