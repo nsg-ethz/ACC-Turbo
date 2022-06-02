@@ -19,5 +19,4 @@ set ylabel "Throughput (Gbps)"
 set output "run_fig_06a/results/fifo_in_out_plot.pdf"
 
 plot "run_fig_06a/results/fifo_throughput_malicious.dat" using 5 title "Output Attack" w l ls 1 lw 4, \
-     "run_fig_06a/results/fifo_throughput_benign.dat" using 5 title "Output Benign" w l ls 7 lw 4          
-     
+     "run_fig_06a/results/fifo_throughput_benign.dat" using 5 title "Output Benign" w l ls 7 lw 4
