@@ -73,6 +73,15 @@ public class PIFOOutputPort extends OutputPort {
                 if (ipHeader.getSourceId() == this.getOwnId()) {
                     SimulationLogger.increaseStatisticCounter("PACKETS_DROPPED_AT_SOURCE");
                 }
+
+                FullExtTcpPacket fpkt = (FullExtTcpPacket) droppedPacket;
+                // Logging of benign and malicious packets
+                if (fpkt.isURG()) {
+                    SimulationLogger.increaseStatisticCounter("MALICIOUS_PACKETS_DROPPED"); // This just does + 1 (since length not added)
+                } else {
+                    SimulationLogger.increaseStatisticCounter("BENIGN_PACKETS_DROPPED");
+                }
+                
             }
         }
     }
