@@ -9,53 +9,48 @@ if __name__ == '__main__':
     output_file = open('python/plots/ranking_algorithms/ranking_algorithms.dat', 'w')
     output_file.write("#Attack    ScoreNP    ScoreTh    ScoreNPSize    ScoreThSize\n")
 
-    score_np_mssql = "0"
-    score_th_mssql = "0"
-    scorenpsize_mssql = "0"
-    scorethsize_mssql = "0"
+    score_numpackets_mssql = "0"
+    score_throughput_mssql = "0"
+    score_numpacketssize_mssql = "0"
+    score_throughputsize_mssql = "0"
+
+    score_numpackets_ssdp = "0"
+    score_throughput_ssdp = "0"
+    score_numpacketssize_ssdp = "0"
+    score_throughputsize_ssdp = "0"
     
-    score_np_ssdp = "0"
-    score_th_ssdp = "0"
-    scorenpsize_ssdp = "0"
-    scorethsize_ssdp = "0"
-    
+    # We analye the file
     for line in input_file.readlines():
-        if ("NTP" in line):
-            purity_ntp = line.split(",")[1]
-
-        elif ("DNS" in line):
-            purity_dns = line.split(",")[1]      
-    
-        elif ("MSSQL" in line):
-            purity_mssql = line.split(",")[1]           
-
-        elif ("NetBIOS" in line):
-            purity_netbios = line.split(",")[1] 
-
-        elif ("SNMP" in line):
-            purity_snmp = line.split(",")[1] 
+        if ("MSSQL" in line):
+            if("ThroughputSize" in line):
+                score_throughputsize_mssql = line.split(",")[1].split("\n")[0]
+            elif("Throughput" in line):
+                score_throughput_mssql = line.split(",")[1].split("\n")[0]
+            elif("NumPacketsSize" in line):
+                score_numpacketssize_mssql = line.split(",")[1].split("\n")[0] 
+            elif("NumPackets" in line):
+                score_numpackets_mssql = line.split(",")[1].split("\n")[0] 
+            else:
+                raise Exception("Ranking algorithm not expected: %s".format(line))
 
         elif ("SSDP" in line):
-            purity_ssdp = line.split(",")[1] 
-
-        elif ("TFTP" in line):
-            purity_tftp = line.split(",")[1] 
-
-        elif ("UDP" in line and not "UDPLag" in line):
-            purity_udp = line.split(",")[1]                                
-
-        elif ("UDPLag" in line):
-            purity_udplag = line.split(",")[1]      
+            if("ThroughputSize" in line):
+                score_throughputsize_ssdp = line.split(",")[1].split("\n")[0]
+            elif("Throughput" in line):
+                score_throughput_ssdp = line.split(",")[1].split("\n")[0]
+            elif("NumPacketsSize" in line):
+                score_numpacketssize_ssdp = line.split(",")[1].split("\n")[0] 
+            elif("NumPackets" in line):
+                score_numpackets_ssdp = line.split(",")[1].split("\n")[0] 
+            else:
+                raise Exception("Ranking algorithm not expected: %s".format(line))
+        
+        else:
+            raise Exception("Attack type not expected: %s".format(line))
     
+    # We close the file
     input_file.close()
-                        
-    output_file.write("NTP    " + purity_ntp + "    " + "0 \n")
-    output_file.write("DNS    " + purity_dns + "    " + "0 \n")
-    output_file.write("MSSQL    " + purity_mssql + "    " + "0 \n")
-    output_file.write("NetBIOS    " + purity_netbios + "    " + "0 \n")
-    output_file.write("SNMP    " + purity_snmp + "    " + "0 \n")
-    output_file.write("SSDP    " + purity_ssdp + "    " + "0 \n")
-    output_file.write("TFTP    " + purity_tftp + "    " + "0 \n")
-    output_file.write("UDP    0    " + purity_udp + "\n")  #Exploitation
-    output_file.write("UDPLag    0    " + purity_udplag + "\n")  #Exploitation
-    output_file.close()
+
+    # We build the output file
+    output_file.write("MSSQL    " + score_numpackets_mssql + "    " + score_throughput_mssql + "    " + score_numpacketssize_mssql + "    " + score_throughputsize_mssql + "\n")
+    output_file.write("SSDP    " + score_numpackets_ssdp + "    " + score_throughput_ssdp + "    " + score_numpacketssize_ssdp + "    " + score_throughputsize_ssdp + "\n")
