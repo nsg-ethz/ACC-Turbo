@@ -9,7 +9,7 @@ class ClusteringAlgorithm:
         self.nominal_features = ["id","frag_offset","proto","sport","dport"]
 
     def update_priorities(self, prioritizing_type):
-        
+
         if prioritizing_type == "Throughput":
             # We set the new priorities, sorting the clusters by throughput
             clusters_by_throughput = {}
@@ -23,7 +23,7 @@ class ClusteringAlgorithm:
             for tuple in clusters_by_throughput:
                 self.cluster_list[tuple[0]].set_priority(prio) # smaller throughput, bigger priority
                 prio = prio - 1
-    
+
         elif prioritizing_type == "NumPackets":
             # We set the new priorities, sorting the clusters by throughput
             clusters_by_packets = {}
@@ -43,7 +43,7 @@ class ClusteringAlgorithm:
             clusters_by_weight = {}
             list_position = 0
             for current_cluster in self.cluster_list:
-                
+
                 # We compute the size of the signature
                 size = 1
                 for feature in current_cluster.feature_list:

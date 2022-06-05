@@ -158,5 +158,5 @@ java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck
 #java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_005.properties
 #java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_005.properties
 
-python3 netbench/projects/analysis/bottleneck_capacities_analysis/analyze.py
-gnuplot netbench/projects/analysis/bottleneck_capacities_analysis/plot.gnuplot
+python3 netbench/projects/accturbo/analysis/bottleneck_capacities/analyze.py
+gnuplot netbench/projects/analysis/bottleneck_capacities/plot.gnuplot
