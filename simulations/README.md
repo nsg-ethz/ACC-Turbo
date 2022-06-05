@@ -60,10 +60,11 @@
 **Requirements**:
 
 - Install dpkt: `pip3 install dpkt`
-- Install matplotlib: `pip3 install matplotlib`
+- Install matplotlib: `pip3 install matplotlib`. If you get the error "Failed building wheel for pillow", you can fix it by `sudo apt-get install libjpeg-dev zlib1g-dev`
 - Install sklearn: `pip3 install sklearn`
-- Download the CIC DDoS2019 dataset (https://www.unb.ca/cic/datasets/ddos-2019.html). We only use the second day (i.e., testing day), since our clustering algorithm is unsupervised. The files are located in `/mnt/fischer/albert/DDoS2019/` and have names `SAT-01-12-2018_0` until `SAT-01-12-2018_0818`.
+- Download the CIC DDoS2019 dataset (https://www.unb.ca/cic/datasets/ddos-2019.html). We only use the second day (i.e., testing day), since our clustering algorithm is unsupervised. The files are located in `/mnt/fischer/albert/DDoS2019/` and have names `SAT-01-12-2018_0` until `SAT-01-12-2018_0818`
 - Install gnuplot: `apt-get install gnuplot`
+- In line 104 of `python/analyzer.py`, introduce the number of cores that you want to use. By default it uses 48.
 
 **Figure 9: Performance by attack type and features**: 
 

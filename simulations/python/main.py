@@ -146,6 +146,7 @@ if __name__ == '__main__':
             
             # We generate the name of the overall purity log
             priority_performance_collector_file = open(output_logfiles_seed + "priority_performance_logs.dat", 'a')
+            print(str(output_logfiles_seed) + "priority_performance_logs.dat")
 
             # We create a summary of the configuration used
             configuration = sys.argv[9]
@@ -156,6 +157,10 @@ if __name__ == '__main__':
                 configuration = configuration + '_' + feature
             if normalize_feature_values == "True":
                 configuration = configuration + '_normalized'
+
+            list_possible_attacks = ["NTP","DNS","LDAP","MSSQL","NetBIOS","SNMP","SSDP","UDP","UDPLag","SYN","TFTP"]
+            if (input_pcap_time_start in list_possible_attacks):
+                configuration = input_pcap_time_start + configuration
 
             # We summarize the general performance statistics
             sum_scores = 0

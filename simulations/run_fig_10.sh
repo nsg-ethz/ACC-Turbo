@@ -19,9 +19,9 @@ INPUT_PCAP_TIME_END="None"
 # Clustering-algorithm configuration
 CLUSTERING_TYPE="Online_Range_Fast_Manhattan"
 NUM_CLUSTERS=10
-RESET_CLUSTERS=60
+RESET_CLUSTERS=1
 LEARNING_RATE=0.3
-FEATURE_SET="len,id,frag_offset,ttl,proto,src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,dport"
+FEATURE_SET="src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,dport,ttl,len"
 NORMALIZE_FEATURE_VALUES="False"
 
 # PRIORITIZATION CONFIGURATION
@@ -29,7 +29,7 @@ PRIORITIZING_TYPE="Throughput"
 UPDATE_PRIORITIES_WINDOW=-1
 
 # Logging configuration
-MONITORING_WINDOW=60
+MONITORING_WINDOW=1
 THROUGHPUT_LOGGING="False"
 TRAFFIC_DISTRIBUTIONS_LOGGING="False"
 TRAFFIC_DISTRIBUTIONS_HISTOGRAM_LOGGING="False"
