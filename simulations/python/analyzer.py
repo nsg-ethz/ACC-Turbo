@@ -98,7 +98,7 @@ class Analyzer():
             "[INFO] output_pcap_seed: " + str(output_pcap_seed))
 
     def execute(self):
-        pool = multiprocessing.Pool(processes=128) # Use 128 cores
+        pool = multiprocessing.Pool(processes=40) # Use 128 cores
 
         # We start processing the pcap files (individually)
         for input_pcap_name in self.input_pcap_list:     
