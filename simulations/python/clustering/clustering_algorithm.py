@@ -5,8 +5,8 @@ class ClusteringAlgorithm:
         self.num_clusters = num_clusters
         self.current_cluster_id = 0
         self.labels = []
-        self.ordinal_features = ["len","ttl","src0","src1","src2","src3","dst0","dst1","dst2","dst3","sport","dport"]
-        self.nominal_features = ["id","frag_offset","proto"]
+        self.ordinal_features = ["len","ttl","src0","src1","src2","src3","dst0","dst1","dst2","dst3","sport","dport","id","frag_offset","proto"]
+        self.nominal_features = []
 
     def update_priorities(self, prioritizing_type):
 
@@ -52,7 +52,7 @@ class ClusteringAlgorithm:
                     elif feature in self.nominal_features:
                         size = size * len(current_cluster.signature[feature])
                     else:
-                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
                 clusters_by_weight[list_position] = current_cluster.packets/size
                 list_position = list_position + 1
@@ -77,7 +77,7 @@ class ClusteringAlgorithm:
                     elif feature in self.nominal_features:
                         size = size * len(current_cluster.signature[feature])
                     else:
-                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
                 clusters_by_weight[list_position] = current_cluster.bits/size
                 list_position = list_position + 1
@@ -110,7 +110,7 @@ class ClusteringAlgorithm:
                     elif feature in self.nominal_features:
                         size = size * len(current_cluster.signature[feature])
                     else:
-                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
                 current_cluster.set_priority(size/current_cluster.bits)
 
@@ -126,12 +126,12 @@ class ClusteringAlgorithm:
                     elif feature in self.nominal_features:
                         size = size * len(current_cluster.signature[feature])
                     else:
-                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                        raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
                 current_cluster.set_priority(size/current_cluster.packets)
 
         else:
-            raise Exception("Ranking algorithm not supported: %s".format(prioritizing_type))
+            raise Exception("Ranking algorithm not supported: {}".format(prioritizing_type))
 
 
     def set_current_cluster_id(self, cluster_id):

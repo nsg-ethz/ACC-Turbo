@@ -29,7 +29,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                         signature_merged_cluster[feature].append(key)
             
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
         # We compute: delta(c_a u c_b)
         delta_merged_cluster = 1 # We initialize the cost
@@ -42,7 +42,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 delta_merged_cluster = delta_merged_cluster * (set_size)
 
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
         # We compute: delta(c_a)
         delta_cluster_a = 1 # We initialize the cost
@@ -55,7 +55,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 delta_cluster_a = delta_cluster_a * (set_size)
 
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
         # We compute: delta(c_b)
         delta_cluster_b = 1 # We initialize the cost
@@ -68,7 +68,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                 delta_cluster_b = delta_cluster_b * (set_size)
 
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
         # We compute: d(c_a, c_b)
         distance = delta_merged_cluster - (delta_cluster_a + delta_cluster_b)
@@ -107,7 +107,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                         distance_feature = distance_feature + 1
             
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
 
             distance = distance + distance_feature
 
@@ -134,7 +134,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
                         signature_merged_cluster[feature].append(key)
             
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
         
         # We return the merged cluster
         dst_cluster.signature = signature_merged_cluster
@@ -154,7 +154,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
             elif feature in self.nominal_features:
                 packet_signature[feature] = [packet[i]] # We initialize the set
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
             i = i + 1
 
         # Create new cluster for the packet
@@ -248,7 +248,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
             elif feature in self.nominal_features:
                 packet_signature[feature] = [packet[i]] # We initialize the set
             else:
-                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: %s".format(feature))
+                raise Exception("Feature must be nominal or ordinal. It is not the case for feature: {}".format(feature))
             i = i + 1
 
         # Create new cluster for the packet (note that we do not update current_cluster_id straight away, since we will only use that cluster id if the new cluster is selected.
