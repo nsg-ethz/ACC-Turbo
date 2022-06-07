@@ -34,6 +34,6 @@ set xtics out offset -1.25,-0.75
 set yrange [0:100]
 set ytics ("0" 0, "20" 20, "40" 40, "60" 60, "80" 80, "100" 100)
 set output "python/plots/feature_split/feature_split.pdf"
-plot "python/plots/feature_split/clustering_performance_logs_paper.dat" using 2 title 'Purity (%)' ls 8 lw 3, \
+plot "python/plots/feature_split/clustering_performance_logs.dat" using 2 title 'Purity (%)' ls 8 lw 3, \
         '' using 5 title 'Recall benign (%)' ls 2 lw 3, \
         '' using 6 title 'Recall malicious (%)' ls 3 lw 3
