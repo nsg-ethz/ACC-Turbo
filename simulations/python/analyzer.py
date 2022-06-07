@@ -333,7 +333,7 @@ class Analyzer():
             if(simulation_id == "CICDDoS2019"):
                 
                 # According to the CSV analysis
-                ntp_start       = datetime.datetime(2018, 12, 1, 10, 35, 0, 0) # we can see in the plot that it is not starting at 9...
+                ntp_start       = datetime.datetime(2018, 12, 1, 10, 30, 0, 0)
                 ntp_end         = datetime.datetime(2018, 12, 1, 10, 51, 39, 813446)
 
                 dns_start       = datetime.datetime(2018, 12, 1, 10, 51, 39, 813448)
@@ -364,7 +364,7 @@ class Analyzer():
                 syn_end         = datetime.datetime(2018, 12, 1, 13, 34, 27, 403192)
                 
                 tftp_start      = datetime.datetime(2018, 12, 1, 13, 34, 27, 403713)
-                tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0) # we can see in the plot that it is not ending at 16
+                tftp_end        = datetime.datetime(2018, 12, 1, 17, 15, 0, 0)
 
                 # We use the input_pcap_time_start field to select the attack that we want to run
                 if (input_pcap_time_start == "NTP"):
