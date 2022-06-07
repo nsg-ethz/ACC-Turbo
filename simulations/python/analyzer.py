@@ -98,7 +98,7 @@ class Analyzer():
             "[INFO] output_pcap_seed: " + str(output_pcap_seed))
 
     def execute(self):
-        pool = multiprocessing.Pool(processes=48) # Use 128 cores
+        pool = multiprocessing.Pool(processes=24) # Use 128 cores
 
         # We start processing the pcap files (individually)
         for input_pcap_name in self.input_pcap_list:     
@@ -140,7 +140,7 @@ class Analyzer():
             clustering = KMeans(n_clusters=num_clusters)
 
         else:
-            raise Exception("Clustering algorithm not supported: %s".format(clustering_type))
+            raise Exception("Clustering algorithm not supported: {}".format(clustering_type))
 
         ##################
         # We prepare the logging files and the logging configuration
@@ -275,7 +275,7 @@ class Analyzer():
                         distrib_benign[feature][a] = 0
                         distrib_malicious[feature][a] = 0
                 else:
-                    raise Exception("Feature not supported: %s".format(feature))
+                    raise Exception("Feature not supported: {}".format(feature))
 
         # Traffic-distributions histogram logging 
         if traffic_distributions_histogram_logging == "True":
@@ -592,7 +592,7 @@ class Analyzer():
                 batch_packets.append(packet)
 
             else:
-                raise Exception("Clustering algorithm not supported: %s".format(clustering_type))
+                raise Exception("Clustering algorithm not supported: {}".format(clustering_type))
 
             # We compute the packet priority (only possible for online approaches)
             packet_priority = 0
@@ -631,7 +631,7 @@ class Analyzer():
                         original_labels_packets.append(True)
 
                 else:
-                    raise Exception("Simulation ID not supported: %s".format(simulation_id))
+                    raise Exception("Simulation ID not supported: {}".format(simulation_id))
 
             # Priority time logging
             if priority_performance_logging == "True":
@@ -653,7 +653,7 @@ class Analyzer():
                         current_benign_priorities = current_benign_priorities + packet_priority
 
                 else:
-                    raise Exception("Simulation ID not supported: %s".format(simulation_id))
+                    raise Exception("Simulation ID not supported: {}".format(simulation_id))
 
             # Throughput logging
             if throughput_logging == "True":
@@ -671,7 +671,7 @@ class Analyzer():
                         current_throughput_benign = current_throughput_benign + int(ip.len)*8 + (60*8) + (60*8)
 
                 else:
-                    raise Exception("Simulation ID not supported: %s".format(simulation_id))
+                    raise Exception("Simulation ID not supported: {}".format(simulation_id))
 
             # Throughput priorities logging
             if throughput_priorities_logging == "True":
@@ -694,7 +694,7 @@ class Analyzer():
                             distrib_benign[feature][full_packet[feature]] = distrib_benign[feature][full_packet[feature]] + 1
 
                     else:
-                        raise Exception("Simulation ID not supported: %s".format(simulation_id))
+                        raise Exception("Simulation ID not supported: {}".format(simulation_id))
 
             # Traffic-distribution logging
             if traffic_distributions_histogram_logging == "True":
@@ -713,7 +713,7 @@ class Analyzer():
                             histogram_benign[feature_name][packet_priority].append(full_packet[feature_name])
 
                     else:
-                        raise Exception("Simulation ID not supported: %s".format(simulation_id))
+                        raise Exception("Simulation ID not supported: {}".format(simulation_id))
 
             # We update the priorities (potentially per packet)
             if (update_priorities_window != -1):
@@ -957,7 +957,7 @@ class Analyzer():
                                 elif (feature == "frag_offset"):
                                     feature_max = 8192
                                 else:
-                                    raise Exception("Feature not supported: %s".format(feature))
+                                    raise Exception("Feature not supported: {}".format(feature))
                                 
                                 histogram_benign_file.write("#")
                                 histogram_malicious_file.write("#")
