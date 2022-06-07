@@ -5,7 +5,7 @@ import os
 if __name__ == '__main__':
 
     # We initialize the file
-    input_file = open('python/plots/ranking_algorithms/priority_performance_logs_1_1.dat', 'r')
+    input_file = open('python/plots/ranking_algorithms/priority_performance_logs.dat', 'r')
     output_file = open('python/plots/ranking_algorithms/ranking_algorithms.dat', 'w')
     output_file.write("#Attack    ScoreNP    ScoreTh    ScoreNPSize    ScoreThSize\n")
 
