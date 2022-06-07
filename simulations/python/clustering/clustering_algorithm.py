@@ -5,8 +5,8 @@ class ClusteringAlgorithm:
         self.num_clusters = num_clusters
         self.current_cluster_id = 0
         self.labels = []
-        self.ordinal_features = ["len","ttl","src0","src1","src2","src3","dst0","dst1","dst2","dst3","sport","dport"]
-        self.nominal_features = ["id","frag_offset","proto"]
+        self.ordinal_features = ["len","ttl","src0","src1","src2","src3","dst0","dst1","dst2","dst3","sport","dport","id","frag_offset","proto"]
+        self.nominal_features = []
 
     def update_priorities(self, prioritizing_type):
 
