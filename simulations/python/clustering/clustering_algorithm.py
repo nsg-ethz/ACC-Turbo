@@ -135,10 +135,10 @@ class ClusteringAlgorithm:
 
 
     def set_current_cluster_id(self, cluster_id):
-        this.current_cluster_id = cluster_id
+        self.current_cluster_id = cluster_id
 
     def get_current_cluster_id(self):
-        return current_cluster_id
+        return self.current_cluster_id
 
     def reset_clusters(self):
         # We remove all clusters from the list

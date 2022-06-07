@@ -98,7 +98,7 @@ class Analyzer():
             "[INFO] output_pcap_seed: " + str(output_pcap_seed))
 
     def execute(self):
-        pool = multiprocessing.Pool(processes=128) # Use 128 cores
+        pool = multiprocessing.Pool(processes=48) # Use 128 cores
 
         # We start processing the pcap files (individually)
         for input_pcap_name in self.input_pcap_list:     
@@ -371,64 +371,66 @@ class Analyzer():
                     if (date_time < ntp_start or date_time > ntp_end):
                         continue
 
-                if (input_pcap_time_start == "DNS"):
+                elif (input_pcap_time_start == "DNS"):
                     if (date_time < dns_start or date_time > dns_end):
                         continue
 
-                if (input_pcap_time_start == "LDAP"):
+                elif (input_pcap_time_start == "LDAP"):
                     if (date_time < ldap_start or date_time > ldap_end):
                         continue
 
-                if (input_pcap_time_start == "MSSQL"):
+                elif (input_pcap_time_start == "MSSQL"):
                     if (date_time < mssql_start or date_time > mssql_end):
                         continue
 
-                if (input_pcap_time_start == "NetBIOS"):
+                elif (input_pcap_time_start == "NetBIOS"):
                     if (date_time < netbios_start or date_time > netbios_end):
                         continue
 
-                if (input_pcap_time_start == "SNMP"):
+                elif (input_pcap_time_start == "SNMP"):
                     if (date_time < snmp_start or date_time > snmp_end):
                         continue
 
-                if (input_pcap_time_start == "SSDP"):
+                elif (input_pcap_time_start == "SSDP"):
                     if (date_time < ssdp_start or date_time > ssdp_end):
                         continue
 
-                if (input_pcap_time_start == "UDP"):
+                elif (input_pcap_time_start == "UDP"):
                     if (date_time < udp_start or date_time > udp_end):
                         continue
 
-                if (input_pcap_time_start == "UDPLag"):
+                elif (input_pcap_time_start == "UDPLag"):
                     if (date_time < udplag_start or date_time > udplag_end):
                         continue
                 
-                if (input_pcap_time_start == "SYN"):
+                elif (input_pcap_time_start == "SYN"):
                     if (date_time < syn_start or date_time > syn_end):
                         continue
                 
-                if (input_pcap_time_start == "TFTP"):
+                elif (input_pcap_time_start == "TFTP"):
                     if (date_time < tftp_start or date_time > tftp_end):
+                        continue
+                
+                else:
+
+                    # We just look at volumetric attacks
+                    reflection = False
+                    if ((date_time > ntp_start and date_time < ntp_end) 
+                    or (date_time > dns_start and date_time < dns_end)
+                    or (date_time > ldap_start and date_time < ldap_end)
+                    or (date_time > mssql_start and date_time < mssql_end)
+                    or (date_time > netbios_start and date_time < netbios_end)
+                    or (date_time > snmp_start and date_time < snmp_end)
+                    or (date_time > ssdp_start and date_time < ssdp_end)
+                    or (date_time > tftp_start and date_time < tftp_end)):
+                        reflection = True
+
+                    if reflection == False:
                         continue
 
                 # We focus on the parts where there is attack going on
                 if ((date_time < ntp_start) or (date_time > tftp_end)):
                     continue # We skip that iteration
-
-                # If we want to just look at reflection:
-                #reflection = False
-                if ((date_time > ntp_start and date_time < ntp_end) 
-                or (date_time > dns_start and date_time < dns_end)
-                or (date_time > ldap_start and date_time < ldap_end)
-                or (date_time > mssql_start and date_time < mssql_end)
-                or (date_time > netbios_start and date_time < netbios_end)
-                or (date_time > snmp_start and date_time < snmp_end)
-                or (date_time > ssdp_start and date_time < ssdp_end)
-                or (date_time > tftp_start and date_time < tftp_end)):
-                    reflection = True
-
-                #if reflection == False:
-                #    continue
 
             # We define the initial time reference
             if is_first_packet == True:
