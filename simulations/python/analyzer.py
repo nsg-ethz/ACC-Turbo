@@ -98,7 +98,7 @@ class Analyzer():
             "[INFO] output_pcap_seed: " + str(output_pcap_seed))
 
     def execute(self):
-        pool = multiprocessing.Pool(processes=24) # Use 128 cores
+        pool = multiprocessing.Pool(processes=128) # Use 128 cores
 
         # We start processing the pcap files (individually)
         for input_pcap_name in self.input_pcap_list:     
@@ -333,7 +333,7 @@ class Analyzer():
             if(simulation_id == "CICDDoS2019"):
                 
                 # According to the CSV analysis
-                ntp_start       = datetime.datetime(2018, 12, 1, 10, 35, 0, 0) # we can see in the plot that it is not starting at 9...
+                ntp_start       = datetime.datetime(2018, 12, 1, 10, 30, 0, 0)
                 ntp_end         = datetime.datetime(2018, 12, 1, 10, 51, 39, 813446)
 
                 dns_start       = datetime.datetime(2018, 12, 1, 10, 51, 39, 813448)
@@ -364,7 +364,7 @@ class Analyzer():
                 syn_end         = datetime.datetime(2018, 12, 1, 13, 34, 27, 403192)
                 
                 tftp_start      = datetime.datetime(2018, 12, 1, 13, 34, 27, 403713)
-                tftp_end        = datetime.datetime(2018, 12, 1, 14, 10, 0, 0) # we can see in the plot that it is not ending at 16
+                tftp_end        = datetime.datetime(2018, 12, 1, 17, 15, 0, 0)
 
                 # We use the input_pcap_time_start field to select the attack that we want to run
                 if (input_pcap_time_start == "NTP"):
@@ -425,12 +425,24 @@ class Analyzer():
                     or (date_time > tftp_start and date_time < tftp_end)):
                         reflection = True
 
-                    if reflection == False:
-                        continue
+                    #if reflection == False:
+                    #    continue
 
                 # We focus on the parts where there is attack going on
-                if ((date_time < ntp_start) or (date_time > tftp_end)):
-                    continue # We skip that iteration
+                #if ((date_time < ntp_start) 
+                #    or (date_time > ntp_end and date_time < dns_start) 
+                #    or (date_time > dns_end and date_time < ldap_start) 
+                    #or (date_time > ldap_end and date_time < mssql_start) 
+                    #or (date_time > mssql_end and date_time < netbios_start) 
+                    #or (date_time > netbios_end and date_time < snmp_start) 
+                    #or (date_time > snmp_end and date_time < ssdp_start) 
+                    #or (date_time > ssdp_end and date_time < udp_start) 
+                #    or (date_time > udp_end and date_time < udplag_start) 
+                #    or (date_time > udplag_end and date_time < syn_start)  # we skip webddos as dataset-authors suggest, for not being volumetric
+                    #or (date_time > syn_end and date_time < tftp_start)
+                #    or (date_time > tftp_end)):
+
+                #    continue # We skip that iteration
 
             # We define the initial time reference
             if is_first_packet == True:
