@@ -13,7 +13,6 @@ import schedule
 class Controller:
 
     def read_cluster_statistics_and_update_priorities(self):
-        print("read_cluster_statistics_and_update_priorities")
         ######################
         # Extract cluster ranges and counters
         ######################
@@ -265,9 +264,9 @@ class Controller:
 
             # We create the log files for throughput plotting
             if self.measure_throughput: 
-                file_throughput_benign = open("analysis/throughput_benign.dat", "w")
+                file_throughput_benign = open("../run_fig_07b/results/accturbo_throughput_benign.dat", "w")
                 file_throughput_benign.write("# Timestamp(ns),Bits\n")
-                file_throughput_malicious = open("analysis/throughput_malicious.dat", "w")
+                file_throughput_malicious = open("../run_fig_07b/results/accturbo_throughput_malicious.dat", "w")
                 file_throughput_malicious.write("# Timestamp(ns),Bits\n")
                 self.first_pass = True
 

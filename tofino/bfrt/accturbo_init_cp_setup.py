@@ -1,14 +1,14 @@
 # -----------------
 # Ingress setup
 # -----------------
-ingress = bfrt.ddos_aid_init.pipe.MyIngress
+ingress = bfrt.accturbo_init.pipe.MyIngress
 
 # Table: tbl_compute_distance_cluster{1,2,3,4}_{dst0,dst1,dst2,dst3}_{min,max}
 # Action: compute_distance_cluster{1,2,3,4}_{dst0,dst1,dst2,dst3}_{min,max}
 # Key: ig_tm_md.ucast_egress_port (exact);
 # Parameter: PortId_t, port
 
-for port in range(512): # In fact we just use port 140, but this way we have ddos-aid configured for all ports
+for port in range(512): # In fact we just use port 140, but this way we have accturbo configured for all ports
 
     # For the clusters' initialization
     ingress.init_counter.add(port)
@@ -147,7 +147,7 @@ for queue_id in range(4):
 # -----------------
 # Egress setup
 # -----------------
-egress = bfrt.ddos_aid_init.pipe.MyEgress
+egress = bfrt.accturbo_init.pipe.MyEgress
 
 # We initialize the timer
 egress.timestamp.add(0)
