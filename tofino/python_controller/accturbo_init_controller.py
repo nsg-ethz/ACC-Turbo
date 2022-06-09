@@ -19,7 +19,6 @@ class Controller:
 
         # We read the [min, max] ranges for each cluster
         for cluster_id in [1,2,3,4]:
-            cluster_signature = {}
 
             resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_dst0_min", 140)
             data_dict = next(resp)[0].to_dict()
@@ -245,13 +244,13 @@ class Controller:
 
         try:
 
-            # DDoS-AID configuration
+            # ACC-Turbo configuration
             self.read_cluster_statistics_and_update_priorities_time = 1 # seconds
             self.reset_clusters_and_clear_counters_time = 100 # seconds
 
             self.num_clusters = 4
             self.feature_list = ["dst0", "dst1", "dst2", "dst3"]
-            self.init = False # Whether we want the clusters to be initialized by the first k packets or not
+            self.init = True # Whether we want the clusters to be initialized by the first k packets or not
 
             self.enable_logging_clusters = True
             self.enable_logging_priorities = True
@@ -298,7 +297,7 @@ class Controller:
                                 "MyIngress.cluster4_dst3_min", "MyIngress.cluster4_dst3_max",
 
                                 "MyIngress.cluster_to_prio", "MyIngress.do_bytes_count", 
-                                "MyIngress.init_counter",
+                                "MyIngress.init_counter", "MyIngress.updateclusters_counter",
                                 
                                 "MyEgress.timestamp",
                                 "MyEgress.do_bytes_count_malicious_egress",
@@ -309,7 +308,7 @@ class Controller:
             self.core.setup_tables(self.table_names)
             
             ##########################
-            ## DDoS-AID initialization
+            ## ACC-Turbo initialization
             ##########################
 
             # This is a trick such that the first 4 packet will be able to initialize the clusters with the usual methods. Basically we are inverting the ranges [min, max] = [255, 0], to make sure that the packet will have a smaller value that the min and a bigger than the max
@@ -390,6 +389,7 @@ class Controller:
 
             # We set the initialization counter to 1 so that clusters are initialized
             self.core.insert_register_entry("MyIngress.init_counter", 140, 1)
+            self.core.insert_register_entry("MyIngress.updateclusters_counter", 140, 0)
 
             # We reset the packet counters
             for qid in range(self.num_clusters):
@@ -424,7 +424,7 @@ class Controller:
             while(True):
 
                 # We schedule the calls to the tofino API
-                schedule.every(self.reset_clusters_and_clear_counters_time).seconds.do(self.reset_clusters_and_clear_counters)
+                #schedule.every(self.reset_clusters_and_clear_counters_time).seconds.do(self.reset_clusters_and_clear_counters)
                 schedule.every(self.read_cluster_statistics_and_update_priorities_time).seconds.do(self.read_cluster_statistics_and_update_priorities)
                 if self.measure_throughput:
                     schedule.every(self.read_throughput_time).seconds.do(self.read_throughput, file_throughput_benign=file_throughput_benign, file_throughput_malicious=file_throughput_benign)

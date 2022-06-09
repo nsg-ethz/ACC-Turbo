@@ -15,6 +15,11 @@ for port in range(512): # In fact we just use port 140, but this way we have acc
     ingress.init_counter.mod(port, 1) # we initialize to 1 because cluster ids go from 1 to 4
     ingress.tbl_do_init_counter.add_with_do_init_counter(port, port)
 
+    # For the resubmit configuration
+    ingress.updateclusters_counter.add(port)
+    ingress.updateclusters_counter.mod(port, 0)
+    ingress.tbl_do_updateclusters_counter.add_with_do_updateclusters_counter(port, port)
+
     # Rest of configuration:
     ingress.cluster1_dst0_min.add(port)
     ingress.cluster2_dst0_min.add(port)
