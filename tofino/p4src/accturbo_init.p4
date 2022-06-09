@@ -2229,6 +2229,7 @@ control MyIngress(
                     meta.rs.cluster_id = 4;
                 } else {
                     meta.rs.cluster_id = meta.init_counter_value;
+                    meta.rs.update_activated = 1;
                 }
                 ig_dprsr_md.resubmit_type = 1;
 
