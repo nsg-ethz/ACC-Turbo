@@ -2080,7 +2080,7 @@ control MyIngress(
     updateclusters_count = {
         void apply(inout bit<32> data, out bit<8> current_value) {
             current_value = 0;
-            if (data < (bit<32>)100000){
+            if (data < (bit<32>)10000000){
                 data = data + 1;
                 current_value = (bit<8>)0;
             } else {
