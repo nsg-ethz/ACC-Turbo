@@ -158,14 +158,14 @@ class Analyzer():
 
             if input_pcap_range_enabled == "True":
 
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 clustering_performance_file = open(output_logfiles_seed + file_id + '_clustering_performance.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     clustering_performance_file.write("#Sum_Purities,Sum_True_Negative_Rates,Sum_True_Positive_Rates,Sum_Recall_Benign,Sum_Recall_Malicious,Number_Iterations\n")
 
                 if clustering_performance_time_logging == "True":
                     clustering_performance_time_file = open(output_logfiles_seed + file_id + '_clustering_performance_time.dat', 'w+')
-                    if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                    if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                         clustering_performance_time_file.write("#Date_Time,Purity,True_Negative_Rate,True_Positive_Rate,Recall_Benign,Recall_Malicious\n")
 
             else:
@@ -190,14 +190,14 @@ class Analyzer():
 
             if input_pcap_range_enabled == "True":
 
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 priority_performance_file = open(output_logfiles_seed + file_id + '_priority_performance.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     priority_performance_file.write("#Sum_Scores,Number_Iterations_Score\n")
 
                 if priority_performance_time_logging == "True":
                     priority_performance_time_file = open(output_logfiles_seed + file_id + '_priority_performance_time.dat', 'w+')
-                    if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                    if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                         priority_performance_time_file.write("#Date_Time,Benign_average_priority,Malicious_average_priority,Score\n")
 
             else:
@@ -213,9 +213,9 @@ class Analyzer():
 
             if input_pcap_range_enabled == "True":
         
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 throughput_file = open(output_logfiles_seed + file_id + '_throughput.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     throughput_file.write("#Time,Benign_throughput,Malicious_throughput\n")
 
             else:
@@ -230,9 +230,9 @@ class Analyzer():
         if throughput_priorities_logging == "True":         
 
             if input_pcap_range_enabled == "True":       
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 throughput_priorities_file = open(output_logfiles_seed + file_id + '_throughput_priorities.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     throughput_priorities_file.write("#Time")
                     for p in range(num_clusters):
                         throughput_priorities_file.write(", Throughput_Prio_" + str(p))
@@ -309,7 +309,7 @@ class Analyzer():
         # Initialize the individual output pcap file (then we will merge them all)
         if output_pcap == "True":
             if input_pcap_range_enabled == "True":
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 write_file = open(output_pcap_seed + file_id + 'output.pcap', 'wb')
             else:
                 write_file = open(output_pcap_seed + 'output.pcap', 'wb')

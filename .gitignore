@@ -2,3 +2,5 @@
 *zlog-cfg-cur
 *bf_drivers.log
 *.pcap
+simulations/DDoS2019/*
+!simulations/DDoS2019/README.md
