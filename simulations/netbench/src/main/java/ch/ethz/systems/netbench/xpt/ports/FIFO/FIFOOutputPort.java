@@ -118,12 +118,14 @@ public class FIFOOutputPort extends OutputPort {
                     SimulationLogger.increaseStatisticCounter("PACKETS_DROPPED_AT_SOURCE");
                 }
 
-                FullExtTcpPacket fpkt = (FullExtTcpPacket) packet;
-                // Logging of benign and malicious packets
-                if (fpkt.isURG()) {
-                    SimulationLogger.increaseStatisticCounter("MALICIOUS_PACKETS_DROPPED"); // This just does + 1 (since length not added)
-                } else {
-                    SimulationLogger.increaseStatisticCounter("BENIGN_PACKETS_DROPPED");
+                if (packet.isTCP()){ //TODO: Add a tag such that is just the ddos logging
+                    FullExtTcpPacket fpkt = (FullExtTcpPacket) packet;
+                    // Logging of benign and malicious packets
+                    if (fpkt.isURG()) {
+                        SimulationLogger.increaseStatisticCounter("MALICIOUS_PACKETS_DROPPED"); // This just does + 1 (since length not added)
+                    } else {
+                        SimulationLogger.increaseStatisticCounter("BENIGN_PACKETS_DROPPED");
+                    }                    
                 }
 
             }
