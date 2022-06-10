@@ -40,13 +40,15 @@ ACC-Turbo
 
 - An [Intel Tofino switch](https://www.intel.com/content/www/us/en/products/network-io/programmable-ethernet-switch/tofino-series.html). We use Intel Tofino Wedge 100BF-32X.
 - Two servers with a DPDK-compatible NIC. We used the 100G [NVIDIA Mellanox ConnectX-5 Adapters](https://www.nvidia.com/en-us/networking/ethernet/connectx-5/) for the sending server, and an [Intel X710 4x 10G](https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ethernet-x710-brief.pdf) for the receiver.
-- One cable of 100G connecting the sending server to the Tofino switch. One cable of 10G connecting the Tofino switch to the receiving server. As follows: Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
+- Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
+- One cable of 100G connecting the sending server to the Tofino switch. One cable of 10G connecting the Tofino switch (port 140) to the receiving server. 
 - We recommend you to configure password free ssh login from your endhost to the servers/switch.
 
 **Software requirements:**
 - Install the SDE 9.5.0 on the Tofino switch. 
 - Install [DPDK](https://www.dpdk.org/), and [Moongen](https://github.com/emmericp/MoonGen) in both, sender and receiver servers. Place it at `opt/MoonGen/`. Install the drivers such that both, sending, and receiving NICs can be accessed by DPDK. Set up the right device ID in both, the [sender](https://github.com/nsg-ethz/ACC-Turbo/blob/main/tofino/experiment/sender/start_sender.py), and the [receiver](https://github.com/nsg-ethz/ACC-Turbo/blob/main/tofino/experiment/receiver/start_receiver.py).
-- Install tmux, and python 3 on the Tofino switch and the servers.
+- Install tmux: `sudo apt install tmux`
+- Install python 3: `sudo apt install python3` on the Tofino switch and the servers.
 
 **Initialization:**
 - Clone this github repository, and `cd tofino/`.
