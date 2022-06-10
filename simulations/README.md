@@ -1,10 +1,11 @@
 
 # ACC-Turbo: Reproducing the results
 
-## Background 
+## Section 2: Background 
 
 **Requirements**:
 
+- Clone this github repository, and `cd simulations/`
 - Install gnuplot: `apt-get install gnuplot`
 
 **Figure 2: Comparison between ACC and ACC-Turbo**: 
@@ -55,16 +56,17 @@
     * Result: `netbench/temp/accturbo/acc_morphing/accturbo`
     * Plot: [`netbench/projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf`](netbench/projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf)
 
-## Simulation-based Evaluation
+## Section 8: Simulation-based Evaluation
 
 **Requirements**:
 
+- Clone this github repository, and `cd simulations/`
 - Install dpkt: `pip3 install dpkt`
 - Install matplotlib: `pip3 install matplotlib`. If you get the error "Failed building wheel for pillow", you can fix it by `sudo apt-get install libjpeg-dev zlib1g-dev`
 - Install sklearn: `pip3 install sklearn`
-- Download the CIC DDoS2019 dataset (https://www.unb.ca/cic/datasets/ddos-2019.html). We only use the second day (i.e., testing day), since our clustering algorithm is unsupervised. The files are located in `/mnt/fischer/albert/DDoS2019/` and have names `SAT-01-12-2018_0` until `SAT-01-12-2018_0818`
+- Download the [CIC DDoS2019 dataset](https://www.unb.ca/cic/datasets/ddos-2019.html). We only use the second day (i.e., testing day), given that our clustering algorithm is unsupervised. Place the dataset in `DDoS2019/`, preserving the original names: `SAT-01-12-2018_0` until `SAT-01-12-2018_0818`
 - Install gnuplot: `sudo apt-get install gnuplot`
-- In line 104 of `python/analyzer.py`, introduce the number of cores that you want to use. By default it uses 48.
+- In line 104 of `python/analyzer.py`, configure the number of cores that you want to use. By default it uses 128.
 
 **Figure 9: Performance by attack type and features**: 
 
