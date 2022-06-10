@@ -93,8 +93,8 @@ cd ..
 # Overall performance
 ##############
 
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/0_400_Fifo_80_0001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/401_819_Fifo_80_0001.properties &
+java -jar -ea netbench/NetBench_old.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/0_400_Fifo_80_0001.properties &
+java -jar -ea netbench/NetBench_old.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/401_819_Fifo_80_0001.properties &
 #java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/0_400_PifoGT_80_0001.properties &
 #java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/401_819_PifoGT_80_0001.properties &
 #java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0001.properties &
