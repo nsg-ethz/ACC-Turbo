@@ -1,14 +1,16 @@
 
-# ACC-Turbo: Reproducing the results
+# ACC-Turbo: Tofino
 
 ## Introduction
+
+In this file we document the artifacts that we used for the hardware-based experiments of our paper. This includes the code required to run the different solutions in the Tofino switch, the code required to send and receive traffic from the respective servers, and the code to process the results and generate the plots. The structure is as follows:
 
 ```
 ACC-Turbo
 ├── tofino
 │   │
-│   ├── bfrt
 │   ├── p4src
+│   ├── bfrt
 │   ├── pd_rpc
 │   ├── python_controller
 │   │
@@ -18,15 +20,23 @@ ACC-Turbo
 │   │
 │   ├── run_fig_x/run_fig_x.sh
 │   └── README.md
-│   
-└── paper.pdf
 ```
 
+* The `p4src` folder contains the p4 codes required to run ACC-Turbo, each of the Jaqen defenses (i.e., heavy-hitter detectors), as well as simple FIFO forwarders.
+
+* The `python_controller`, and `bfrt` folders contains the respective control planes, of each of the p4 programs, as well as their required configuration.
+
+* The `pd_rpc` folder contains the scripts required to configure the Tofino switch to use fifo-forwarding, priority-queues, or port-shaping.
+
+* The `experiment` folder contains the scripts required to generate traffic from the server in charge of sending traffic, and to process traffic from the server in charge of receiving the traffic.
+
+* We have also prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. We named them `run_fig_x_tofino.sh`, `run_fig_x_sender.sh`, or `run_fig_x_receiver.sh` to indicate from where they should be executed.
 
 ## Reproducing the results [Section 7: Hardware-based Evaluation]
 
 **Setup requirements**: 
 - Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
+- Clone this github repository, and `cd tofino/`.
 - Download the slice of the caida trace we use as baseline: [`caida_baseline.pcap`](https://polybox.ethz.ch/index.php/s/cYGvN4uxMUsGDJx). It is a slice of the trace `equinix-nyc.dirA.20180315.pcap`, from [The CAIDA Anonymized Internet Traces](https://www.caida.org/data/passive/passive_dataset_download.xml), year [2018](https://data.caida.org/datasets/passive-2018/). To download the original trace directly from CAIDA, you will need to fill out this [request form](https://www.caida.org/data/passive/passive_dataset_request.xml).
 - Decompress the trace, and place it in the `experiment/sender/` folder, at the sender server.
 - Install Moongen in both, sender and receiver servers. We place it at `opt/MoonGen/`.
