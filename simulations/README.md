@@ -83,7 +83,7 @@
 **Figure 10: Performance of clustering strategies**: 
 * Execute: `./run_fig_10.sh`
 * Results: `python/plots/num_clusters`
-* 💡 Since this experiment involves the exhaustive clustering algorithms, it takes much longer to execute. You can see the progressive results, at any point during the experiment, in `python/plots/num_clusters/clustering_performance_logs.dat`. You can stop the simulation at any point in time, and plot the results collected until then by using `python3 python/plots/num_clusters/analyze.py` and `gnuplot python/plots/num_clusters/plot_num_clusters.gnuplot`, respectively. You may also want to just run the fast approaches by commenting the exhaustive runs in the `./run_fig_10.sh` configuration.
+* 💡 *Hint:* Since this experiment involves the exhaustive clustering algorithms, it takes much longer to execute. You can see the progressive results, at any point during the experiment, in `python/plots/num_clusters/clustering_performance_logs.dat`. You can stop the simulation at any point in time, and plot the results collected until then by using `python3 python/plots/num_clusters/analyze.py` and `gnuplot python/plots/num_clusters/plot_num_clusters.gnuplot`, respectively. You may also want to just run the fast approaches by commenting the exhaustive runs in the `./run_fig_10.sh` configuration.
 
 * **Figure 10a: Purity**:
     * Plot: [`python/plots/num_clusters/numclusters_purity.pdf`](python/plots/num_clusters/numclusters_purity.pdf)
@@ -102,7 +102,7 @@
     * Execute: `./run_fig_11b.sh`
     * Result: `netbench/temp/accturbo/bottleneck_capacities`
     * Plots: [`netbench/projects/accturbo/analysis/bottleneck_capacities/plot.pdf`](netbench/projects/accturbo/analysis/bottleneck_capacities/plot.pdf)
-* 💡 This experiment takes the longest to execute since it involves two steps. First, the input pcap traces from the dataset are processed by the python script, which clusters packets online, and tags them with the assigned priorities. Then, the resulting pcap traces are fed into a virtual switch on Netbench, which forwards the packets following their priorities towards a link of a pre-configured capacity. Similarly to Fig. 10, the whole process takes quite some time. Feel free to just run the experiment for a subset of the clustering algorithms. You can do that, by modifying the config. file `./run_fig_11b.sh`.
+* 💡 *Hint:* This experiment takes the longest to execute since it involves two steps. First, the input pcap traces from the dataset are processed by the python script, which clusters packets online, and tags them with the assigned priorities. Then, the resulting pcap traces are fed into a virtual switch on Netbench, which forwards the packets following their priorities towards a link of a pre-configured capacity. Similarly to Fig. 10, the whole process takes quite some time. Feel free to just run the experiment for a subset of the clustering algorithms. You can do that, by modifying the config. file `./run_fig_11b.sh`.
 
 
 ---
