@@ -27,7 +27,7 @@ ACC-Turbo
 │   └── README.md
 ```
 
-* The `netbench` folder contains all the materials regarding the simulator. We took the same setup from SP-PIFO, and extended it to include ACC and ACCTurbo. The run configurations can be found in `projects/accturbo/runs`. The results from the simulations and post-processing scripts (e.g., result analysis and plotting) can be found in  `projects/accturbo/analysis`
+* The `netbench` folder contains all the materials regarding the simulator. We took the same setup from [SP-PIFO](https://github.com/nsg-ethz/sp-pifo), and extended it to include [ACC](https://github.com/nsg-ethz/ACC-Turbo/tree/main/simulations/netbench/src/main/java/ch/ethz/systems/netbench/xpt/ports/ACC) and [ACCTurbo](https://github.com/nsg-ethz/ACC-Turbo/tree/main/simulations/netbench/src/main/java/ch/ethz/systems/netbench/xpt/ports/ACCTurbo). The run configurations can be found in `projects/accturbo/runs`. The results from the simulations and post-processing scripts (e.g., result analysis and plotting) can be found in  `projects/accturbo/analysis`.
 
 * The `python` folder contains the pre-processing python scripts needed for the experiments involving the CICDDoS dataset. The scripts are named `main.py` and `analyzer.py`. The different clustering algorithms are implemented in `clustering`. The post processing-scripts and results can be found in `plots`.
 
