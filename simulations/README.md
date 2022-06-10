@@ -102,7 +102,7 @@
     * Execute: `./run_fig_11b.sh`
     * Result: `netbench/temp/accturbo/bottleneck_capacities`
     * Plots: [`netbench/projects/accturbo/analysis/bottleneck_capacities/plot.pdf`](netbench/projects/accturbo/analysis/bottleneck_capacities/plot.pdf)
-* 💡 *Hint:* This experiment takes the longest to execute since it involves two steps. First, the input pcap traces from the dataset are processed by the python script, which clusters packets online, and tags them with the assigned priorities. Then, the resulting pcap traces are fed into a virtual switch on Netbench, which forwards the packets following their priorities towards a link of a pre-configured capacity. Similarly to Fig. 10, the whole process takes quite some time. Feel free to just run the experiment for a subset of the clustering algorithms. You can do that, by modifying the config. file `./run_fig_11b.sh`.
+* 💡 *Hint:* This experiment takes the longest to execute since it involves two steps. First, a python script processes the input pcaps from the dataset, clusters their packets online, and tags them with their assigned priorities. Then, we feed the resulting pcap traces into a virtual switch on Netbench, which forwards the packets based on their priorities towards a link of pre-configured capacity. The whole process takes quite some time. Feel free to just run the experiment for a subset of the clustering algorithms. You can do that, by adjusting the config. file `./run_fig_11b.sh`.
 
 
 ---
