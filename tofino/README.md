@@ -32,9 +32,12 @@ ACC-Turbo
 
 * We have also prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. We named them `run_fig_x_tofino.sh`, `run_fig_x_sender.sh`, or `run_fig_x_receiver.sh` to indicate from where they should be executed.
 
+---
 **💡 Note for the SIGCOMM'22 Artifact Evaluation Process:** In case you do not have access to a setup like the one required:
 - If you have signed the Intel NDA, we can give you access to our full setup, including the Tofino switch, so that you can run the experiments there.
 - If you have NOT signed the Intel NDA, we unfortunately can not give you access to a Tofino in our lab. In that case, however, we can happily provide a screen-recording showcasing the reproduction of the Tofino figures in our paper.
+---
+
 
 ## Reproducing the results [Section 7: Hardware-based Evaluation]
 
@@ -140,3 +143,5 @@ ACC-Turbo
     * Repeat the previous two steps, setting the following speed values {0, 5, 10, 15, 20} in `python_controller/heavy_hitter_reaction_controller.py`: 
     * Result: [`run_fig_08b/results/speed.dat`](run_fig_08b/results/speed.dat)
     * Plot: [`run_fig_08b/results/speed.pdf`](run_fig_08b/results/speed.pdf)
+
+---
