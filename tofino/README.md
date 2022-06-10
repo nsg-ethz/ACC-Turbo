@@ -1,7 +1,29 @@
 
 # ACC-Turbo: Reproducing the results
 
-## Hardware-based Evaluation 
+## Introduction
+
+```
+ACC-Turbo
+├── tofino
+│   │
+│   ├── bfrt
+│   ├── p4src
+│   ├── pd_rpc
+│   ├── python_controller
+│   │
+│   ├── experiment
+│   │    ├── sender
+│   │    └── receiver
+│   │
+│   ├── run_fig_x/run_fig_x.sh
+│   └── README.md
+│   
+└── paper.pdf
+```
+
+
+## Reproducing the results [Section 7: Hardware-based Evaluation]
 
 **Setup requirements**: 
 - Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
