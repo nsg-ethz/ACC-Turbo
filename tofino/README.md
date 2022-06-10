@@ -35,7 +35,7 @@ ACC-Turbo
 ---
 **💡 Note for the SIGCOMM'22 Artifact Evaluation Process:** In case you do not have access to a setup like the one required:
 - If you have signed the Intel NDA, we can give you access to our full setup, including the Tofino switch, to run the experiments.
-- If you have NOT signed the Intel NDA, we unfortunately can not give you access to a Tofino in our lab. In that case, however, we can happily provide a screen-recording showcasing the reproduction of the Tofino figures in our paper.
+- If you have NOT signed the Intel NDA, we unfortunately can not give you access to a Tofino in our lab. In that case, however, we can happily provide a screen-recording video showcasing the reproduction of the Tofino figures in our paper.
 ---
 
 
