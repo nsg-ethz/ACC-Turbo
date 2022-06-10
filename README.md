@@ -12,6 +12,7 @@ This repository contains the code used in [ACC-Turbo](https://nsg.ee.ethz.ch/fil
 
 ## Structure
 
+```
 ACC-Turbo
 ├── simulations 
 │   │
@@ -45,7 +46,7 @@ ACC-Turbo
 │   └── README.md. 
 │   
 └── paper.pdf
-
+```
 
 
  ## Contact
