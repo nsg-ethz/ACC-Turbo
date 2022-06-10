@@ -32,17 +32,27 @@ ACC-Turbo
 
 * We have also prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. We named them `run_fig_x_tofino.sh`, `run_fig_x_sender.sh`, or `run_fig_x_receiver.sh` to indicate from where they should be executed.
 
+
+
 ## Reproducing the results [Section 7: Hardware-based Evaluation]
 
-**Setup requirements**: 
-- Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
+**Setup requirements:** 
+
+- An [Intel Tofino switch](https://www.intel.com/content/www/us/en/products/network-io/programmable-ethernet-switch/tofino-series.html). We use Intel Tofino Wedge 100BF-32X.
+- Two servers with a DPDK-compatible NIC. We used the 100G [NVIDIA Mellanox ConnectX-5 Adapters](https://www.nvidia.com/en-us/networking/ethernet/connectx-5/) for the sending server, and an [Intel X710 4x 10G](https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ethernet-x710-brief.pdf) for the receiver.
+- One cable of 100G connecting the sending server to the Tofino switch. One cable of 10G connecting the Tofino switch to the receiving server. As follows: Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
+- We recommend you to configure password free ssh login from your endhost to the servers/switch.
+
+**Software requirements:**
+- Install the SDE 9.5.0 on the Tofino switch. 
+- Install [DPDK](https://www.dpdk.org/), and [Moongen](https://github.com/emmericp/MoonGen) in both, sender and receiver servers. Place it at `opt/MoonGen/`. Install the drivers such that both, sending, and receiving NICs can be accessed by DPDK. Set up the right device ID in both, the [sender](https://github.com/nsg-ethz/ACC-Turbo/blob/main/tofino/experiment/sender/start_sender.py), and the [receiver](https://github.com/nsg-ethz/ACC-Turbo/blob/main/tofino/experiment/receiver/start_receiver.py).
+- Install tmux, and python 3 on the Tofino switch and the servers.
+
+**Initialization:**
 - Clone this github repository, and `cd tofino/`.
 - Download the slice of the caida trace we use as baseline: [`caida_baseline.pcap`](https://polybox.ethz.ch/index.php/s/cYGvN4uxMUsGDJx). It is a slice of the trace `equinix-nyc.dirA.20180315.pcap`, from [The CAIDA Anonymized Internet Traces](https://www.caida.org/data/passive/passive_dataset_download.xml), year [2018](https://data.caida.org/datasets/passive-2018/). To download the original trace directly from CAIDA, you will need to fill out this [request form](https://www.caida.org/data/passive/passive_dataset_request.xml).
 - Decompress the trace, and place it in the `experiment/sender/` folder, at the sender server.
-- Install Moongen in both, sender and receiver servers. We place it at `opt/MoonGen/`.
-- Install the corresponding NICs in the servers, with DPKT. 
-- Install the Tofino 1, with SDE . /data/set_sde_9.5.0.sh
-- Install tmux on the Tofino switch. 
+
 
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
