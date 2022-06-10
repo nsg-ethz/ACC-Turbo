@@ -5,7 +5,8 @@
 
 **Setup requirements**: 
 - Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
-- Download the slice of the caida trace we use as baseline: [`caida_baseline.pcap`](https://polybox.ethz.ch/index.php/s/cYGvN4uxMUsGDJx). Decompress it, and place it in the `experiment/sender/` folder, at the sender server.
+- Download the slice of the caida trace we use as baseline: [`caida_baseline.pcap`](https://polybox.ethz.ch/index.php/s/cYGvN4uxMUsGDJx). It is a slice of the trace `equinix-nyc.dirA.20180315.pcap`, from [The CAIDA Anonymized Internet Traces](https://www.caida.org/data/passive/passive_dataset_download.xml), year [2018](https://data.caida.org/datasets/passive-2018/). To download the original trace directly from CAIDA, you will need to fill out this [request form](https://www.caida.org/data/passive/passive_dataset_request.xml).
+- Decompress the trace, and place it in the `experiment/sender/` folder, at the sender server.
 - Install Moongen in both, sender and receiver servers. We place it at `opt/MoonGen/`.
 - Install the corresponding NICs in the servers, with DPKT. 
 - Install the Tofino 1, with SDE . /data/set_sde_9.5.0.sh
