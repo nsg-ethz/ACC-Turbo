@@ -30,7 +30,6 @@ ACC-Turbo
 │   │    └── plots
 │   │
 │   ├── run_fig_x.sh
-│   │
 │   └── README.md
 │
 ├── tofino
