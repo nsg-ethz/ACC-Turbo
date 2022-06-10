@@ -32,7 +32,7 @@ ACC-Turbo
 
 * We have also prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. We named them `run_fig_x_tofino.sh`, `run_fig_x_sender.sh`, or `run_fig_x_receiver.sh` to indicate from where they should be executed.
 
-**💡 Note for the SIGCOMM'22 Artifact Evaluation Process:** In case you do not have access to a set up like the one we used:
+**💡 Note for the SIGCOMM'22 Artifact Evaluation Process:** In case you do not have access to a setup like the one we used:
 - If you have signed the Intel NDA, we can give you access to our full setup, including the Tofino switch.
 - If you have NOT signed the Intel NDA, we unfortunately can not give you access to a Tofino in our lab. In that case, we will happily provide a screen-recording where we reproduce the Tofino figures in our paper.
 
