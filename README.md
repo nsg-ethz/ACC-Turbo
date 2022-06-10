@@ -31,7 +31,7 @@ ACC-Turbo
 │   │
 │   ├── run_fig_x.sh
 │   │
-│   └── README.md. 
+│   └── README.md
 │
 ├── tofino
 │   │
@@ -45,7 +45,7 @@ ACC-Turbo
 │   │    └── receiver
 │   │
 │   ├── run_fig_x/run_fig_x.sh
-│   └── README.md. 
+│   └── README.md
 │   
 └── paper.pdf
 ```
