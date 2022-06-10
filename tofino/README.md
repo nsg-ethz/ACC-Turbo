@@ -1,15 +1,66 @@
 
-# ACC-Turbo: Reproducing the results
+# ACC-Turbo: Tofino
 
-## Hardware-based Evaluation 
+## Introduction
 
-**Setup requirements**: 
+In this file we document the artifacts that we used for the hardware-based experiments of our paper. This includes the code required to run the different solutions in the Tofino switch, the code required to send and receive traffic from the respective servers, and the code to process the results and generate the plots. The structure is as follows:
+
+```
+ACC-Turbo
+├── tofino
+│   │
+│   ├── p4src
+│   ├── bfrt
+│   ├── pd_rpc
+│   ├── python_controller
+│   │
+│   ├── experiment
+│   │    ├── sender
+│   │    └── receiver
+│   │
+│   ├── run_fig_x/run_fig_x.sh
+│   └── README.md
+```
+
+* The `p4src` folder contains the p4 codes required to run ACC-Turbo, each of the Jaqen defenses (i.e., heavy-hitter detectors), as well as simple FIFO forwarders.
+
+* The `python_controller`, and `bfrt` folders contains the respective control planes, of each of the p4 programs, as well as their required configuration.
+
+* The `pd_rpc` folder contains the scripts required to configure the Tofino switch to use fifo-forwarding, priority-queues, or port-shaping.
+
+* The `experiment` folder contains the scripts required to generate traffic from the server in charge of sending traffic, and to process traffic from the server in charge of receiving the traffic.
+
+* We have also prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. We named them `run_fig_x_tofino.sh`, `run_fig_x_sender.sh`, or `run_fig_x_receiver.sh` to indicate from where they should be executed.
+
+---
+**💡 Note for the SIGCOMM'22 Artifact Evaluation Process:** In case you do not have access to a setup like the one required:
+- If you have signed the Intel NDA, we can give you access to our full setup, including the Tofino switch, to run the experiments.
+- If you have NOT signed the Intel NDA, we unfortunately can not give you access to a Tofino in our lab. In that case, however, we can happily provide a screen-recording video showcasing the reproduction of the Tofino figures in our paper.
+---
+
+
+## Reproducing the results [Section 7: Hardware-based Evaluation]
+
+**Setup requirements:** 
+
+- An [Intel Tofino switch](https://www.intel.com/content/www/us/en/products/network-io/programmable-ethernet-switch/tofino-series.html). We use Intel Tofino Wedge 100BF-32X.
+- Two servers with a DPDK-compatible NIC. We used the 100G [NVIDIA Mellanox ConnectX-5 Adapters](https://www.nvidia.com/en-us/networking/ethernet/connectx-5/) for the sending server, and an [Intel X710 4x 10G](https://www.intel.com/content/dam/www/public/us/en/documents/product-briefs/ethernet-x710-brief.pdf) for the receiver.
 - Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
-- Download the slice of the caida trace we use as baseline: [`caida_baseline.pcap`](https://polybox.ethz.ch/index.php/s/cYGvN4uxMUsGDJx). Decompress it, and place it in the `experiment/sender/` folder, at the sender server.
-- Install Moongen in both, sender and receiver servers. We place it at `opt/MoonGen/`.
-- Install the corresponding NICs in the servers, with DPKT. 
-- Install the Tofino 1, with SDE . /data/set_sde_9.5.0.sh
-- Install tmux on the Tofino switch. 
+- One cable of 100G connecting the sending server to the Tofino switch. One cable of 10G connecting the Tofino switch (port 140) to the receiving server. 
+- We recommend you to configure password free ssh login from your endhost to the servers/switch.
+
+**Software requirements:**
+- Install the SDE 9.5.0 on the Tofino switch. 
+- Install [DPDK](https://www.dpdk.org/), and [Moongen](https://github.com/emmericp/MoonGen) in both, sender and receiver servers. Place it at `opt/MoonGen/`. Install the drivers such that both, sending, and receiving NICs can be accessed by DPDK. Set up the right device ID in both, the [sender](https://github.com/nsg-ethz/ACC-Turbo/blob/main/tofino/experiment/sender/start_sender.py), and the [receiver](https://github.com/nsg-ethz/ACC-Turbo/blob/main/tofino/experiment/receiver/start_receiver.py).
+- Install tmux: `sudo apt install tmux`, on the Tofino switch and both servers.
+- Install python 3: `sudo apt install python3`, on the Tofino switch and both servers.
+- Install gnuplot: `apt-get install gnuplot`, , on the Tofino switch and the receiving server.
+
+**Initialization:**
+- Clone this github repository, and `cd tofino/`.
+- Download the slice of the caida trace we use as baseline: [`caida_baseline.pcap`](https://polybox.ethz.ch/index.php/s/cYGvN4uxMUsGDJx). It is a slice of the trace `equinix-nyc.dirA.20180315.pcap`, from [The CAIDA Anonymized Internet Traces](https://www.caida.org/data/passive/passive_dataset_download.xml), year [2018](https://data.caida.org/datasets/passive-2018/). To download the original trace directly from CAIDA, you will need to fill out this [request form](https://www.caida.org/data/passive/passive_dataset_request.xml).
+- Decompress the trace, and place it in the `experiment/sender/` folder, at the sender server.
+
 
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
@@ -94,3 +145,5 @@
     * Repeat the previous two steps, setting the following speed values {0, 5, 10, 15, 20} in `python_controller/heavy_hitter_reaction_controller.py`: 
     * Result: [`run_fig_08b/results/speed.dat`](run_fig_08b/results/speed.dat)
     * Plot: [`run_fig_08b/results/speed.pdf`](run_fig_08b/results/speed.pdf)
+
+---
