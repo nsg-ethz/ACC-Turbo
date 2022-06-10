@@ -5,7 +5,7 @@
 
 **Setup requirements**: 
 - Architecture: [Sending Server] -- 100G --> [ Tofino ] -- 10G --> [Receiving Server]
-- Download `caida_baseline.pcap` and place it in `experiment/sender/` in the sender server.
+- Download the slice of the caida trace we use as baseline: [`caida_baseline.pcap`](https://polybox.ethz.ch/index.php/s/cYGvN4uxMUsGDJx). Place it in `experiment/sender/` in the sender server.
 - Install Moongen in both, sender and receiver servers. We place it at `opt/MoonGen/`.
 - Install the corresponding NICs in the servers, with DPKT. 
 - Install the Tofino 1, with SDE . /data/set_sde_9.5.0.sh
