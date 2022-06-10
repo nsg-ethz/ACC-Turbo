@@ -56,9 +56,9 @@ if __name__ == '__main__':
         else:
             for file_id in range(input_pcap_range_init, input_pcap_range_end):
                 if file_id == 0:
-                    file_name = '/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0'
+                    file_name = 'DDoS2019/SAT-01-12-2018_0'
                 else:
-                    file_name = '/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0' + str(file_id)
+                    file_name = 'DDoS2019/SAT-01-12-2018_0' + str(file_id)
                 input_pcap_list.append(file_name)
 
         # We create a new instance of the clustering performance analyzer, and we start the analysis
@@ -96,7 +96,7 @@ if __name__ == '__main__':
             sum_recall_malicious = 0
             
             for file_name in input_pcap_list:
-                file_id = file_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = file_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 origin_file = open(output_logfiles_seed + file_id + '_clustering_performance.dat', 'r')
 
                 for line in origin_file.readlines():
@@ -128,7 +128,7 @@ if __name__ == '__main__':
                     # We create the new file and merge all individual ones
                     clustering_performance_time_file = open(clustering_performance_time_file_name, 'w')
                     for file_name in input_pcap_list:
-                        file_id = file_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                        file_id = file_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                         origin_file = open(output_logfiles_seed + file_id + '_clustering_performance_time.dat', 'r')
 
                         for line in origin_file.readlines():
@@ -167,7 +167,7 @@ if __name__ == '__main__':
             sum_number_iterations_score = 0
             
             for file_name in input_pcap_list:
-                file_id = file_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = file_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 origin_file = open(output_logfiles_seed + file_id + '_priority_performance.dat', 'r')
 
                 for line in origin_file.readlines():
@@ -191,7 +191,7 @@ if __name__ == '__main__':
                     # We create the new file and merge all individual ones
                     priority_performance_time_file = open(priority_performance_time_file_name, 'w')
                     for file_name in input_pcap_list:
-                        file_id = file_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                        file_id = file_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                         origin_file = open(output_logfiles_seed + file_id + '_priority_performance_time.dat', 'r')
 
                         for line in origin_file.readlines():
@@ -222,7 +222,7 @@ if __name__ == '__main__':
                 # We create the new file and merge all individual ones
                 throughput_file = open(throughput_file_name, 'w')
                 for file_name in input_pcap_list:
-                    file_id = file_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                    file_id = file_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                     origin_file = open(output_logfiles_seed + file_id + '_throughput.dat', 'r')
 
                     for line in origin_file.readlines():
@@ -253,7 +253,7 @@ if __name__ == '__main__':
                 # We create the new file and merge all individual ones
                 throughput_priorities_file = open(throughput_priorities_file_name, 'w')
                 for file_name in input_pcap_list:
-                    file_id = file_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                    file_id = file_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                     origin_file = open(output_logfiles_seed + file_id + '_throughput_priorities.dat', 'r')
 
                     for line in origin_file.readlines():
@@ -289,7 +289,7 @@ if __name__ == '__main__':
                 pcap_writer_aggregated = dpkt.pcap.Writer(write_file_aggregated)
 
                 for file_name in input_pcap_list:
-                    file_id = file_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                    file_id = file_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                     read_file_aggregated = open(output_pcap_seed + file_id + 'output.pcap', 'rb')
                     pcap_reader_aggregated = dpkt.pcap.Reader(read_file_aggregated)
 

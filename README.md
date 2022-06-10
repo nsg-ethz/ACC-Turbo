@@ -10,9 +10,12 @@ This repository contains the code used in [ACC-Turbo](https://nsg.ee.ethz.ch/fil
 
 * `paper.pdf` contains the latest version of the paper.
 
+**🚀 Quick start:** Check the `README.md` files on the `simulations` and `tofino` folders to find out how to reproduce all the software-based, and hardware-based experiments of the paper, respectively.
+
+
  ## Contact
 
-Please, contact us:
+Please, send us an e-mail to: galberto@ethz.ch,
 - If you are interested in collaborating with the project.
 - If you are having issues when trying to run the experiments described on the paper.
 - If you happen to find a bug.

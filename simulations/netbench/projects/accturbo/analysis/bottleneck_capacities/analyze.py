@@ -90,6 +90,6 @@ def analyze_bottleneck_capacities(range_bottleneck_capacities, schedulers):
 
 if __name__ == "__main__":
     range_bottleneck_capacities = ["005","002","001","0005","0001"]
-    schedulers = ["Fifo", "PifoGT", "PifoManhattanFast", "PifoManhattanFastThroughputSize"] #"PifoManhattanExhaustive", "PifoAnimeFast"
+    schedulers = ["Fifo", "PifoGT", "PifoManhattanFast", "PifoManhattanFastThroughputSize", "PifoManhattanExhaustive", "PifoAnimeFast"] #
 
     analyze_bottleneck_capacities(range_bottleneck_capacities, schedulers)

@@ -73,7 +73,7 @@ class RangeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         # We compute: d(c_a, c_b)
         distance = delta_merged_cluster - (delta_cluster_a + delta_cluster_b)
         
-        assert (distance >= 0)
+        #assert (distance >= 0)
         return distance
 
 	## Computes the distance between two clusters. Used to decide which clusters to merge during the clustering process.

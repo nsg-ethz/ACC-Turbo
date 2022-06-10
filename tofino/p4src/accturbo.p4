@@ -44,9 +44,11 @@ header transport_h {
 
 header resubmit_h {
     bit<8> cluster_id;
+    bit<8> update_activated;
 }
 
 @pa_container_size("ingress", "meta.rs.cluster_id", 8)
+@pa_container_size("ingress", "meta.rs.update_activated", 8)
 
 /*************************************************************************
  **************  I N G R E S S   P R O C E S S I N G   *******************
@@ -64,9 +66,6 @@ struct my_ingress_headers_t {
  */
 struct my_ingress_metadata_t { // We will have to initialize them
     resubmit_h rs;
-
-    // Clustering
-    bit<16> cluster_id;
 
     /* Cluster 1 */
     bit<32> cluster1_dst0_distance;  
@@ -96,6 +95,9 @@ struct my_ingress_metadata_t { // We will have to initialize them
     bit<32> min_d1_d2;
     bit<32> min_d3_d4;
     bit<32> min_d1_d2_d3_d4;
+    
+    // Initialization
+    bit<8> init_counter_value;
 }
 
 parser MyIngressParser(packet_in                pkt,
@@ -2043,6 +2045,67 @@ control MyIngress(
         size = 32;
     }
 
+    /* Register to be used as counter for cluster initialization */
+    Register<bit<32>, PortId_t>(NUM_EGRESS_PORTS) init_counter;
+    RegisterAction<bit<32>, PortId_t, bit<8>>(init_counter)  
+    init_count = {
+        void apply(inout bit<32> data, out bit<8> current_value) {
+            current_value = 0;
+            if (data < (bit<32>)5){
+                current_value = (bit<8>)data;
+            }
+            data = data + 1;
+        }
+    };    
+
+    action do_init_counter(PortId_t port) {
+        meta.init_counter_value = init_count.execute(port);
+    }
+
+    table tbl_do_init_counter {
+        key = {
+            ig_tm_md.ucast_egress_port : exact;
+        }
+        actions = {
+            do_init_counter;
+            @defaultonly NoAction;
+        }
+        const default_action = NoAction();
+        size = 512;
+    } 
+
+    /* Register to be used as counter to determine when to update clusters */
+    Register<bit<32>, PortId_t>(NUM_EGRESS_PORTS) updateclusters_counter;
+    RegisterAction<bit<32>, PortId_t, bit<8>>(updateclusters_counter)  
+    updateclusters_count = {
+        void apply(inout bit<32> data, out bit<8> current_value) {
+            current_value = 0;
+            if (data < (bit<32>)10000000){
+                data = data + 1;
+                current_value = (bit<8>)0;
+            } else {
+                data = 0;
+                current_value = (bit<8>)1;
+            }
+        }
+    };
+
+    action do_updateclusters_counter(PortId_t port) {
+        meta.rs.update_activated = updateclusters_count.execute(port);
+    }
+
+    table tbl_do_updateclusters_counter {
+        key = {
+            ig_tm_md.ucast_egress_port : exact;
+        }
+        actions = {
+            do_updateclusters_counter;
+            @defaultonly NoAction;
+        }
+        const default_action = NoAction();
+        size = 512;
+    } 
+
     /* Define the processing algorithm here */
     apply {
 
@@ -2146,73 +2209,84 @@ control MyIngress(
                 /* Stage 10 */
                 compute_min_second();
 
+                // We check if it is one of the first 4 packets, if it is, we initialize the cluster
+                tbl_do_init_counter.apply();
+
+                // We check if we need to update the clusters
+                tbl_do_updateclusters_counter.apply();
+
                 /* Stage 11 */
-                if (meta.min_d1_d2_d3_d4 == meta.cluster1_dst0_distance) {
+                if (meta.min_d1_d2_d3_d4 == meta.cluster1_dst0_distance && meta.init_counter_value == 0) {
                     /* We select cluster 1. Get prio from cluster 1 */
                     meta.rs.cluster_id = 1;
-                } else if (meta.min_d1_d2_d3_d4 == meta.cluster2_dst0_distance) {
+                } else if (meta.min_d1_d2_d3_d4 == meta.cluster2_dst0_distance && meta.init_counter_value == 0) {
                     /* We select cluster 2. Get prio from cluster 2 */
                     meta.rs.cluster_id = 2;
-                } else if (meta.min_d1_d2_d3_d4 ==  meta.cluster3_dst0_distance) {
+                } else if (meta.min_d1_d2_d3_d4 ==  meta.cluster3_dst0_distance && meta.init_counter_value == 0) {
                     /* We select cluster 3. Get prio from cluster 3 */
                     meta.rs.cluster_id = 3;
-                } else if (meta.min_d1_d2_d3_d4 ==  meta.cluster4_dst0_distance) {
+                } else if (meta.min_d1_d2_d3_d4 ==  meta.cluster4_dst0_distance && meta.init_counter_value == 0) {
                     /* We select cluster 4. Get prio from cluster 4 */
                     meta.rs.cluster_id = 4;
+                } else {
+                    meta.rs.cluster_id = meta.init_counter_value;
+                    meta.rs.update_activated = 1;
                 }
                 ig_dprsr_md.resubmit_type = 1;
 
             } else {
 
                 // Resubmitted packet
+                if (meta.rs.update_activated == 1) {
 
-                /* Stage 0 */
-                tbl_do_update_cluster1_dst0_min.apply();
-                tbl_do_update_cluster2_dst0_min.apply();
-                tbl_do_update_cluster3_dst0_min.apply();
-                tbl_do_update_cluster4_dst0_min.apply();
+                    /* Stage 0 */
+                    tbl_do_update_cluster1_dst0_min.apply();
+                    tbl_do_update_cluster2_dst0_min.apply();
+                    tbl_do_update_cluster3_dst0_min.apply();
+                    tbl_do_update_cluster4_dst0_min.apply();
 
-                /* Stage 1 */
-                tbl_do_update_cluster1_dst1_min.apply();
-                tbl_do_update_cluster2_dst1_min.apply();
-                tbl_do_update_cluster3_dst1_min.apply();
-                tbl_do_update_cluster4_dst1_min.apply();
+                    /* Stage 1 */
+                    tbl_do_update_cluster1_dst1_min.apply();
+                    tbl_do_update_cluster2_dst1_min.apply();
+                    tbl_do_update_cluster3_dst1_min.apply();
+                    tbl_do_update_cluster4_dst1_min.apply();
 
-                /* Stage 2 */
-                tbl_do_update_cluster1_dst2_min.apply();
-                tbl_do_update_cluster2_dst2_min.apply();
-                tbl_do_update_cluster3_dst2_min.apply();
-                tbl_do_update_cluster4_dst2_min.apply();
+                    /* Stage 2 */
+                    tbl_do_update_cluster1_dst2_min.apply();
+                    tbl_do_update_cluster2_dst2_min.apply();
+                    tbl_do_update_cluster3_dst2_min.apply();
+                    tbl_do_update_cluster4_dst2_min.apply();
 
-                /* Stage 3 */
-                tbl_do_update_cluster1_dst3_min.apply();
-                tbl_do_update_cluster2_dst3_min.apply();
-                tbl_do_update_cluster3_dst3_min.apply();
-                tbl_do_update_cluster4_dst3_min.apply();      
+                    /* Stage 3 */
+                    tbl_do_update_cluster1_dst3_min.apply();
+                    tbl_do_update_cluster2_dst3_min.apply();
+                    tbl_do_update_cluster3_dst3_min.apply();
+                    tbl_do_update_cluster4_dst3_min.apply();
 
-                /* Stage 4 */
-                tbl_do_update_cluster1_dst0_max.apply();
-                tbl_do_update_cluster2_dst0_max.apply();
-                tbl_do_update_cluster3_dst0_max.apply();
-                tbl_do_update_cluster4_dst0_max.apply();
+                    /* Stage 4 */
+                    tbl_do_update_cluster1_dst0_max.apply();
+                    tbl_do_update_cluster2_dst0_max.apply();
+                    tbl_do_update_cluster3_dst0_max.apply();
+                    tbl_do_update_cluster4_dst0_max.apply();
 
-                /* Stage 5 */
-                tbl_do_update_cluster1_dst1_max.apply();
-                tbl_do_update_cluster2_dst1_max.apply();
-                tbl_do_update_cluster3_dst1_max.apply();
-                tbl_do_update_cluster4_dst1_max.apply();
+                    /* Stage 5 */
+                    tbl_do_update_cluster1_dst1_max.apply();
+                    tbl_do_update_cluster2_dst1_max.apply();
+                    tbl_do_update_cluster3_dst1_max.apply();
+                    tbl_do_update_cluster4_dst1_max.apply();
 
-                /* Stage 6 */
-                tbl_do_update_cluster1_dst2_max.apply();
-                tbl_do_update_cluster2_dst2_max.apply();
-                tbl_do_update_cluster3_dst2_max.apply();
-                tbl_do_update_cluster4_dst2_max.apply();
+                    /* Stage 6 */
+                    tbl_do_update_cluster1_dst2_max.apply();
+                    tbl_do_update_cluster2_dst2_max.apply();
+                    tbl_do_update_cluster3_dst2_max.apply();
+                    tbl_do_update_cluster4_dst2_max.apply();
 
-                /* Stage 7 */
-                tbl_do_update_cluster1_dst3_max.apply();
-                tbl_do_update_cluster2_dst3_max.apply();
-                tbl_do_update_cluster3_dst3_max.apply();
-                tbl_do_update_cluster4_dst3_max.apply();
+                    /* Stage 7 */
+                    tbl_do_update_cluster1_dst3_max.apply();
+                    tbl_do_update_cluster2_dst3_max.apply();
+                    tbl_do_update_cluster3_dst3_max.apply();
+                    tbl_do_update_cluster4_dst3_max.apply();
+                }
 
                 /* Stage 8: Get the priority and forward the resubmitted packet */
                 cluster_to_prio.apply();

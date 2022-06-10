@@ -8,7 +8,7 @@ echo -e "Running ACC-Turbo Figure 10 evaluation using run_fig_10.sh"
 
 # Input-file configuration
 SIMULATION_ID="CICDDoS2019"
-INPUT_PCAP_SEED="/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0"
+INPUT_PCAP_SEED="DDoS2019/SAT-01-12-2018_0"
 INPUT_PCAP_RANGE_ENABLED="True"
 INPUT_PCAP_RANGE_INIT=0
 INPUT_PCAP_RANGE_END=819

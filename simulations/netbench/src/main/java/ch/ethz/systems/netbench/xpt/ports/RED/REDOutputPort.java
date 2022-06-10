@@ -66,13 +66,15 @@ public class REDOutputPort extends OutputPort {
                 REDQueue rq = (REDQueue) getQueue();
                 Packet droppedPacket = rq.offerPacket(packet);
 
-                if (droppedPacket == null) {
+                // Update buffer size with enqueued packet
+                increaseBufferOccupiedBits(packet.getSizeBit());
+                getLogger().logQueueState(rq.size(), getBufferOccupiedBits());
 
-                    // Update buffer size with enqueued packet
-                    increaseBufferOccupiedBits(packet.getSizeBit());
+                if (droppedPacket != null) {
+
+                    // Update buffer size with dropped packet
+                    decreaseBufferOccupiedBits(droppedPacket.getSizeBit());
                     getLogger().logQueueState(rq.size(), getBufferOccupiedBits());
-
-                } else {
 
                     // The packet has been dropped because of RED. This can be because
                     // a) Avg queue size > Th Max. (forced drop)

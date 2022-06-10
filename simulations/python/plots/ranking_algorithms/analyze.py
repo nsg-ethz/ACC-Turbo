@@ -7,7 +7,7 @@ if __name__ == '__main__':
     # We initialize the file
     input_file = open('python/plots/ranking_algorithms/priority_performance_logs.dat', 'r')
     output_file = open('python/plots/ranking_algorithms/ranking_algorithms.dat', 'w')
-    output_file.write("#Attack    ScoreNP    ScoreTh    ScoreNPSize    ScoreThSize\n")
+    output_file.write("#    NumPackets    Throughput    NumPacketsSize    ThroughputSize\n")
 
     score_numpackets_mssql = "0"
     score_throughput_mssql = "0"
