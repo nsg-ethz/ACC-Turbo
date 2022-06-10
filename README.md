@@ -52,7 +52,7 @@ ACC-Turbo
 
  ## Contact
 
-Please, contact us:
+Please, send us an e-mail to: galberto@ethz.ch,
 - If you are interested in collaborating with the project.
 - If you are having issues when trying to run the experiments described on the paper.
 - If you happen to find a bug.
