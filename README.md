@@ -10,6 +10,44 @@ This repository contains the code used in [ACC-Turbo](https://nsg.ee.ethz.ch/fil
 
 * `paper.pdf` contains the latest version of the paper.
 
+## Structure
+
+ACC-Turbo
+├── simulations 
+│   │
+│   ├── netbench
+│   │    ├── projects/accturbo
+│   │    │   ├── runs
+│   │    │   └── analysis
+│   │    └── src/main/java/ch/ethz/systems/netbench/xpt/ports
+│   │        ├── ACC
+│   │        └── ACCTurbo
+│   │
+│   ├── python
+│   │    ├── main.py
+│   │    ├── clustering
+│   │    └── plots
+│   │
+│   ├── run_fig_x.sh
+│   │
+│   └── README.md. 
+│
+├── tofino
+│   │
+│   ├── bfrt
+│   ├── p4src
+│   ├── pd_rpc
+│   ├── python_controller
+│   ├── experiment
+│   │    ├── sender
+│   │    └── receiver
+│   ├── run_fig_x/run_fig_x.sh
+│   └── README.md. 
+│   
+└── paper.pdf
+
+
+
  ## Contact
 
 Please, contact us:
