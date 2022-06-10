@@ -1,7 +1,39 @@
 
-# ACC-Turbo: Reproducing the results
+# ACC-Turbo: Simulations
 
-## Section 2: Background 
+## Introduction
+
+In this file we document the artifacts that we used for the software-based experiments of our paper. They consist of two big components. First, a set of simulation scenarios built on top of [Netbench](https://github.com/ndal-eth/netbench), a packet-level simulator. Second, a set of python scripts that pre-process the pcap files of the dataset (i.e., clusters packets and labels them with the clusters they are mapped to and the priorities they are assigned), such that the process can be paralelized and finish faster than e.g., if running everything on Netbench.
+
+The structure of the folder is as follows:
+```
+ACC-Turbo
+├── simulations 
+│   │
+│   ├── netbench
+│   │    ├── projects/accturbo
+│   │    │   ├── runs
+│   │    │   └── analysis
+│   │    └── src/main/java/ch/ethz/systems/netbench/xpt/ports
+│   │        ├── ACC
+│   │        └── ACCTurbo
+│   │
+│   ├── python
+│   │    ├── main.py
+│   │    ├── clustering
+│   │    └── plots
+│   │
+│   ├── run_fig_x.sh
+│   └── README.md
+```
+
+* The `netbench` folder contains all the materials regarding the simulator. We took the same setup from SP-PIFO, and extended it to include ACC and ACCTurbo. The run configurations can be found in `projects/accturbo/runs`. The results from the simulations and post-processing scripts (e.g., result analysis and plotting) can be found in  `projects/accturbo/analysis`
+
+* The `python` folder contains the pre-processing python scripts needed for the experiments involving the CICDDoS dataset. The scripts are named `main.py` and `analyzer.py`. The different clustering algorithms are implemented in `clustering`. The post processing-scripts and results can be found in `plots`.
+
+* We have prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. 
+
+## Reproducing the results [Section 2: Background]
 
 **Requirements**:
 
@@ -56,7 +88,7 @@
     * Result: `netbench/temp/accturbo/acc_morphing/accturbo`
     * Plot: [`netbench/projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf`](netbench/projects/accturbo/analysis/acc_morphing/accturbo/output_aggregate.pdf)
 
-## Section 8: Simulation-based Evaluation
+## Reproducing the results [Section 8: Simulation-based Evaluation]
 
 **Requirements**:
 
