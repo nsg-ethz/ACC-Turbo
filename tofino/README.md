@@ -64,7 +64,7 @@ ACC-Turbo
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
 * **Figure 6a: FIFO**:
-   * 📹 *Video tutorial:* https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4)
 
     * Execute (tofino switch): `./run_fig_06a/run_fig_06a_tofino.sh`
     * Execute (receiving server): `./run_fig_06a/run_fig_06a_receiver.sh`
@@ -75,7 +75,7 @@ ACC-Turbo
     * Plot (receiving server): [`run_fig_06a/results/fifo_in_out_plot.pdf`](run_fig_06a/results/fifo_in_out_plot.pdf)
 
 * **Figure 6b: ACC-Turbo**:
-   * 📹 *Video tutorial:* https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/n10SkMDcbAnKlPx)
 
     * Execute (tofino switch): `./run_fig_06b/run_fig_06b_tofino.sh`
     * Execute (receiving server): `./run_fig_06b/run_fig_06b_receiver.sh`
