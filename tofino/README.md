@@ -178,6 +178,12 @@ ACC-Turbo
     * For carpet bombing: `./run_table_03/run_table_03_sender_carpetbombing.sh`
     * For source spoofing: `./run_table_03/run_table_03_sender_sourcespoofing.sh`
 
+* Whenever the carpet bombing attack is picked at the server, pick the script at the Tofino switch labelled as ``carpetbombing''. This is:
+    * For ACC-Turbo: `./run_table_03/run_table_03_tofino_carpetbombing_accturbo.sh`
+    * For FIFO: `./run_table_03/run_table_03_tofino_carpetbombing_fifo.sh`
+    * For Jaqen 5 tupple: `./run_table_03/run_table_03_tofino_carpetbombing_jaqen5tupple.sh`
+    * For Jaqen src IP: `./run_table_03/run_table_03_tofino_carpetbombing_jaqensrcbased.sh`
+
 * For each {tofino-program, server-script} pair:
     * When the simulation is over, the Tofino script will display the total amount of benign traffic that made it to the egress pipeline of the Tofino switch.
     * Convert it to a percentage taking as reference the the total amount of benign traffic that made it to the egress pipeline of the Tofino switch in the case of no attack.

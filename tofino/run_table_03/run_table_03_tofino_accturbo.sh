@@ -45,7 +45,7 @@ tmux split-window -h -p 50
 tmux select-pane -t 4
 tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
 tmux send-keys -t tofino 'cd  python_controller/' Enter
-tmux send-keys -t tofino 'python accturbo_reaction_controller.py'
+tmux send-keys -t tofino 'python accturbo_reaction_controller.py init'
 
 # Attach to the session we have just created
 tmux attach-session -t tofino
