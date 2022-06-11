@@ -2,3 +2,4 @@
 *zlog-cfg-cur
 *bf_drivers.log
 *.pcap
+*.DS_Store
