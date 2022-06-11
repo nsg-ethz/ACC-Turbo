@@ -279,8 +279,13 @@ class Controller:
                 if (self.relative_timestamp - self.last_time_check) > 5000000000: # Every 5 seconds, we check the counter
                     self.last_time_check = self.relative_timestamp
                     self.read_cluster_statistics_and_update_priorities()
-                
+                    if self.init:
+                        self.reset_clusters_and_clear_counters()
                 self.read_throughput()
+
+                if self.init:
+                    self.read_cluster_statistics_and_update_priorities()
+
 
             self.file_throughput_malicious.write(self.to_file_throughput_malicious)
             self.file_throughput_benign.write(self.to_file_throughput_benign)
