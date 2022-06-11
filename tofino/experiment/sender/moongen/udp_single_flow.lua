@@ -12,7 +12,7 @@ local timer  = require "timer"
 
 function configure(parser)
         -- general configs
-        parser:argument("dev", "Device to use."):default(3):convert(tonumber)
+        parser:argument("dev", "Device to use."):default(1):convert(tonumber)
 
         -- configs for the pcap generation
         parser:argument("file", "File to replay."):args(1)
@@ -41,18 +41,12 @@ function master(args)
         local packetSize = 1200
         local attackID = 1
 
-        -- We can wait 10 seconds until attack started
-        -- mg.sleepMillis(10000)
-
         -- The attack lasts for RUN_TIME = 80 seconds (defined later)
         mg.startTask("launch_attack", dev:getTxQueue(1), packetSize, flows, 1)
         mg.startTask("launch_attack", dev:getTxQueue(2), packetSize, flows, 1)
         mg.startTask("launch_attack", dev:getTxQueue(3), packetSize, flows, 1)
         mg.startTask("launch_attack", dev:getTxQueue(4), packetSize, flows, 1)
 
-        -- We let the simulation 10 seconds more to see the recovery after the attack
-        -- mg.sleepMillis(90000)
-        -- 
 
         -- monitor progress
         mg.sleepMillis(100000)

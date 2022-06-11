@@ -33,11 +33,10 @@ ACC-Turbo
 * We have also prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. We named them `run_fig_x_tofino.sh`, `run_fig_x_sender.sh`, or `run_fig_x_receiver.sh` to indicate from where they should be executed.
 
 ---
-**💡 Note for the SIGCOMM'22 Artifact Evaluation Process:** In case you do not have access to a setup like the one required:
-- If you have signed the Intel NDA, we can give you access to our full setup, including the Tofino switch, to run the experiments.
-- If you have NOT signed the Intel NDA, we unfortunately can not give you access to a Tofino in our lab. In that case, however, we can happily provide a screen-recording video showcasing the reproduction of the Tofino figures in our paper.
+**💡 Note for the SIGCOMM'22 Artifact Evaluation Process:**   In case you do not have access to a setup like the one required:
+- If you have signed the Intel NDA, we will be happy to give you access to our full setup, including the Tofino switch, and both sender and receiver servers, so that you can re-run the experiments. 
+- In case you have not signed the Intel NDA, we also got you covered :) Unfortunately, we can not give you access to a Tofino in our lab, but we have prepared a set of screen-recording videos showcasing the reproduction of the Tofino figures in our paper.
 ---
-
 
 ## Reproducing the results [Section 7: Hardware-based Evaluation]
 
@@ -65,6 +64,8 @@ ACC-Turbo
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
 * **Figure 6a: FIFO**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4)
+
     * Execute (tofino switch): `./run_fig_06a/run_fig_06a_tofino.sh`
     * Execute (receiving server): `./run_fig_06a/run_fig_06a_receiver.sh`
     * Execute (sending server): `./run_fig_06a/run_fig_06a_sender.sh`
@@ -74,6 +75,8 @@ ACC-Turbo
     * Plot (receiving server): [`run_fig_06a/results/fifo_in_out_plot.pdf`](run_fig_06a/results/fifo_in_out_plot.pdf)
 
 * **Figure 6b: ACC-Turbo**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/n10SkMDcbAnKlPx)
+
     * Execute (tofino switch): `./run_fig_06b/run_fig_06b_tofino.sh`
     * Execute (receiving server): `./run_fig_06b/run_fig_06b_receiver.sh`
     * Execute (sending server): `./run_fig_06b/run_fig_06b_sender.sh`
@@ -85,6 +88,8 @@ ACC-Turbo
 **Figure 7: Reaction-time evaluation**: 
 
 * **Figure 7a: FIFO**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/32HF7jTLSnEbgmC)
+
     * Execute (tofino switch): `./run_fig_07a/run_fig_07a_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07a/run_fig_07a_sender.sh`
@@ -95,6 +100,8 @@ ACC-Turbo
     * Plot (tofino switch): [`run_fig_07a/results/fifo_output_throughput.pdf`](run_fig_07a/results/fifo_output_throughput.pdf)
 
 * **Figure 7b: ACC-Turbo**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/QnVWbRn0ayQYuNg](https://polybox.ethz.ch/index.php/s/QnVWbRn0ayQYuNg)
+
     * Execute (tofino switch): `./run_fig_07b/run_fig_07b_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07b/run_fig_07b_sender.sh`
@@ -105,6 +112,8 @@ ACC-Turbo
     * Plot (tofino switch): [`run_fig_07b/results/accturbo_output_throughput.pdf`](run_fig_07b/results/accturbo_output_throughput.pdf)
 
 * **Figure 7c: Reprogramming time**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/e2CRBeEBumEi8sf](https://polybox.ethz.ch/index.php/s/e2CRBeEBumEi8sf)
+
     * Execute (receiving server): `./run_fig_07c/run_fig_07c_receiver.sh`
     * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (sending server): `./run_fig_07c/run_fig_07c_sender.sh`
@@ -115,6 +124,8 @@ ACC-Turbo
     * Plot (receiving server): [`run_fig_07c/results/plot.pdf`](run_fig_07c/results/plot.pdf)
 
 * **Figure 7d: Jaqen**:
+    * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/t6pxxKBHR1bYfPP](https://polybox.ethz.ch/index.php/s/t6pxxKBHR1bYfPP)
+
     * Execute (tofino switch): `./run_fig_07d/run_fig_07d_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07d/run_fig_07d_sender.sh`
@@ -127,23 +138,54 @@ ACC-Turbo
 **Figure 8: Threshold-configuration sensitivity**:
 
 * **Common to Figure 8a and 8b**:
-    * Follow the process for Fig 7a, and Fig 7b
-    * Extract the percentage of benign packet drops from [`run_fig_07a/results/fifo_throughput_benign.dat`](run_fig_07a/results/fifo_throughput_benign.dat), and [`run_fig_07b/results/accturbo_throughput_benign.dat`](run_fig_07b/results/accturbo_throughput_benign.dat), respectively
+    * In the Tofino switch, execute either:
+        * For ACC-Turbo: `./run_fig_08/run_fig_08_tofino_accturbo.sh`
+        * For FIFO: `./run_fig_08/run_fig_08_tofino_fifo.sh`
+        * For Jaqen: `./run_fig_08/run_fig_08_tofino_jaqen5tupple.sh`
+
+    * In the sending server, execute: 
+        * For UDP flood: `./run_fig_08/run_fig_08_sender_udpflood.sh`
+        * For the baseline: `./run_fig_08/run_fig_08_sender_noattack.sh`
+
+    * When the simulation is over, the Tofino script will display the total amount of benign traffic that made it to the egress pipeline of the Tofino switch.
+    * Convert it to a percentage taking as reference the the total amount of benign traffic that made it to the egress pipeline of the Tofino switch in the case of no attack.
 
 * **Figure 8a: Threshold setting**:
-    * Execute the process for Fig 7d
-    * Extract the percentage of benign packet drops from [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07d/results/jaqen_throughput_benign.dat)
+    * Repeat the process, but setting the following threshold values {1, 10, 10^2, 10^3, 10^4, 10^5, 10^6, 3·10^6, 5·10^6, 7·10^6, 10^7, 10^8} in `python_controller/heavy_hitter_reaction_controller.py`.
+    * Place the results in: [`run_fig_08/results_08a/threshold.dat`](run_fig_08a/results/threshold.dat). You can take [`run_fig_08/results_08a/paper_threshold.dat`](run_fig_08a/results/paper_threshold.dat) as reference for the format.
+    * Generate your plot: `gnuplot run_fig_08/results_08a/plot_thresholds.gnuplot`
 
-    * Repeat the previous two steps, setting the following threshold values {1, 10, 10^2, 10^3, 10^4, 10^5, 10^6, 3·10^6, 5·10^6, 7·10^6, 10^7, 10^8} in `python_controller/heavy_hitter_reaction_controller.py`: 
-    * Result: [`run_fig_08a/results/threshold.dat`](run_fig_08a/results/threshold.dat)
-    * Plot: [`run_fig_08a/results/threshold.pdf`](run_fig_08a/results/threshold.pdf)
+    * Plot in: [`run_fig_08/results_08a/threshold.pdf`](run_fig_08a/results/threshold.pdf)
 
 * **Figure 8b: Speed**:
-    * Execute the process for Fig 7d
-    * Extract the percentage of benign packet drops from [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07d/results/jaqen_throughput_benign.dat)
+    * Repeat the process, but setting the following speed values {0, 5, 10, 15, 20} in `python_controller/heavy_hitter_reaction_controller.py`: 
+    * Place the results in: [`run_fig_08b/results/speed.dat`](run_fig_08b/results/speed.dat) You can take [`run_fig_08/results_08b/paper_speed.dat`](run_fig_08b/results/paper_speed.dat) as reference for the format.
+    * Generate your plot: `gnuplot run_fig_08/results_08b/plot_speed.gnuplot`
 
-    * Repeat the previous two steps, setting the following speed values {0, 5, 10, 15, 20} in `python_controller/heavy_hitter_reaction_controller.py`: 
-    * Result: [`run_fig_08b/results/speed.dat`](run_fig_08b/results/speed.dat)
-    * Plot: [`run_fig_08b/results/speed.pdf`](run_fig_08b/results/speed.pdf)
+    * Plot in: [`run_fig_08/results_08b/speed.pdf`](run_fig_08b/results/speed.pdf)
+
+**Table 3: Mitigation efficiency under attack variations**:
+
+* In the Tofino switch, execute either:
+    * For ACC-Turbo: `./run_table_03/run_table_03_tofino_accturbo.sh`
+    * For FIFO: `./run_table_03/run_table_03_tofino_fifo.sh`
+    * For Jaqen 5 tupple: `./run_table_03/run_table_03_tofino_jaqen5tupple.sh`
+    * For Jaqen src IP: `./run_table_03/run_table_03_tofino_jaqensrcbased.sh`
+
+* In the sending server, execute either: 
+    * For no attack: `./run_table_03/run_table_03_sender_noattack.sh`
+    * For single flow: `./run_table_03/run_table_03_sender_udpflood.sh`
+    * For carpet bombing: `./run_table_03/run_table_03_sender_carpetbombing.sh`
+    * For source spoofing: `./run_table_03/run_table_03_sender_sourcespoofing.sh`
+
+* Whenever the carpet bombing attack is picked at the server, pick the script at the Tofino switch labelled as "carpetbombing". This is:
+    * For ACC-Turbo: `./run_table_03/run_table_03_tofino_carpetbombing_accturbo.sh`. Comment line 2401 and uncomment line 2402 in `accturbo.p4`. 
+    * For FIFO: `./run_table_03/run_table_03_tofino_carpetbombing_fifo.sh`. Comment line 187 and uncomment line 188 in `simple_forwarder.p4`. 
+    * For Jaqen 5 tupple: `./run_table_03/run_table_03_tofino_carpetbombing_jaqen5tupple.sh`. Comment line 291 and uncomment line 292 in `heavy_hitter_5tupple.p4`. 
+    * For Jaqen src IP: `./run_table_03/run_table_03_tofino_carpetbombing_jaqensrcbased.sh`. Comment line 287 and uncomment line 288 in `heavy_hitter_srcbased.p4`. 
+
+* For each {tofino-program, server-script} pair:
+    * When the simulation is over, the Tofino script will display the total amount of benign traffic that made it to the egress pipeline of the Tofino switch.
+    * Convert it to a percentage taking as reference the the total amount of benign traffic that made it to the egress pipeline of the Tofino switch in the case of no attack.
 
 ---

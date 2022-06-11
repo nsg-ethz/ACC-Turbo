@@ -92,11 +92,11 @@ class Controller:
             self.core.insert_register_entry("MyIngress.cluster4_dst3_max", 140, 0)
 
         else:
-                # We can specified a desired cluster initialization (e.g., divide the space in 4 regions of the same size)
+                # We can specify a cluster initialization (e.g., divide the space in 4 regions)
                 self.core.insert_register_entry("MyIngress.cluster1_dst0_min", 140, 0)
-                self.core.insert_register_entry("MyIngress.cluster1_dst0_max", 140, 255)
+                self.core.insert_register_entry("MyIngress.cluster1_dst0_max", 140, 127)
                 self.core.insert_register_entry("MyIngress.cluster1_dst1_min", 140, 0)
-                self.core.insert_register_entry("MyIngress.cluster1_dst1_max", 140, 255)
+                self.core.insert_register_entry("MyIngress.cluster1_dst1_max", 140, 127)
                 self.core.insert_register_entry("MyIngress.cluster1_dst2_min", 140, 0)
                 self.core.insert_register_entry("MyIngress.cluster1_dst2_max", 140, 127)
                 self.core.insert_register_entry("MyIngress.cluster1_dst3_min", 140, 0)
@@ -243,7 +243,10 @@ class Controller:
             self.cluster_list = []
             self.feature_list = ["dst0", "dst1", "dst2", "dst3"]
             empty_signature = {}
-            self.init = True # Whether we want the clusters to be initialized by the first k packets or not
+            self.init = False # Whether we want the clusters to be initialized by the first k packets or not
+
+            if len(sys.argv) > 1 and "init" in sys.argv:
+                self.init = True
 
             # We read the current cluster_id -> prio mapping
             #self.core.print_table_info("MyIngress.cluster_to_prio")
@@ -265,8 +268,10 @@ class Controller:
             self.core.insert_register_entry("MyEgress.timestamp", 0, 0)
 
             # We reset the counters
-            self.core.clear_counter_bytes("MyEgress.do_bytes_count_malicious_egress", "hdr.ipv4_egress.dst_addr", 0x05050505, 'MyEgress.bytes_count_malicious_egress')
-            #self.core.clear_counter_bytes("MyEgress.do_bytes_count_malicious_egress", "hdr.ipv4_egress.src_addr", 0x0a000032, 'MyEgress.bytes_count_malicious_egress') # carpet bombing or adversarial
+            if len(sys.argv) > 1 and "carpetbombing" in sys.argv:
+                self.core.clear_counter_bytes("MyEgress.do_bytes_count_malicious_egress", "hdr.ipv4_egress.src_addr", 0x0a000032, 'MyEgress.bytes_count_malicious_egress')
+            else:
+                self.core.clear_counter_bytes("MyEgress.do_bytes_count_malicious_egress", "hdr.ipv4_egress.dst_addr", 0x05050505, 'MyEgress.bytes_count_malicious_egress')
             self.core.clear_counter_bytes("MyEgress.do_bytes_count_benign_egress", "eg_intr_md.egress_port", 140, 'MyEgress.bytes_count_benign_egress')
 
             while(True):
@@ -274,8 +279,13 @@ class Controller:
                 if (self.relative_timestamp - self.last_time_check) > 5000000000: # Every 5 seconds, we check the counter
                     self.last_time_check = self.relative_timestamp
                     self.read_cluster_statistics_and_update_priorities()
-                
+                    if self.init:
+                        self.reset_clusters_and_clear_counters()
                 self.read_throughput()
+
+                if self.init:
+                    self.read_cluster_statistics_and_update_priorities()
+
 
             self.file_throughput_malicious.write(self.to_file_throughput_malicious)
             self.file_throughput_benign.write(self.to_file_throughput_benign)
