@@ -14,7 +14,7 @@ class Controller:
         ## Configuration
         dst_val  = [51,102,153,204]
         port_val = [13107, 26214, 39321, 52428]
-        sleep_time = 5 #5s (to update priorities and reset clusters)
+        sleep_time = 0 #5s (to update priorities and reset clusters)
 
         self.core = CoreAPI()
         
@@ -70,7 +70,7 @@ class Controller:
             data = entry[1]
             cluster_id = key['meta.cluster_id']['value']
             current_priority = data['qid']
-            print("(Read) cluster_to_prio ==> cluster_id {}, current_priority {}".format(cluster_id,current_priority))
+            #print("(Read) cluster_to_prio ==> cluster_id {}, current_priority {}".format(cluster_id,current_priority))
             
             # We set the initial priorities to the cluster_id (does not really matter)
             new_cluster = Cluster(empty_signature, cluster_id, current_priority, feature_list)
@@ -106,7 +106,7 @@ class Controller:
                 resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_dst2_max", 140)
                 data_dict = next(resp)[0].to_dict()
                 register_value_max = data_dict["MyIngress.cluster" + str(cluster_id) + "_dst2_max.f1"]
-                print("(Read) cluster" + str(cluster_id) + "_dst2 [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
+                #print("(Read) cluster" + str(cluster_id) + "_dst2 [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
 
                 resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_dst3_min", 140)
                 data_dict = next(resp)[0].to_dict()
@@ -114,7 +114,7 @@ class Controller:
                 resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_dst3_max", 140)
                 data_dict = next(resp)[0].to_dict()
                 register_value_max = data_dict["MyIngress.cluster" + str(cluster_id) + "_dst3_max.f1"]
-                print("(Read) cluster" + str(cluster_id) + "_dst3 [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
+                #print("(Read) cluster" + str(cluster_id) + "_dst3 [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
 
                 resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_sport_min", 140)
                 data_dict = next(resp)[0].to_dict()
@@ -122,7 +122,7 @@ class Controller:
                 resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_sport_max", 140)
                 data_dict = next(resp)[0].to_dict()
                 register_value_max = data_dict["MyIngress.cluster" + str(cluster_id) + "_sport_max.f1"]
-                print("(Read) cluster" + str(cluster_id) + "_sport [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
+                #print("(Read) cluster" + str(cluster_id) + "_sport [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
 
                 resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_dport_min", 140)
                 data_dict = next(resp)[0].to_dict()
@@ -130,7 +130,7 @@ class Controller:
                 resp = self.core.get_register_entry("MyIngress.cluster" + str(cluster_id) + "_dport_max", 140)
                 data_dict = next(resp)[0].to_dict()
                 register_value_max = data_dict["MyIngress.cluster" + str(cluster_id) + "_dport_max.f1"]
-                print("(Read) cluster" + str(cluster_id) + "_dport [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
+                #print("(Read) cluster" + str(cluster_id) + "_dport [min, max] ==> [" + str(register_value_min[1]) + ", " + str(register_value_max[1]) + "]")
 
             # We read the packet counter for each qid
             #self.core.print_table_info("MyEgress.do_packet_count")
@@ -145,7 +145,7 @@ class Controller:
                 for cluster in self.cluster_list:
                     if cluster.get_priority() == qid:
                         cluster.update_packets_count(counter_value)
-                        print("(Read) do_packet_count ==> cluster_id {}, counter_value {}".format(cluster.get_id(),counter_value))
+                        #print("(Read) do_packet_count ==> cluster_id {}, counter_value {}".format(cluster.get_id(),counter_value))
 
             # We read the byte counter for each qid
             #self.core.print_table_info("MyEgress.do_bytes_count")
@@ -160,7 +160,7 @@ class Controller:
                 for cluster in self.cluster_list:
                     if cluster.get_priority() == qid:
                         cluster.update_bytes_count(counter_value)
-                        print("(Read) do_bytes_count ==> cluster_id {}, counter_value {}".format(cluster.get_id(),counter_value))
+                        #print("(Read) do_bytes_count ==> cluster_id {}, counter_value {}".format(cluster.get_id(),counter_value))
             
             # We compute the new priorities, sorting the clusters by throughput
             clusters_by_throughput = {}
@@ -175,7 +175,7 @@ class Controller:
                 self.cluster_list[tuple[0]].set_priority(prio) # smaller throughput, bigger priority
                 prio = prio - 1
 
-            print("......................................................")
+            #print("......................................................")
 
             # We re-program the cluster_to_prio table with the new mapping
             for cluster in self.cluster_list:
@@ -183,20 +183,20 @@ class Controller:
                     ([("meta.cluster_id", cluster.get_id())],
                     "MyIngress.set_qid", [("qid", cluster.get_priority())])
                 ])
-                print("(Write: New priorities) cluster_to_prio <== cluster_id {}, new_assigned_priority {}".format(cluster.get_id(), cluster.get_priority()))
+                #print("(Write: New priorities) cluster_to_prio <== cluster_id {}, new_assigned_priority {}".format(cluster.get_id(), cluster.get_priority()))
 
             # We need to reset the counters
             for qid in range(self.num_clusters):
 
                 # Reset do_packet_count
                 self.core.clear_counter_packets("MyEgress.do_packet_count", "queue_id", qid, 'MyEgress.packet_count')
-                print("(Write: Clear counters) do_packet_count <== queue_id {}, counter_value 0".format(qid))
+                #print("(Write: Clear counters) do_packet_count <== queue_id {}, counter_value 0".format(qid))
 
                 # Reset do_bytes_count
                 self.core.clear_counter_bytes("MyEgress.do_bytes_count", "queue_id", qid, 'MyEgress.bytes_count')
-                print("(Write: Clear counters) do_bytes_count <== queue_id {}, counter_value 0".format(qid))
+                #print("(Write: Clear counters) do_bytes_count <== queue_id {}, counter_value 0".format(qid))
 
-            print("......................................................")
+            #print("......................................................")
 
             '''
             # We reset the cluster signatures (uniformly split points across the space)
