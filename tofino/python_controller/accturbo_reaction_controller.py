@@ -92,11 +92,11 @@ class Controller:
             self.core.insert_register_entry("MyIngress.cluster4_dst3_max", 140, 0)
 
         else:
-                # We can specified a desired cluster initialization (e.g., divide the space in 4 regions of the same size)
+                # We can specify a cluster initialization (e.g., divide the space in 4 regions)
                 self.core.insert_register_entry("MyIngress.cluster1_dst0_min", 140, 0)
-                self.core.insert_register_entry("MyIngress.cluster1_dst0_max", 140, 255)
+                self.core.insert_register_entry("MyIngress.cluster1_dst0_max", 140, 127)
                 self.core.insert_register_entry("MyIngress.cluster1_dst1_min", 140, 0)
-                self.core.insert_register_entry("MyIngress.cluster1_dst1_max", 140, 255)
+                self.core.insert_register_entry("MyIngress.cluster1_dst1_max", 140, 127)
                 self.core.insert_register_entry("MyIngress.cluster1_dst2_min", 140, 0)
                 self.core.insert_register_entry("MyIngress.cluster1_dst2_max", 140, 127)
                 self.core.insert_register_entry("MyIngress.cluster1_dst3_min", 140, 0)
@@ -243,7 +243,7 @@ class Controller:
             self.cluster_list = []
             self.feature_list = ["dst0", "dst1", "dst2", "dst3"]
             empty_signature = {}
-            self.init = True # Whether we want the clusters to be initialized by the first k packets or not
+            self.init = False # Whether we want the clusters to be initialized by the first k packets or not
 
             # We read the current cluster_id -> prio mapping
             #self.core.print_table_info("MyIngress.cluster_to_prio")
