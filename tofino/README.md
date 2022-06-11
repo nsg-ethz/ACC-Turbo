@@ -147,21 +147,39 @@ ACC-Turbo
         * For UDP flood: `./run_fig_08/run_fig_08_sender_udpflood.sh`
         * For the baseline: `./run_fig_08/run_fig_08_sender_noattack.sh`
 
-    * When the simulation is over, check the total amount of benign traffic that made it to the egress pipeline of the Tofino switch.
+    * When the simulation is over, the Tofino script will display the total amount of benign traffic that made it to the egress pipeline of the Tofino switch.
     * Convert it to a percentage taking as reference the the total amount of benign traffic that made it to the egress pipeline of the Tofino switch in the case of no attack.
 
 * **Figure 8a: Threshold setting**:
     * Repeat the process, but setting the following threshold values {1, 10, 10^2, 10^3, 10^4, 10^5, 10^6, 3·10^6, 5·10^6, 7·10^6, 10^7, 10^8} in `python_controller/heavy_hitter_reaction_controller.py`.
-    * Specify the results in: [`run_fig_08/results_08a/threshold.dat`](run_fig_08a/results/threshold.dat)
-    * Generate your plot: [`gnuplot run_fig_08/results_08a/plot_thresholds.gnuplot`](run_fig_08a/results/threshold.pdf)
+    * Place the results in: [`run_fig_08/results_08a/threshold.dat`](run_fig_08a/results/threshold.dat). You can take [`run_fig_08/results_08a/paper_threshold.dat`](run_fig_08a/results/paper_threshold.dat) as reference for the format.
+    * Generate your plot: `gnuplot run_fig_08/results_08a/plot_thresholds.gnuplot`
 
-    * Results in: [`run_fig_08/results_08a/threshold.pdf`](run_fig_08a/results/threshold.pdf)
+    * Plot in: [`run_fig_08/results_08a/threshold.pdf`](run_fig_08a/results/threshold.pdf)
 
 * **Figure 8b: Speed**:
     * Repeat the process, but setting the following speed values {0, 5, 10, 15, 20} in `python_controller/heavy_hitter_reaction_controller.py`: 
-    * Specify the results in: [`run_fig_08b/results/speed.dat`](run_fig_08b/results/speed.dat)
-    * Generate your plot: [`gnuplot run_fig_08/results_08b/plot_speed.gnuplot`](run_fig_08a/results/threshold.pdf)
+    * Place the results in: [`run_fig_08b/results/speed.dat`](run_fig_08b/results/speed.dat) You can take [`run_fig_08/results_08b/paper_speed.dat`](run_fig_08b/results/paper_speed.dat) as reference for the format.
+    * Generate your plot: `gnuplot run_fig_08/results_08b/plot_speed.gnuplot`
 
-    * Results in: [`run_fig_08/results_08b/speed.pdf`](run_fig_08b/results/speed.pdf)
+    * Plot in: [`run_fig_08/results_08b/speed.pdf`](run_fig_08b/results/speed.pdf)
+
+**Table 3: Mitigation efficiency under attack variations**:
+
+* In the Tofino switch, execute either:
+    * For ACC-Turbo: `./run_table_03/run_table_03_tofino_accturbo.sh`
+    * For FIFO: `./run_table_03/run_table_03_tofino_fifo.sh`
+    * For Jaqen 5 tupple: `./run_table_03/run_table_03_tofino_jaqen5tupple.sh`
+    * For Jaqen src IP: `./run_table_03/run_table_03_tofino_jaqensrcbased.sh`
+
+* In the sending server, execute either: 
+    * For no attack: `./run_table_03/run_table_03_sender_noattack.sh`
+    * For single flow: `./run_table_03/run_table_03_sender_udpflood.sh`
+    * For carpet bombing: `./run_table_03/run_table_03_sender_carpetbombing.sh`
+    * For source spoofing: `./run_table_03/run_table_03_sender_sourcespoofing.sh`
+
+* For each {tofino-program, server-script} pair:
+    * When the simulation is over, the Tofino script will display the total amount of benign traffic that made it to the egress pipeline of the Tofino switch.
+    * Convert it to a percentage taking as reference the the total amount of benign traffic that made it to the egress pipeline of the Tofino switch in the case of no attack.
 
 ---
