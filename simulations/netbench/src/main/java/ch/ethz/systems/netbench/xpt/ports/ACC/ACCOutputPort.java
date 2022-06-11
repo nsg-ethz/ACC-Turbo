@@ -69,13 +69,15 @@ public class ACCOutputPort extends OutputPort {
                 ACCQueue pq = (ACCQueue) getQueue();
                 Packet droppedPacket = pq.offerPacket(packet);
 
-                if (droppedPacket == null) {
+                // Update buffer size with enqueued packet
+                increaseBufferOccupiedBits(packet.getSizeBit());
+                getLogger().logQueueState(pq.size(), getBufferOccupiedBits());
 
-                    // Update buffer size with enqueued packet
-                    increaseBufferOccupiedBits(packet.getSizeBit());
+                if (droppedPacket != null) {
+
+                    // Update buffer size with dropped packet
+                    decreaseBufferOccupiedBits(droppedPacket.getSizeBit());
                     getLogger().logQueueState(pq.size(), getBufferOccupiedBits());
-
-                } else {
 
                     // The packet has been dropped because of Pushback.
                     // Logging dropped packet

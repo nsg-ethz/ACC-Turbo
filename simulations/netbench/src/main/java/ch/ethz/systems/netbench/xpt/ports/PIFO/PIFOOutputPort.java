@@ -59,13 +59,15 @@ public class PIFOOutputPort extends OutputPort {
             PIFOQueue pq = (PIFOQueue) getQueue();
             Packet droppedPacket = (Packet)pq.offerPacket(packet);
 
-            if (droppedPacket == null) {
+            // Increase buffer size to account for the enqueued packet
+            increaseBufferOccupiedBits(packet.getSizeBit());
+            getLogger().logQueueState(pq.size(), getBufferOccupiedBits());
 
-                // Update buffer size with enqueued packet
-                increaseBufferOccupiedBits(packet.getSizeBit());
+            if (droppedPacket != null) {
+
+                // Decrease buffer size to account for the dropped packet
+                decreaseBufferOccupiedBits(droppedPacket.getSizeBit());
                 getLogger().logQueueState(pq.size(), getBufferOccupiedBits());
-
-            } else {
 
                 // Logging dropped packet
                 SimulationLogger.increaseStatisticCounter("PACKETS_DROPPED");
@@ -74,12 +76,14 @@ public class PIFOOutputPort extends OutputPort {
                     SimulationLogger.increaseStatisticCounter("PACKETS_DROPPED_AT_SOURCE");
                 }
 
-                FullExtTcpPacket fpkt = (FullExtTcpPacket) droppedPacket;
-                // Logging of benign and malicious packets
-                if (fpkt.isURG()) {
-                    SimulationLogger.increaseStatisticCounter("MALICIOUS_PACKETS_DROPPED"); // This just does + 1 (since length not added)
-                } else {
-                    SimulationLogger.increaseStatisticCounter("BENIGN_PACKETS_DROPPED");
+                if (packet.isTCP()){ //TODO: Add a tag such that is just the ddos logging
+                    FullExtTcpPacket fpkt = (FullExtTcpPacket) packet;
+                    // Logging of benign and malicious packets
+                    if (fpkt.isURG()) {
+                        SimulationLogger.increaseStatisticCounter("MALICIOUS_PACKETS_DROPPED"); // This just does + 1 (since length not added)
+                    } else {
+                        SimulationLogger.increaseStatisticCounter("BENIGN_PACKETS_DROPPED");
+                    }                    
                 }
                 
             }
