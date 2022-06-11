@@ -33,11 +33,10 @@ ACC-Turbo
 * We have also prepared a set of scripts, `run_fig_x.sh`, which already configure, and execute the required experiments, and analyze and plot the results, for each of the experiments in the paper. We named them `run_fig_x_tofino.sh`, `run_fig_x_sender.sh`, or `run_fig_x_receiver.sh` to indicate from where they should be executed.
 
 ---
-**💡 Note for the SIGCOMM'22 Artifact Evaluation Process:** In case you do not have access to a setup like the one required:
-- If you have signed the Intel NDA, we can give you access to our full setup, including the Tofino switch, to run the experiments.
-- If you have NOT signed the Intel NDA, we unfortunately can not give you access to a Tofino in our lab. In that case, however, we can happily provide a screen-recording video showcasing the reproduction of the Tofino figures in our paper.
+**💡 Note for the SIGCOMM'22 Artifact Evaluation Process:**   In case you do not have access to a setup like the one required:
+- If you have signed the Intel NDA, we will be happy to give you access to our full setup, including the Tofino switch, and both sender and receiver servers, so that you can re-run the experiments. 
+- In case you have not signed the Intel NDA, we also got you covered :) Unfortunately, we can not give you access to a Tofino in our lab, but we have prepared a set of screen-recording videos showcasing the reproduction of the Tofino figures in our paper.
 ---
-
 
 ## Reproducing the results [Section 7: Hardware-based Evaluation]
 
@@ -65,6 +64,8 @@ ACC-Turbo
 **Figure 6: Mitigation of a pulse-wave DDoS attack**: 
 
 * **Figure 6a: FIFO**:
+   * 📹 *Video tutorial:* https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4
+
     * Execute (tofino switch): `./run_fig_06a/run_fig_06a_tofino.sh`
     * Execute (receiving server): `./run_fig_06a/run_fig_06a_receiver.sh`
     * Execute (sending server): `./run_fig_06a/run_fig_06a_sender.sh`
@@ -74,6 +75,8 @@ ACC-Turbo
     * Plot (receiving server): [`run_fig_06a/results/fifo_in_out_plot.pdf`](run_fig_06a/results/fifo_in_out_plot.pdf)
 
 * **Figure 6b: ACC-Turbo**:
+   * 📹 *Video tutorial:* https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4
+
     * Execute (tofino switch): `./run_fig_06b/run_fig_06b_tofino.sh`
     * Execute (receiving server): `./run_fig_06b/run_fig_06b_receiver.sh`
     * Execute (sending server): `./run_fig_06b/run_fig_06b_sender.sh`
@@ -85,6 +88,8 @@ ACC-Turbo
 **Figure 7: Reaction-time evaluation**: 
 
 * **Figure 7a: FIFO**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/32HF7jTLSnEbgmC)
+
     * Execute (tofino switch): `./run_fig_07a/run_fig_07a_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07a/run_fig_07a_sender.sh`
@@ -95,6 +100,8 @@ ACC-Turbo
     * Plot (tofino switch): [`run_fig_07a/results/fifo_output_throughput.pdf`](run_fig_07a/results/fifo_output_throughput.pdf)
 
 * **Figure 7b: ACC-Turbo**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/QnVWbRn0ayQYuNg](https://polybox.ethz.ch/index.php/s/QnVWbRn0ayQYuNg)
+
     * Execute (tofino switch): `./run_fig_07b/run_fig_07b_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07b/run_fig_07b_sender.sh`
@@ -105,6 +112,8 @@ ACC-Turbo
     * Plot (tofino switch): [`run_fig_07b/results/accturbo_output_throughput.pdf`](run_fig_07b/results/accturbo_output_throughput.pdf)
 
 * **Figure 7c: Reprogramming time**:
+   * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/e2CRBeEBumEi8sf](https://polybox.ethz.ch/index.php/s/e2CRBeEBumEi8sf)
+
     * Execute (receiving server): `./run_fig_07c/run_fig_07c_receiver.sh`
     * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (sending server): `./run_fig_07c/run_fig_07c_sender.sh`
@@ -115,6 +124,8 @@ ACC-Turbo
     * Plot (receiving server): [`run_fig_07c/results/plot.pdf`](run_fig_07c/results/plot.pdf)
 
 * **Figure 7d: Jaqen**:
+    * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/t6pxxKBHR1bYfPP](https://polybox.ethz.ch/index.php/s/t6pxxKBHR1bYfPP)
+
     * Execute (tofino switch): `./run_fig_07d/run_fig_07d_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07d/run_fig_07d_sender.sh`
