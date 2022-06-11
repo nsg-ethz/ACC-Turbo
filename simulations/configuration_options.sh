@@ -8,7 +8,7 @@
 # General configuration
 #===============================================================================
 #                           SIMULATION_ID:    (String)    "CICDDoS2019",  "Morphing"         (defines where can the ground truth be found)
-#                         INPUT_PCAP_SEED:    (String)    "/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0"
+#                         INPUT_PCAP_SEED:    (String)    "DDoS2019/SAT-01-12-2018_0"
 #                INPUT_PCAP_RANGE_ENABLED:    (String)    "True", "False"
 #                   INPUT_PCAP_RANGE_INIT:       (Int)    0
 #                    INPUT_PCAP_RANGE_END:       (Int)    400

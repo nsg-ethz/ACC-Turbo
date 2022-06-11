@@ -158,14 +158,14 @@ class Analyzer():
 
             if input_pcap_range_enabled == "True":
 
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 clustering_performance_file = open(output_logfiles_seed + file_id + '_clustering_performance.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     clustering_performance_file.write("#Sum_Purities,Sum_True_Negative_Rates,Sum_True_Positive_Rates,Sum_Recall_Benign,Sum_Recall_Malicious,Number_Iterations\n")
 
                 if clustering_performance_time_logging == "True":
                     clustering_performance_time_file = open(output_logfiles_seed + file_id + '_clustering_performance_time.dat', 'w+')
-                    if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                    if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                         clustering_performance_time_file.write("#Date_Time,Purity,True_Negative_Rate,True_Positive_Rate,Recall_Benign,Recall_Malicious\n")
 
             else:
@@ -190,14 +190,14 @@ class Analyzer():
 
             if input_pcap_range_enabled == "True":
 
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 priority_performance_file = open(output_logfiles_seed + file_id + '_priority_performance.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     priority_performance_file.write("#Sum_Scores,Number_Iterations_Score\n")
 
                 if priority_performance_time_logging == "True":
                     priority_performance_time_file = open(output_logfiles_seed + file_id + '_priority_performance_time.dat', 'w+')
-                    if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                    if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                         priority_performance_time_file.write("#Date_Time,Benign_average_priority,Malicious_average_priority,Score\n")
 
             else:
@@ -213,9 +213,9 @@ class Analyzer():
 
             if input_pcap_range_enabled == "True":
         
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 throughput_file = open(output_logfiles_seed + file_id + '_throughput.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     throughput_file.write("#Time,Benign_throughput,Malicious_throughput\n")
 
             else:
@@ -230,9 +230,9 @@ class Analyzer():
         if throughput_priorities_logging == "True":         
 
             if input_pcap_range_enabled == "True":       
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 throughput_priorities_file = open(output_logfiles_seed + file_id + '_throughput_priorities.dat', 'w+')
-                if file_id == self.input_pcap_list[0].split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]:
+                if file_id == self.input_pcap_list[0].split('DDoS2019/SAT-01-12-2018_0')[1]:
                     throughput_priorities_file.write("#Time")
                     for p in range(num_clusters):
                         throughput_priorities_file.write(", Throughput_Prio_" + str(p))
@@ -309,7 +309,7 @@ class Analyzer():
         # Initialize the individual output pcap file (then we will merge them all)
         if output_pcap == "True":
             if input_pcap_range_enabled == "True":
-                file_id = input_pcap_name.split('/mnt/fischer/albert/DDoS2019/SAT-01-12-2018_0')[1]
+                file_id = input_pcap_name.split('DDoS2019/SAT-01-12-2018_0')[1]
                 write_file = open(output_pcap_seed + file_id + 'output.pcap', 'wb')
             else:
                 write_file = open(output_pcap_seed + 'output.pcap', 'wb')
@@ -411,39 +411,40 @@ class Analyzer():
                     if (date_time < tftp_start or date_time > tftp_end):
                         continue
                 
-                else:
-
-                    # We just look at volumetric attacks
-                    reflection = False
-                    if ((date_time > ntp_start and date_time < ntp_end) 
-                    or (date_time > dns_start and date_time < dns_end)
-                    or (date_time > ldap_start and date_time < ldap_end)
-                    or (date_time > mssql_start and date_time < mssql_end)
-                    or (date_time > netbios_start and date_time < netbios_end)
-                    or (date_time > snmp_start and date_time < snmp_end)
-                    or (date_time > ssdp_start and date_time < ssdp_end)
-                    or (date_time > tftp_start and date_time < tftp_end)):
-                        reflection = True
-
-                    #if reflection == False:
-                    #    continue
-
+                # -----------
                 # We focus on the parts where there is attack going on
-                #if ((date_time < ntp_start) 
-                #    or (date_time > ntp_end and date_time < dns_start) 
-                #    or (date_time > dns_end and date_time < ldap_start) 
+                if ((date_time < ntp_start) 
+                    or (date_time > ntp_end and date_time < dns_start) 
+                    or (date_time > dns_end and date_time < ldap_start) 
                     #or (date_time > ldap_end and date_time < mssql_start) 
                     #or (date_time > mssql_end and date_time < netbios_start) 
                     #or (date_time > netbios_end and date_time < snmp_start) 
                     #or (date_time > snmp_end and date_time < ssdp_start) 
                     #or (date_time > ssdp_end and date_time < udp_start) 
-                #    or (date_time > udp_end and date_time < udplag_start) 
-                #    or (date_time > udplag_end and date_time < syn_start)  # we skip webddos as dataset-authors suggest, for not being volumetric
+                    or (date_time > udp_end and date_time < udplag_start) 
+                    or (date_time > udplag_end and date_time < syn_start)  # we skip webddos as dataset-authors suggest, for not being volumetric
                     #or (date_time > syn_end and date_time < tftp_start)
-                #    or (date_time > tftp_end)):
+                    or (date_time > tftp_end)):
 
-                #    continue # We skip that iteration
+                    continue # We skip that iteration
 
+                # If we want to just look at reflection:
+                reflection = False
+                if ((date_time > ntp_start and date_time < ntp_end) 
+                or (date_time > dns_start and date_time < dns_end)
+                or (date_time > ldap_start and date_time < ldap_end)
+                or (date_time > mssql_start and date_time < mssql_end)
+                or (date_time > netbios_start and date_time < netbios_end)
+                or (date_time > snmp_start and date_time < snmp_end)
+                or (date_time > ssdp_start and date_time < ssdp_end)
+                or (date_time > tftp_start and date_time < tftp_end)):
+                    reflection = True
+
+                if reflection == False:
+                    continue
+
+                # -----------
+                
             # We define the initial time reference
             if is_first_packet == True:
                 
