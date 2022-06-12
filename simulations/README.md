@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In this file we document the artifacts that we used for the software-based experiments of our paper. They consist of two big components. First, a set of simulation scenarios built on top of [Netbench](https://github.com/ndal-eth/netbench), a packet-level simulator. Second, a set of python scripts that pre-process the pcap files of the dataset (i.e., clusters packets and labels them with the clusters they are mapped to and the priorities they are assigned), such that the process can be paralelized and finish faster than e.g., if running everything on Netbench.
+In this file we document the artifacts that we used for the software-based experiments of our paper. They consist of two big components. First, a set of simulation scenarios built on top of [NetBench](https://github.com/ndal-eth/netbench), a packet-level simulator. Second, a set of python scripts that pre-process the pcap files of the dataset (i.e., clusters packets and labels them with the clusters they are mapped to and the priorities they are assigned), such that the process can be paralelized and finish faster than e.g., if running everything on Netbench.
 
 The structure of the folder is as follows:
 ```
