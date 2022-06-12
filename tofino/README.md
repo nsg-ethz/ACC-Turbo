@@ -131,7 +131,7 @@ ACC-Turbo
     * Execute (sending server): `./run_fig_07d/run_fig_07d_sender.sh`
     * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
 
-    * Results (tofino switch): [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07c/results/throughput_program2.dat), [`run_fig_07d/results/jaqen_throughput_malicious.dat`](run_fig_07c/results/throughput_program2.dat)
+    * Results (tofino switch): [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07d/results/jaqen_throughput_benign.dat), [`run_fig_07d/results/jaqen_throughput_malicious.dat`](run_fig_07d/results/jaqen_throughput_malicious.dat)
     * Process results (tofino switch): `gnuplot run_fig_07d/results/jaqen_plot_throughput.gnuplot`
     * Plot (tofino switch): [`run_fig_07d/results/jaqen_output_throughput.pdf`](run_fig_07d/results/jaqen_output_throughput.pdf)
 
