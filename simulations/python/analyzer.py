@@ -411,39 +411,23 @@ class Analyzer():
                     if (date_time < tftp_start or date_time > tftp_end):
                         continue
                 
-                # -----------
-                # We focus on the parts where there is attack going on
-                if ((date_time < ntp_start) 
-                    or (date_time > ntp_end and date_time < dns_start) 
-                    or (date_time > dns_end and date_time < ldap_start) 
-                    #or (date_time > ldap_end and date_time < mssql_start) 
-                    #or (date_time > mssql_end and date_time < netbios_start) 
-                    #or (date_time > netbios_end and date_time < snmp_start) 
-                    #or (date_time > snmp_end and date_time < ssdp_start) 
-                    #or (date_time > ssdp_end and date_time < udp_start) 
-                    or (date_time > udp_end and date_time < udplag_start) 
-                    or (date_time > udplag_end and date_time < syn_start)  # we skip webddos as dataset-authors suggest, for not being volumetric
-                    #or (date_time > syn_end and date_time < tftp_start)
-                    or (date_time > tftp_end)):
+                elif (input_pcap_time_start == "Reflection"):
 
-                    continue # We skip that iteration
+                    # If we want to just look at reflection:
+                    reflection = False
+                    if ((date_time > ntp_start and date_time < ntp_end) 
+                    or (date_time > dns_start and date_time < dns_end)
+                    or (date_time > ldap_start and date_time < ldap_end)
+                    or (date_time > mssql_start and date_time < mssql_end)
+                    or (date_time > netbios_start and date_time < netbios_end)
+                    or (date_time > snmp_start and date_time < snmp_end)
+                    or (date_time > ssdp_start and date_time < ssdp_end)
+                    or (date_time > tftp_start and date_time < tftp_end)):
+                        reflection = True
 
-                # If we want to just look at reflection:
-                reflection = False
-                if ((date_time > ntp_start and date_time < ntp_end) 
-                or (date_time > dns_start and date_time < dns_end)
-                or (date_time > ldap_start and date_time < ldap_end)
-                or (date_time > mssql_start and date_time < mssql_end)
-                or (date_time > netbios_start and date_time < netbios_end)
-                or (date_time > snmp_start and date_time < snmp_end)
-                or (date_time > ssdp_start and date_time < ssdp_end)
-                or (date_time > tftp_start and date_time < tftp_end)):
-                    reflection = True
+                    if reflection == False:
+                        continue
 
-                if reflection == False:
-                    continue
-
-                # -----------
                 
             # We define the initial time reference
             if is_first_packet == True:
