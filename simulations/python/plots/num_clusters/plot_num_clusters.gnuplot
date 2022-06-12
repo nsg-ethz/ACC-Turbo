@@ -52,18 +52,3 @@ plot "python/plots/num_clusters/numclusters_recall_benign.dat" using 2 title "An
         '' using 7 title "Eucl. Fast" ls 3 lw 3, \
         '' using 8 title "Eucl. Fast In." ls 2 lw 3, \
         '' using 9 title "Off. KMeans" ls 1 lw 3
-
-
-# Y-Axis: Recall Malicious
-set ylabel "Recall Malicious (%)"
-set yrange [0:100]
-set ytics ("0" 0, "50" 50, "100" 100)
-set output "python/plots/num_clusters/numclusters_recall_malicious.pdf"
-plot "python/plots/num_clusters/numclusters_recall_malicious.dat" using 2 title "Anime Exh." ls 8 lw 3, \
-        '' using 3 title "Manh. Exh." ls 7 lw 3, \
-        '' using 4 title "Eucl. Exh." ls 6 lw 3, \
-        '' using 5 title "Anime Fast" ls 5 lw 3, \
-        '' using 6 title "* Manh. Fast" ls 4 lw 3, \
-        '' using 7 title "Eucl. Fast" ls 3 lw 3, \
-        '' using 8 title "Eucl. Fast In." ls 2 lw 3, \
-        '' using 9 title "Off. KMeans" ls 1 lw 3
