@@ -159,7 +159,7 @@ ACC-Turbo
 
 * **Figure 8b: Speed**:
     * Repeat the process, but setting the following speed values {0, 5, 10, 15, 20} in `python_controller/heavy_hitter_reaction_controller.py`: 
-    * Place the results in: [`run_fig_08/results_08b/speed.dat`](run_fig_08b/results_08/speed.dat).
+    * Place the results in: [`run_fig_08/results_08b/speed.dat`](run_fig_08/results_08b/speed.dat).
     * Generate your plot: `gnuplot run_fig_08/results_08b/plot_speed.gnuplot`
 
     * Plot in: [`run_fig_08/results_08b/speed.pdf`](run_fig_08/results_08b/speed.pdf)
