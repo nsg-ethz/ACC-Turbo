@@ -131,7 +131,7 @@ ACC-Turbo
     * Execute (sending server): `./run_fig_07d/run_fig_07d_sender.sh`
     * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
 
-    * Results (tofino switch): [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07c/results/throughput_program2.dat), [`run_fig_07d/results/jaqen_throughput_malicious.dat`](run_fig_07c/results/throughput_program2.dat)
+    * Results (tofino switch): [`run_fig_07d/results/jaqen_throughput_benign.dat`](run_fig_07d/results/jaqen_throughput_benign.dat), [`run_fig_07d/results/jaqen_throughput_malicious.dat`](run_fig_07d/results/jaqen_throughput_malicious.dat)
     * Process results (tofino switch): `gnuplot run_fig_07d/results/jaqen_plot_throughput.gnuplot`
     * Plot (tofino switch): [`run_fig_07d/results/jaqen_output_throughput.pdf`](run_fig_07d/results/jaqen_output_throughput.pdf)
 
@@ -152,17 +152,17 @@ ACC-Turbo
 
 * **Figure 8a: Threshold setting**:
     * Repeat the process, but setting the following threshold values {1, 10, 10^2, 10^3, 10^4, 10^5, 10^6, 3·10^6, 5·10^6, 7·10^6, 10^7, 10^8} in `python_controller/heavy_hitter_reaction_controller.py`.
-    * Place the results in: [`run_fig_08/results_08a/threshold.dat`](run_fig_08a/results/threshold.dat). You can take [`run_fig_08/results_08a/paper_threshold.dat`](run_fig_08a/results/paper_threshold.dat) as reference for the format.
+    * Place the results in: [`run_fig_08/results_08a/threshold.dat`](run_fig_08/results_08a/threshold.dat). You can take [`run_fig_08/results_08a/paper_threshold.dat`](run_fig_08/results_08a/paper_threshold.dat) as reference for the format.
     * Generate your plot: `gnuplot run_fig_08/results_08a/plot_thresholds.gnuplot`
 
-    * Plot in: [`run_fig_08/results_08a/threshold.pdf`](run_fig_08a/results/threshold.pdf)
+    * Plot in: [`run_fig_08/results_08a/threshold.pdf`](run_fig_08/results_08a/threshold.pdf)
 
 * **Figure 8b: Speed**:
     * Repeat the process, but setting the following speed values {0, 5, 10, 15, 20} in `python_controller/heavy_hitter_reaction_controller.py`: 
-    * Place the results in: [`run_fig_08b/results/speed.dat`](run_fig_08b/results/speed.dat) You can take [`run_fig_08/results_08b/paper_speed.dat`](run_fig_08b/results/paper_speed.dat) as reference for the format.
+    * Place the results in: [`run_fig_08/results_08b/speed.dat`](run_fig_08/results_08b/speed.dat).
     * Generate your plot: `gnuplot run_fig_08/results_08b/plot_speed.gnuplot`
 
-    * Plot in: [`run_fig_08/results_08b/speed.pdf`](run_fig_08b/results/speed.pdf)
+    * Plot in: [`run_fig_08/results_08b/speed.pdf`](run_fig_08/results_08b/speed.pdf)
 
 **Table 3: Mitigation efficiency under attack variations**:
 
