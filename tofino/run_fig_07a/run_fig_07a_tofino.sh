@@ -3,10 +3,10 @@
 
 # Compile p4 program
 . /data/set_sde_9.5.0.sh
-#../../p4_build_albert.sh --with-p4c="/data/bf-sde-9.5.0/install/bin/bf-p4c" p4src/simple_forwarder.p4
+./p4_build.sh --with-p4c="/data/bf-sde-9.5.0/install/bin/bf-p4c" p4src/simple_forwarder.p4
 
-#sudo /home/nsg/bf-sde-9.2.0/install/bin/bf_kdrv_mod_unload 
-#sudo /home/nsg/bf-sde-9.5.0/install/bin/bf_kdrv_mod_load /home/nsg/bf-sde-9.5.0/install/
+sudo /home/nsg/bf-sde-9.2.0/install/bin/bf_kdrv_mod_unload 
+sudo /home/nsg/bf-sde-9.5.0/install/bin/bf_kdrv_mod_load /home/nsg/bf-sde-9.5.0/install/
 
 #############
 # Real switch
@@ -15,7 +15,6 @@
 # Create a new tmux session (in the background) where we run the code
 tmux new -s tofino -d
 tmux send-keys -t tofino '. /data/set_sde_9.5.0.sh' Enter
-# Load drivers after reboot: /usr/bin/sudo $SDE_INSTALL/bin/bf_kdrv_mod_load $SDE_INSTALL
 tmux send-keys -t tofino '../../run_switchd.sh -p simple_forwarder' Enter
 
 # Configure the ports
