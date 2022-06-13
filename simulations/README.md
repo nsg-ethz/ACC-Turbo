@@ -133,7 +133,7 @@ ACC-Turbo
 * **Figure 11b: Overall performance**:
     * Execute: `./run_fig_11b.sh`
     * Result: `netbench/temp/accturbo/bottleneck_capacities`
-    * Plots: [`netbench/projects/accturbo/analysis/bottleneck_capacities/plot.pdf`](netbench/projects/accturbo/analysis/bottleneck_capacities/plot.pdf)
+    * Plots: [`netbench/projects/accturbo/analysis/bottleneck_capacities/percentage_benign_plot.pdf`](netbench/projects/accturbo/analysis/bottleneck_capacities/percentage_benign_plot.pdf)
 * 💡 *Tip:* This experiment takes the longest to execute since it involves two steps. First, a python script processes the input pcaps from the dataset, clusters their packets online, and tags them with their assigned priorities. Then, we feed the resulting pcap traces into a virtual switch on Netbench, which forwards the packets based on their priorities towards a link of pre-configured capacity. The whole process takes quite some time. Feel free to just run the experiment for a subset of the clustering algorithms. You can do that, by adjusting the config. file `./run_fig_11b.sh`.
 
 
