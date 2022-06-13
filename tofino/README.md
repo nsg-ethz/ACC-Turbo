@@ -66,7 +66,7 @@ ACC-Turbo
 * **Figure 6a: FIFO**:
    * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4)
 
-    * Execute (tofino switch): `./run_fig_06a/run_fig_06a_tofino.sh`
+    * Execute (tofino switch): `sudo ./run_fig_06a/run_fig_06a_tofino.sh`
     * Execute (receiving server): `./run_fig_06a/run_fig_06a_receiver.sh`
     * Execute (sending server): `./run_fig_06a/run_fig_06a_sender.sh`
     
@@ -77,7 +77,7 @@ ACC-Turbo
 * **Figure 6b: ACC-Turbo**:
    * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/n10SkMDcbAnKlPx)
 
-    * Execute (tofino switch): `./run_fig_06b/run_fig_06b_tofino.sh`
+    * Execute (tofino switch): `sudo ./run_fig_06b/run_fig_06b_tofino.sh`
     * Execute (receiving server): `./run_fig_06b/run_fig_06b_receiver.sh`
     * Execute (sending server): `./run_fig_06b/run_fig_06b_sender.sh`
     
@@ -90,7 +90,7 @@ ACC-Turbo
 * **Figure 7a: FIFO**:
    * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/BhZcDKf9qD6xdV4](https://polybox.ethz.ch/index.php/s/32HF7jTLSnEbgmC)
 
-    * Execute (tofino switch): `./run_fig_07a/run_fig_07a_tofino.sh`
+    * Execute (tofino switch): `sudo ./run_fig_07a/run_fig_07a_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07a/run_fig_07a_sender.sh`
     * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
@@ -102,7 +102,7 @@ ACC-Turbo
 * **Figure 7b: ACC-Turbo**:
    * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/QnVWbRn0ayQYuNg](https://polybox.ethz.ch/index.php/s/QnVWbRn0ayQYuNg)
 
-    * Execute (tofino switch): `./run_fig_07b/run_fig_07b_tofino.sh`
+    * Execute (tofino switch): `sudo ./run_fig_07b/run_fig_07b_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07b/run_fig_07b_sender.sh`
     * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
@@ -115,7 +115,7 @@ ACC-Turbo
    * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/e2CRBeEBumEi8sf](https://polybox.ethz.ch/index.php/s/e2CRBeEBumEi8sf)
 
     * Execute (receiving server): `./run_fig_07c/run_fig_07c_receiver.sh`
-    * Execute (tofino switch): `./run_fig_07c/run_fig_07c_tofino.sh`
+    * Execute (tofino switch): `sudo ./run_fig_07c/run_fig_07c_tofino.sh`
     * Execute (sending server): `./run_fig_07c/run_fig_07c_sender.sh`
     * Wait until the second program has fully loaded in the Tofino, and its tmux session has started. You can then close the sender, receiver and tofino.
 
@@ -126,7 +126,7 @@ ACC-Turbo
 * **Figure 7d: Jaqen**:
     * 📹 *Video tutorial:* [https://polybox.ethz.ch/index.php/s/t6pxxKBHR1bYfPP](https://polybox.ethz.ch/index.php/s/t6pxxKBHR1bYfPP)
 
-    * Execute (tofino switch): `./run_fig_07d/run_fig_07d_tofino.sh`
+    * Execute (tofino switch): `sudo ./run_fig_07d/run_fig_07d_tofino.sh`
     * Wait ~15 seconds, until the ports are up. Then you can start the controller (press enter on the right-most tmux window).
     * Execute (sending server): `./run_fig_07d/run_fig_07d_sender.sh`
     * Wait for 100 seconds. Stop the controller and the sender. You can close the tmux session.
@@ -139,9 +139,9 @@ ACC-Turbo
 
 * **Common to Figure 8a and 8b**:
     * In the Tofino switch, execute either:
-        * For ACC-Turbo: `./run_fig_08/run_fig_08_tofino_accturbo.sh`
-        * For FIFO: `./run_fig_08/run_fig_08_tofino_fifo.sh`
-        * For Jaqen: `./run_fig_08/run_fig_08_tofino_jaqen5tupple.sh`
+        * For ACC-Turbo: `sudo ./run_fig_08/run_fig_08_tofino_accturbo.sh`
+        * For FIFO: `sudo ./run_fig_08/run_fig_08_tofino_fifo.sh`
+        * For Jaqen: `sudo ./run_fig_08/run_fig_08_tofino_jaqen5tupple.sh`
 
     * In the sending server, execute: 
         * For UDP flood: `./run_fig_08/run_fig_08_sender_udpflood.sh`
@@ -167,10 +167,10 @@ ACC-Turbo
 **Table 3: Mitigation efficiency under attack variations**:
 
 * In the Tofino switch, execute either:
-    * For ACC-Turbo: `./run_table_03/run_table_03_tofino_accturbo.sh`
-    * For FIFO: `./run_table_03/run_table_03_tofino_fifo.sh`
-    * For Jaqen 5 tupple: `./run_table_03/run_table_03_tofino_jaqen5tupple.sh`
-    * For Jaqen src IP: `./run_table_03/run_table_03_tofino_jaqensrcbased.sh`
+    * For ACC-Turbo: `sudo ./run_table_03/run_table_03_tofino_accturbo.sh`
+    * For FIFO: `sudo ./run_table_03/run_table_03_tofino_fifo.sh`
+    * For Jaqen 5 tupple: `sudo ./run_table_03/run_table_03_tofino_jaqen5tupple.sh`
+    * For Jaqen src IP: `sudo ./run_table_03/run_table_03_tofino_jaqensrcbased.sh`
 
 * In the sending server, execute either: 
     * For no attack: `./run_table_03/run_table_03_sender_noattack.sh`
@@ -178,11 +178,11 @@ ACC-Turbo
     * For carpet bombing: `./run_table_03/run_table_03_sender_carpetbombing.sh`
     * For source spoofing: `./run_table_03/run_table_03_sender_sourcespoofing.sh`
 
-* Whenever the carpet bombing attack is picked at the server, pick the script at the Tofino switch labelled as "carpetbombing". This is:
-    * For ACC-Turbo: `./run_table_03/run_table_03_tofino_carpetbombing_accturbo.sh`. Comment line 2401 and uncomment line 2402 in `accturbo.p4`. 
-    * For FIFO: `./run_table_03/run_table_03_tofino_carpetbombing_fifo.sh`. Comment line 187 and uncomment line 188 in `simple_forwarder.p4`. 
-    * For Jaqen 5 tupple: `./run_table_03/run_table_03_tofino_carpetbombing_jaqen5tupple.sh`. Comment line 291 and uncomment line 292 in `heavy_hitter_5tupple.p4`. 
-    * For Jaqen src IP: `./run_table_03/run_table_03_tofino_carpetbombing_jaqensrcbased.sh`. Comment line 287 and uncomment line 288 in `heavy_hitter_srcbased.p4`. 
+* Whenever the carpet bombing attack is picked at the server, pick the script at the Tofino switch labeled as "carpetbombing". This is:
+    * For ACC-Turbo: `sudo ./run_table_03/run_table_03_tofino_carpetbombing_accturbo.sh`. Comment line 2401 and uncomment line 2402 in `accturbo.p4`. 
+    * For FIFO: `sudo ./run_table_03/run_table_03_tofino_carpetbombing_fifo.sh`. Comment line 187 and uncomment line 188 in `simple_forwarder.p4`. 
+    * For Jaqen 5 tupple: `sudo ./run_table_03/run_table_03_tofino_carpetbombing_jaqen5tupple.sh`. Comment line 291 and uncomment line 292 in `heavy_hitter_5tupple.p4`. 
+    * For Jaqen src IP: `sudo ./run_table_03/run_table_03_tofino_carpetbombing_jaqensrcbased.sh`. Comment line 287 and uncomment line 288 in `heavy_hitter_srcbased.p4`. 
 
 * For each {tofino-program, server-script} pair:
     * When the simulation is over, the Tofino script will display the total amount of benign traffic that made it to the egress pipeline of the Tofino switch.
