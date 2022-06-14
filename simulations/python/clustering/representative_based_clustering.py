@@ -31,7 +31,7 @@ class RepresentativeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
             cluster_signature = {}
             assert len(centroid) == len(self.feature_list)
             for feature in self.feature_list:
-                cluster_signature[feature] = {centroid[i],centroid[i]}
+                cluster_signature[feature] = (centroid[i],centroid[i])
                 i = i + 1
 
             # Create new cluster for the centroid (we set the bit counter to zero)
@@ -52,7 +52,7 @@ class RepresentativeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         packet_signature = {}
         assert len(packet) == len(self.feature_list)
         for feature in self.feature_list:
-            packet_signature[feature] = [packet[i],packet[i]]
+            packet_signature[feature] = (packet[i],packet[i])
             i = i + 1
 
         # Create new cluster for the packet
@@ -133,7 +133,7 @@ class RepresentativeBasedClustering(clustering_algorithm.ClusteringAlgorithm):
         packet_signature = {}
         assert len(packet) == len(self.feature_list)
         for feature in self.feature_list:
-            packet_signature[feature] = [packet[i],packet[i]]
+            packet_signature[feature] = (packet[i],packet[i])
             i = i + 1
 
         # Create new cluster for the packet (note that we do not update current_cluster_id straight away, since we will only use it if thee new_cluster is actually created)

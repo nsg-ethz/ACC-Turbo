@@ -21,7 +21,7 @@ CLUSTERING_TYPE="Online_Range_Fast_Manhattan"
 NUM_CLUSTERS=10
 RESET_CLUSTERS=1
 LEARNING_RATE=0.3
-FEATURE_SET="src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,dport,ttl,len"
+FEATURE_SET="src0,src1,src2,src3,dst0,dst1,dst2,dst3,sport,ttl"
 NORMALIZE_FEATURE_VALUES="False"
 
 # PRIORITIZATION CONFIGURATION
@@ -92,81 +92,80 @@ cd ..
 
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/0_400_PifoGT_80_0001.properties &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/401_819_PifoGT_80_0001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0001.properties &
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0001.properties & 
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0001.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0001.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0001.properties & 
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0001.properties &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/0_400_Fifo_80_0001.properties &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0001/401_819_Fifo_80_0001.properties &
 wait
 
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/0_400_PifoGT_80_0005.properties  &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/401_819_PifoGT_80_0005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0005.properties &
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0005.properties & 
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0005.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0005.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0005.properties & 
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_0005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_0005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/0_400_Fifo_80_0005.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_0005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_0005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/0_400_Fifo_80_0005.properties &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/0005/401_819_Fifo_80_0005.properties &
 wait
 
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/0_400_PifoGT_80_001.properties  &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/401_819_PifoGT_80_001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_001.properties &
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_001.properties & 
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_001.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_001.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_001.properties & 
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_001.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/0_400_Fifo_80_001.properties  &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_001.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/0_400_Fifo_80_001.properties &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/001/401_819_Fifo_80_001.properties &
 wait
 
-
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/0_400_PifoGT_80_002.properties  &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/401_819_PifoGT_80_002.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0._False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_002.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_002.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0._False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_002.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_002.properties &
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_002.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_002.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_002.properties & 
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_002.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_002.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_002.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_002.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_002.properties & 
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_002.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_002.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_002.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_002.properties &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/0_400_Fifo_80_002.properties  &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/002/401_819_Fifo_80_002.properties &
 wait
 
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/0_400_PifoGT_80_005.properties  &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/401_819_PifoGT_80_005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_005.properties &
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_005.properties & 
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_005.properties & 
 wait
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_005.properties &
-java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_005.properties &
+java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_005.properties &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/0_400_Fifo_80_005.properties  &
 java -jar -ea netbench/NetBench.jar ./netbench/projects/accturbo/runs/bottleneck_capacities/005/401_819_Fifo_80_005.properties &
 wait
