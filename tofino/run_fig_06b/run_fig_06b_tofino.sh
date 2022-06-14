@@ -3,10 +3,10 @@
 
 # Compile p4 program
 . /data/set_sde_9.2.0.sh
-#../../p4_build_albert.sh --with-p4c="/data/bf-sde-9.5.0/install/bin/bf-p4c" p4src/ddos_aid_4x4_singlepipe_p4_16_modified.p4
+./p4_build.sh --with-p4c="/data/bf-sde-9.2.0/install/bin/bf-p4c" p4src/ddos_aid_4x4_singlepipe_p4_16_modified.p4
 
-#sudo /home/nsg/bf-sde-9.2.0/install/bin/bf_kdrv_mod_unload 
-#sudo /home/nsg/bf-sde-9.5.0/install/bin/bf_kdrv_mod_load /home/nsg/bf-sde-9.5.0/install/
+sudo /home/nsg/bf-sde-9.5.0/install/bin/bf_kdrv_mod_unload 
+sudo /home/nsg/bf-sde-9.2.0/install/bin/bf_kdrv_mod_load /home/nsg/bf-sde-9.2.0/install/
 
 #############
 # Real switch
