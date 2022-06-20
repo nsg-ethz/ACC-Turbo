@@ -12,15 +12,15 @@ def analyze_bottleneck_capacities(range_bottleneck_capacities, schedulers):
             
             # We select the first input file
             if scheduler == "PifoManhattanFast":
-                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             elif scheduler == "PifoAnimeExhaustive":
-                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             elif scheduler == "PifoAnimeFast":
-                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             elif scheduler == "PifoManhattanExhaustive":
-                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")           
+                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")           
             elif scheduler == "PifoManhattanFastThroughputSize":
-                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")           
+                input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_0_400_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")           
 
             else:
                 input_file_first = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/0_400_" + scheduler + "_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
@@ -44,15 +44,15 @@ def analyze_bottleneck_capacities(range_bottleneck_capacities, schedulers):
 
             # We select the second input file
             if scheduler == "PifoManhattanFast":
-                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             elif scheduler == "PifoAnimeExhaustive":
-                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             elif scheduler == "PifoAnimeFast":
-                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Anime_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             elif scheduler == "PifoManhattanExhaustive":
-                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Exhaustive_Manhattan_10_1_0.3_False_Throughput_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             elif scheduler == "PifoManhattanFastThroughputSize":
-                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_dport_ttl_len_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
+                input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/Online_Range_Fast_Manhattan_10_1_0.3_False_ThroughputSize_0_1_src0_src1_src2_src3_dst0_dst1_dst2_dst3_sport_ttl_401_819_Pifo_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
             else:
                 input_file_second = open("netbench/temp/accturbo/bottleneck_capacities/"+str(bottleneck_capacitiy)+"/401_819_" + scheduler + "_80_" + str(bottleneck_capacitiy) + "/statistics.log", "r")
 
@@ -90,6 +90,5 @@ def analyze_bottleneck_capacities(range_bottleneck_capacities, schedulers):
 
 if __name__ == "__main__":
     range_bottleneck_capacities = ["005","002","001","0005","0001"]
-    schedulers = ["Fifo", "PifoGT", "PifoManhattanFast", "PifoManhattanFastThroughputSize", "PifoManhattanExhaustive", "PifoAnimeFast"] #
-
+    schedulers = ["Fifo", "PifoGT", "PifoManhattanFast", "PifoManhattanFastThroughputSize", "PifoManhattanExhaustive", "PifoAnimeFast"] 
     analyze_bottleneck_capacities(range_bottleneck_capacities, schedulers)
