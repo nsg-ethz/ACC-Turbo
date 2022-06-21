@@ -77,7 +77,7 @@ public class PIFOOutputPort extends OutputPort {
                 }
 
                 if (packet.isTCP()){ //TODO: Add a tag such that is just the ddos logging
-                    FullExtTcpPacket fpkt = (FullExtTcpPacket) packet;
+                    FullExtTcpPacket fpkt = (FullExtTcpPacket) droppedPacket;
                     // Logging of benign and malicious packets
                     if (fpkt.isURG()) {
                         SimulationLogger.increaseStatisticCounter("MALICIOUS_PACKETS_DROPPED"); // This just does + 1 (since length not added)
