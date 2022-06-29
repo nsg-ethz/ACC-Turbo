@@ -125,6 +125,8 @@ ACC-Turbo
 
 **Figure 11: Impact of scheduling for mitigation**: 
 
+* Requirement: `sudo apt install pcapfix`
+
 * **Figure 11a: Performance of different ranking algorithms**:
     * Execute: `./run_fig_11a.sh`
     * Result: `python/plots/ranking_algorithms`

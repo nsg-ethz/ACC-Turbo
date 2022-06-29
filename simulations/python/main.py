@@ -308,8 +308,7 @@ if __name__ == '__main__':
                 print("Results saved in: " + output_file_name)
 
             # We fix possible broken packets in the resulting pcap so that Netbench can easily read them
-            #os.system('pcapfix ' + output_file_name + ' -o ' +  (output_file_name.split(".pcap")[0] + '_fixed.pcap'))
-            #os.remove(output_file_name)
+            os.system('pcapfix ' + output_file_name)
 
             # We make sure the format is pcap and not pcapng
             #os.system('editcap -F libpcap ' + (output_file_name.split(".pcap")[0] + '_fixed.pcap') + ' ../netbench_ddos/pcap/' + output_file_name.split(".pcap")[0] + '_input_netbench.pcap')
